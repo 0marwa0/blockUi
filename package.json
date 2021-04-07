@@ -1,0 +1,15 @@
+{
+  "name": "blockUi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MARWA-J/blockUi.git",
+  "author": "marwa <marwajawad19@gmail>",
+  "license": "MIT",
+  "dependencies": {
+    "antd": "^4.12.3",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1"
+  }
+}

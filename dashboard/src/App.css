@@ -1,0 +1,12 @@
+:root {
+  --main: white;
+  --second: white;
+}
+* {
+  color: black;
+  min-height: 0;
+  min-width: 0;
+}
+a {
+  color: unset !important;
+}
