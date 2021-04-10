@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal } from "react-responsive-modal";
-import NewBooking from "../Booking/NewBooking/NewBooking";
+//import NewBooking from "../Records/NewBooking/NewBooking";
 import { FailedMesg, Mesg, SuccessMesg } from "../../API/APIMessage";
 import { LoadData, LoadBooking, LoadDataByID, addData } from "../../API";
 //export const Values = React.createContext();
-import { Values } from "../Booking/index";
+import { Values } from "../Records/index";
 function Index(props) {
   const [Loading, setLoading] = useState(false);
   const [Book, setBook] = useState([]);
@@ -236,7 +236,7 @@ function Index(props) {
           classNames={{
             modal: "customModal",
           }}>
-          <NewBooking
+    {/*          <NewBooking
             handleInput={handleInput}
             handleselect={handleselect}
             edit={edit ? true : false}
@@ -245,7 +245,7 @@ function Index(props) {
               props.onOpenModal(false);
               clearState();
             }}
-          />
+          />*/}
         </Modal>
       </Values.Provider>
     </div>

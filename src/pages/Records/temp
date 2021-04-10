@@ -1,0 +1,56 @@
+
+ <div className="record-items">
+        <div className="record-head">
+          <span className="flex-row">
+            name
+            <Icon />
+          </span>
+
+          <span className="flex-row">
+            amount <Icon />
+          </span>
+          <span className="flex-row">
+            note <Icon />
+          </span>
+
+          <div></div>
+        </div>
+        <SortableList items={state} onSortEnd={onSortEnd} />;
+        <div className="input-row">
+          <div className="flex-row">
+            {" "}
+            <div>
+              {" "}
+              <Input
+                placeholder="name"
+                style={{ border: "none", width: "max-content" }}
+                onChange={(e) => handelInput("name", e.target.value)}
+              />
+            </div>
+            <div>
+              {" "}
+              <Input
+                placeholder="price"
+                style={{ border: "none", width: "max-content" }}
+                onChange={(e) => handelInput("price", e.target.value)}
+              />
+            </div>
+            <div>
+              <Input
+                placeholder="note"
+                style={{ border: "none", width: "max-content" }}
+                onChange={(e) => handelInput("note", e.target.value)}
+              />
+            </div>
+          </div>
+          <div>
+            <CustomButton
+              main
+              lable="Create"
+              //   pageTitle={pageTitle}
+              loading={props.Loading}
+              //  onOpen={() => props.onOpenModal(true)}
+            ></CustomButton>
+          </div>
+        </div>
+      </div>{" "}

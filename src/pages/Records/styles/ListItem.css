@@ -1,0 +1,113 @@
+.List-holder {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.List-holder .btn {
+  color: #ffffff;
+  padding: 0.2rem;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  margin: 0 10px;
+  cursor: pointer;
+  border: 1px solid rgba(201, 198, 198, 0.2);
+  background: rgb(231, 228, 228);
+}
+.List-holder .flex-line {
+  display: flex;
+  gap: 5px;
+}
+.List-holder .cards {
+  /* display: flex;
+    flex-wrap: wrap; */
+  list-style: none;
+  margin: 0;
+  gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 0;
+}
+.flex-line span {
+  color: rgb(160, 149, 149);
+}
+.List-holder .card-user {
+  color: black;
+  width: 100%;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+.List-holder .card-user img {
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+}
+.List-holder .btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.List-holder .cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .List-holder .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .List-holder .cards_item {
+    width: 33.3333%;
+  }
+}
+.List-holder .List-holder {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.List-holder .card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  width: 320px;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 18px;
+  color: black;
+  background-color: white;
+}
+
+.List-holder .card_content {
+  padding: 1rem 0;
+  /* background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%); */
+}
+
+.List-holder .card_title {
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+.flex-line span {
+  color: rgb(160, 149, 149);
+}
+
+.List-holder .card_text {
+  color: black;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  padding: 0 20px;
+  justify-content: space-between;
+  font-weight: 400;
+  display: flex;
+}

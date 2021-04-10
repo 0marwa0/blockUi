@@ -1,0 +1,47 @@
+.record-items {
+  width: 100%;
+  border-radius: 7px;
+
+  border: 1px solid var(--lighterGray);
+}
+
+.record-head {
+  width: 100%;
+  padding: 5px;
+  display: grid;
+  padding: 20px;
+  font-size: 15px;
+  text-transform: capitalize;
+  background-color: var(--lightGray);
+  grid-template-columns: 1fr 1fr 1fr auto;
+}
+.input-row {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.record-icon {
+  display: flex;
+  flex-direction: column;
+  color: var(--textGray);
+  gap: 1px;
+  font-size: 10px;
+  margin-top: 6px;
+}
+.record {
+  width: 100%;
+  display: grid;
+  padding: 5px 20px;
+  border: 1px solid var(--lightGray);
+  cursor: pointer;
+  grid-template-columns: 1fr 1fr 1fr auto;
+}

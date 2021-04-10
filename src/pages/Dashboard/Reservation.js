@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {BarChartWidget,SalesValueWidgetPhone} from "./chart/chart.js"
+import { BarChartWidget, SalesValueWidgetPhone } from "./chart/chart.js";
 import { Widget } from "./index";
 import { ReservationsData } from "../../fakeData";
 import styled from "styled-components";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { monthNames } from "../shared/assets";
 import { Text } from "../Notification";
 import { ReservationLoading } from "../shared/Loading";
-
+import ChartBar from "./chart/ChartBar";
 import { trafficShares, totalOrders } from "./chart/Data.js";
 
 import TimeAgo from "react-simple-timeago";
@@ -136,26 +136,22 @@ function Index(props) {
 
   return (
     <Widget reservation>
-    <div
-    style={{
-      overflow: "hidden",
-        transition: "2s ease",
+      <div
+        style={{
+          overflow: "hidden",
+          transition: "2s ease",
+          // height: show ? "auto" : "330px",
+        }}
+      >
+        <ItemHeader>
+          <span style={{ fontWeight: "bold", fontSize: "1.1vw" }}>
+            Most Active Workers
+          </span>
+          <NumBtn>{Data.length}</NumBtn>
+        </ItemHeader>
+        <ChartBar />
 
-        height: show ? "auto" : "330px",
-    }}>
-    <ItemHeader>
-    <span style={{ fontWeight: "bold", fontSize: "1.1vw" }}>
-    Pending Reservations
-    </span>
-    <NumBtn>{Data.length}</NumBtn>
-    </ItemHeader>
-    <BarChartWidget
-    title="Total income"
-    value={992}
-    percentage={20.2}
-    data={totalOrders}
-    />
-    {/*        <div className="items">
+        {/*        <div className="items">
           {props.Loading
             ? [1, 2, 3, 4].map((item, i) => {
                 return <ReservationLoading />;
@@ -227,12 +223,12 @@ function Index(props) {
                 );
               })}
         </div>*/}
-    </div>
-    <SeeAll>
-    <GrayText onClick={ShowAll}>
-    {show ? "Show less " : " Show All"}
-    </GrayText>
-    </SeeAll>
+      </div>
+      {/*<SeeAll>
+        <GrayText onClick={ShowAll}>
+          {show ? "Show less " : " Show All"}
+        </GrayText>
+      </SeeAll>*/}
     </Widget>
   );
 }

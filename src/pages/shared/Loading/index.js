@@ -1,6 +1,6 @@
 import React from "react";
 import { Skeleton, Space, Divider, Switch, Form, Radio } from "antd";
-import { CardItem, GrayText } from "../../Booking/NewBooking/Modal";
+//import { div, div } from "../../Records/NewBooking/Modal";
 import { CreateText, EmptyTextHolder } from "../../shared/SharedStyle";
 const StatisticLoading = () => {
   return (
@@ -72,22 +72,22 @@ export const ReservationLoading = () => {
 export const BookItemLoading = () => {
   return [1, 2, 3].map((item, i) => {
     return (
-      <CardItem key={i}>
+      <div key={i}>
         <div>{item.price}</div>
-        <GrayText>
+        <div>
           <Skeleton.Input
             style={{ width: 70, height: 3 }}
             active="active"
             size="default"
           />{" "}
-        </GrayText>
+        </div>
 
         <Skeleton.Input
           style={{ width: 70, height: 3 }}
           active="active"
           size="default"
         />
-      </CardItem>
+      </div>
     );
   });
 };

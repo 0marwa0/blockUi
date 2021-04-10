@@ -1,12 +1,8 @@
-import { BarChartWidget, SalesValueWidgetPhone } from "./chart/chart.js";
 import { ReservationsData } from "../../fakeData";
 import React, { useRef, useState, useEffect } from "react";
 import SideBar from "../Sidebar";
 import { BiExport, BiDollar } from "react-icons/bi";
-import Reservation from "./Reservation";
 import moment from "moment";
-import ChartLine from "./chart/ChartLine";
-import Statistic from "./Statistic";
 import LoadingBar from "react-top-loading-bar";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Col, Row, Input, Button, Menu, Dropdown } from "antd";
@@ -22,7 +18,6 @@ import { Data } from "../../fakeData/DashFakeData";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Tooltip from "react-tooltip";
-import BookingModal from "./BookingModal";
 import { LoadBooking, LoadData } from "../../API";
 import { SuccessMesg, FailedMesg, Mesg } from "../../API/APIMessage";
 import { SmileOutlined } from "@ant-design/icons";
@@ -336,16 +331,16 @@ function Index(props) {
       <SideBar />
       <PageContentFix>
         <PageHeader>
-          <PageTitle> Dashboard</PageTitle>
+          <PageTitle> Statices</PageTitle>
         </PageHeader>
         <Row>
           <PageBtn>
             <div></div>
-            <ButtonGroup>
+            {/**  <ButtonGroup>
               <CustomButton main onOpen={onOpenModal} lable="New Booking">
                 <PlusIcon />
               </CustomButton>
-            </ButtonGroup>
+            </ButtonGroup>*/}
           </PageBtn>
         </Row>
 
@@ -364,28 +359,50 @@ function Index(props) {
               height: "auto",
             }}
           >
-            <ChartLine />
-            {/*<Clander></Clander>*/}
+            <Clander>
+              <FullCalendar
+                customButtons={{
+                  myCustomButton: {
+                    text: "custom!",
+                    click: function () {
+                      alert("clicked the custom button!");
+                    },
+                  },
+                }}
+                header={{
+                  left: "prev,next today myCustomButton",
+                  center: "title",
+                  right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                }}
+                plugins={[dayGridPlugin]}
+                initialView="dayGridMonth"
+                height="700px"
+                // eventClick={(e) =>
+                //   props.history.push(
+                //     `/bookingdetalis/${e.event._def.extendedProps.bookId}`
+                //   )
+                // }
+                eventMouseEnter={(item) => onEnter(item)}
+                eventMouseLeave={(item) => onLeave(item)}
+                // initialDate={change ? "2020-12-01T00:00:00.000Z" : CurrentMonth}
+                events={BookDates}
+              />
+            </Clander>
           </Col>
 
           <Col style={{ height: "100%" }}>
             <div className="r-ctrl">
-              {" "}
-              <Reservation Reservations={Reservations} Loading={Loading} />
+              {/*               <Reservation Reservations={Reservations} Loading={Loading} />
+               */}
             </div>
             <div style={{ height: "3%" }}></div>
             <div className="s-ctrl">
-              {" "}
-              <Statistic Loading={Loading} statistics={statistics} />
+              {/*               <Statistic Loading={Loading} statistics={statistics} />
+               */}
             </div>
           </Col>
         </Row>
       </PageContentFix>
-      <BookingModal
-        open={open}
-        onOpenModal={onOpenModal}
-        getData={loadApiData}
-      />
     </div>
   );
 }

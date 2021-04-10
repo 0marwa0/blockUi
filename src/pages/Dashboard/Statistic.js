@@ -134,7 +134,7 @@ function Index(props) {
           </DropBtn>
         </Dropdown>
       </ItemHeader>{" "}
-    {/* <div>
+      <div>
         {props.Loading ? (
           [1, 2, 3, 4, 5].map((i) => {
             return <StatisticLoading />;
@@ -146,10 +146,9 @@ function Index(props) {
                 <GiElectric color="var(--blue)" size={15} />
               </TotleReservationsIcon>
               <div>
-                Total Reservations
-                <GrayText></GrayText>
+                Number of Sold Record<GrayText></GrayText>
               </div>
-              <BoldText>{statistics.resevation}</BoldText>
+              <BoldText>8824</BoldText>
             </ReservationItem>
             <ReservationItem>
               <TotlaEvents>
@@ -157,20 +156,20 @@ function Index(props) {
                 <MdShowChart color="var(--orange)" size={20} />
               </TotlaEvents>
               <div>
-                Total Events
+                Total Incom
                 <GrayText></GrayText>
               </div>
-              <BoldText></BoldText>
+              <BoldText>12,000,00</BoldText>
             </ReservationItem>
             <ReservationItem>
               <TotlaBooked>
                 <MdShowChart color="var(--red)" size={20} />
               </TotlaBooked>
               <div>
-                Total Booked Hours
+                Number Of sold Records
                 <GrayText></GrayText>
               </div>
-              <BoldText>{statistics.timeTotal}</BoldText>
+              <BoldText>5555</BoldText>
             </ReservationItem>
 
             <ReservationItem>
@@ -178,24 +177,23 @@ function Index(props) {
                 <BiDollar color="var(--darkGreen)" size={17} />
               </TotlaCost>
               <div>
-                Total Cost
-                <GrayText></GrayText>
+                Total Income in $<GrayText></GrayText>
               </div>
-              <BoldText></BoldText>
+              <BoldText>88,000</BoldText>
             </ReservationItem>
             <ReservationItem>
               <TotleReservationsIcon>
                 <GiElectric color="var(--blue)" size={15} />
               </TotleReservationsIcon>
               <div>
-                Total Income
+                Total Income in QRD
                 <GrayText></GrayText>
               </div>
-              <BoldText>{statistics.income}</BoldText>
+              <BoldText>555557</BoldText>
             </ReservationItem>
           </div>
         )}
-      </div>*/}
+      </div>
     </Widget>
   );
 }

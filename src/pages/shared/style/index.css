@@ -1,0 +1,25 @@
+.CustomPageWrapper {
+  display: flex;
+  flex-direction: row;
+}
+/*shared button style*/
+.CustomButton {
+}
+/*table style in dark mode*/
+
+.isDark .ant-table {
+  color: white !important ;
+  background-color: black !important;
+}
+
+.isDark .ant-table-thead > tr > th {
+  color: white !important ;
+  background-color: #353535 !important;
+  border: 1px solid #353535 !important;
+}
+.isDark .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #353535 !important;
+}
+.isDark .ant-table-container {
+  border: 1px solid #353535 !important;
+}

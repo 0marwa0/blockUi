@@ -1,0 +1,68 @@
+.SideWarpper,
+.SideWarpper-dark {
+  width: 87px;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  padding-right: 4px;
+  z-index: 100;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #e1c340;
+}
+
+.SideWarpper-dark {
+  color: gray;
+  background-color: black !important;
+  border-right: 1px solid #353535 !important;
+}
+.NotifiHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px;
+
+  font-size: 20px;
+  font-weight: 400;
+  align-items: center;
+  cursor: unset;
+}
+
+.SideItem {
+  position: relative;
+  padding: 1.5vh 25px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-size: 35px;
+  display: flex;
+  /*   color: ${(props) => (props.isSelected ? "var(--yellow);" : "var(--gray);")};*/
+  justify-content: center;
+  align-items: center;
+}
+.SideItem :hover {
+  border-left: 2px solid var(--yellow);
+
+  color: var(--yellow);
+}
+.UserImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.Active {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 14px;
+  right: 30%;
+  border: 2px solid var(--black);
+  background-color: var(--RayGreen);
+}
+
+.Logo {
+  width: auto;
+  height: 55px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  padding: 0 10px;
+}
