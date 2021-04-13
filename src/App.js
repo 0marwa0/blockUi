@@ -14,6 +14,7 @@ import Admins from "./pages/Admins";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
+import Settings from "./pages/Settings";
 import Statistic from "./pages/Statistic/index";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 function App(props) {
@@ -89,6 +90,11 @@ function App(props) {
         <Route
           path="/statistics"
           render={(props) => <Statistic {...props} id={userId} />}
+          exact
+        />{" "}
+        <Route
+          path="/settings"
+          render={(props) => <Settings {...props} id={userId} />}
           exact
         />{" "}
         <Route

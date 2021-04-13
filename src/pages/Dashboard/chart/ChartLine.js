@@ -34,7 +34,7 @@ const lineOptions = {
     xAxes: [
       {
         gridLines: {
-          display: false,
+          display: true,
         },
       },
     ],
@@ -42,7 +42,7 @@ const lineOptions = {
       {
         // stacked: true,
         gridLines: {
-          display: false,
+          display: true,
         },
         ticks: {
           beginAtZero: true,

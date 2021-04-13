@@ -1,9 +1,107 @@
+/**********************second step styles*****************************/
+.record-items,
+.record-items-dark {
+  width: 100%;
+  border-radius: 7px;
+
+  border: 1px solid rgb(44, 43, 43);
+}
+.record-items-dark {
+  border: 1px solid rgb(44, 43, 43);
+}
+.record-head,
+.record-head-dark {
+  width: 100%;
+  padding: 5px;
+  display: grid;
+  padding: 20px;
+  font-size: 15px;
+  text-transform: capitalize;
+  background-color: var(--lightGray);
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+}
+.record-head-dark {
+  color: var(--darkGray);
+  background-color: rgb(44, 43, 43) !important;
+}
+.tag {
+  width: max-content;
+  padding: 0.5px 2px;
+  border-radius: 5px;
+}
+.green {
+  background-color: var(--LightGreen);
+  color: rgb(26, 150, 26);
+}
+.org {
+  background-color: var(--lightOrange);
+  color: var(--orange);
+}
+.react-responsive-modal-modal {
+  border: 1px solid transparent !important;
+
+  border-radius: 10px !important;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.record-icon {
+  display: flex;
+  flex-direction: column;
+  color: var(--textGray);
+  gap: 1px;
+  font-size: 10px;
+  margin-top: 6px;
+}
+.record,
+.record-dark {
+  width: 100%;
+  display: grid;
+  padding: 5px 20px;
+  border: 1px solid var(--lightGray);
+  cursor: pointer;
+  background-color: white;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+}
+
+.react-responsive-modal-modal {
+  background-color: transparent;
+  padding: 10px 0 !important;
+  max-width: max-content;
+}
+.record-dark {
+  color: var(--darkGray);
+  background-color: black;
+  border: 1px solid rgb(44, 43, 43);
+}
+
 .record-step1 {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
-
+.templetPopup,
+.templetPopup-dark {
+  padding: 60px;
+  border-radius: 10px;
+  width: max-content;
+  background-color: white;
+}
+.templetPopup-dark {
+  background-color: black;
+  border: 1px solid var(--secDark);
+}
 .record-templet {
   display: flex;
   border: 1px solid var(--textGray);

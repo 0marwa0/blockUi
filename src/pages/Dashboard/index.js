@@ -37,11 +37,6 @@ import {
 } from "../shared/CustomPage";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-export const GlobalStyle = createGlobalStyle`
-body{
-  background-color:var(--lightGray)
-}
-`;
 const colors = {
   color1: "var(--darkGreen)",
   color2: "var(--orange)",
@@ -110,61 +105,7 @@ function Index(props) {
   const ref = useRef(null);
   const [ID, setID] = useState(localStorage.getItem("Station_id"));
   const [Reservations, setReservations] = useState([]);
-  const onEnter = (item) => {
-    let data;
-    let color = item.event._def.ui.backgroundColor.replace(/^"(.*)"$/, "$1");
-    //console.log(item.event._def.ui.backgroundColor, "our color");
-    item.event._def.extendedProps.data.map((item) => (data = item));
 
-    let node = document.createElement("div");
-    let DayWrap = document.createElement("div");
-    let TimeWrap = document.createElement("div");
-    let TitleWrap = document.createElement("div");
-    DayWrap.setAttribute("id", "flex-col");
-    TimeWrap.setAttribute("id", "flex-col");
-    TitleWrap.setAttribute("id", "flex-col");
-    let day = document.createElement("div");
-    let date = document.createElement("div");
-    let titleLable = document.createElement("div");
-    let title = document.createElement("div");
-    let timeLable = document.createElement("div");
-    let time = document.createElement("div");
-    title.style.color = `${color}`;
-    node.setAttribute("id", "pupup");
-    item.el.setAttribute("id", "holder");
-
-    if (item.el.id === "holder") {
-      node.style.border = `1px solid ${color}`;
-
-      day.innerHTML = `${data.day}`;
-      date.innerHTML = `${data.date}`;
-      title.innerHTML = `${data.title}`;
-      titleLable.innerHTML = `Event Title`;
-      time.innerHTML = `${data.time}`;
-      time.style.color = "black";
-      timeLable.innerHTML = `Time`;
-      DayWrap.appendChild(day);
-      DayWrap.appendChild(date);
-      TitleWrap.appendChild(titleLable);
-      TitleWrap.appendChild(title);
-      TimeWrap.appendChild(timeLable);
-      TimeWrap.appendChild(time);
-      node.appendChild(DayWrap);
-      node.appendChild(TitleWrap);
-      node.appendChild(TimeWrap);
-
-      item.el.appendChild(node);
-
-      // console.log(item.el);
-    }
-  };
-  const onLeave = (item) => {
-    if (document.getElementById("pupup")) {
-      item.el.removeChild(document.getElementById("pupup"));
-    } else {
-    }
-    return item;
-  };
   const [open, setOpen] = useState(false);
   const onOpenModal = (open) => {
     setOpen(open);
@@ -185,16 +126,7 @@ function Index(props) {
   const loadApiData = () => {
     setLoading(true);
     ref.current.staticStart();
-    // LoadData(
-    //   "books",
-    //   (mesg, res) => {
-    //        setLoading(false);
-    //     ref.current.complete();
 
-    //     if (mesg) {
-    //       Mesg(mesg);
-    //     }
-    //     let PendingBooks = res.data.rows.filter((i) => i.status === "pending");
     setTimeout(() => {
       setLoading(false);
 
@@ -203,96 +135,17 @@ function Index(props) {
       setReservations(ReservationsData);
     }, 1200);
 
-    // let Dates = [];
-    // let el = {};
-    // let date = res.data.rows
-    //   .filter((i) => i.approve === true)
-    //   .map((i) => i.bookDates);
-
-    // for (let i = 0; i < date.length; i++) {
-    //   date[i].map((item) => {
-    //     Dates.push(item);
-    //   });
-    // }
-    // set title
-    // Dates.map(
-    //   (obj) =>
-    //     (obj.title = res.data.rows
-    //       .filter((i) => i.id === obj.bookId)
-    //       .map((i) => i.title)
-    //       .toString())
-    // );
-
-    // set event color
-    // Dates.map(
-    //   (obj) =>
-    //     (obj.color =
-    //       colors[`color${Math.floor(Math.random() * (5 - 1 + 1)) + 1}`])
-    // );
-
-    // Dates.map((obj) => (obj.end = getDate(obj.end)));
-    // Dates.map((obj) => (obj.start = getDate(obj.start)));
-
-    // Dates.map(
-    //   (obj) =>
-    //     (obj.data = [
-    //       {
-    //         title: res.data.rows
-    //           .filter((i) => i.id === obj.bookId)
-    //           .map((i) => i.title)
-    //           .toString(),
-    //         day:
-    //           obj.start === obj.end
-    //             ? getDay(obj.start)
-    //             : getDay(obj.start) + " - " + getDay(obj.end),
-    //         date:
-    //           obj.start === obj.end
-    //             ? DateName(obj.start)
-    //             : DateName(obj.start) + " - " + DateName(obj.end),
-    //         time: getTime(obj.start) + " - " + getTime(obj.end),
-    //       },
-    //     ])
-    // );
-
     setBookDates(Data);
-    //   },
-    //   (err) => {
-    //     setLoading(false);
-    //     ref.current.complete();
-
-    //     FailedMesg(err, "Something worng happend !");
-    //   }
-    // );
   };
 
-  const getStatistic = () => {
-    // LoadData(
-    //   "statistics",
-    //   (err, data) => {
-    //     setLoading(false);
-    //     setstatistics(data);
-    //     //   console.log(data, "statices");
-    //     if (err) {
-    //       Mesg(err);
-    //     }
-    //   },
-    //   (err) => {
-    //     setLoading(false);
-    //     FailedMesg(err, "Something worng happend !");
-    //     console.log(err, "failed");
-    //   }
-    // );
-  };
   useEffect(() => {
     loadApiData();
-    // getStatistic();
-    // if (localStorage.getItem("station_token")) {
-    // loadApiData();
-    // getStatistic();
-    // // } else {
-    //   props.history.push("/login");
-    // }
-  }, []);
+    if (localStorage.getItem("isLight") === "dark") {
+      document.body.style.background = "black";
+    } else {
+      document.body.style.background = "var(--lightGray";
+    }
+  }, [localStorage.getItem("isLight")]);
   let id = localStorage.getItem("Station_id");
   let NowDate = new Date();
   let month = NowDate.getMonth();
@@ -304,11 +157,6 @@ function Index(props) {
   let year = NowDate.getFullYear();
   const setNextMonth = () => {
     setchange(true);
-    // if (month === 12) {
-    //   setCurrentMonth("01");
-    // } else {
-    //   setCurrentMonth(month + 1);
-    // }
   };
   const setPrevMonth = () => {
     setCurrentMonth(month - 1);
@@ -330,23 +178,22 @@ function Index(props) {
   // let d = "2020-11-05T00:00:00.000Z";
   return (
     <div className="CustomPageWrapper">
-      <GlobalStyle />
       <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
 
       <SideBar />
-      <PageContentFix>
+      <div className="PageContentFix">
         <PageHeader>
-          <PageTitle> Dashboard</PageTitle>
+          <div className="PageTitle"> Dashboard</div>
         </PageHeader>
         <Row>
-          <PageBtn>
+          <div className="PageBtn">
             <div></div>
-            <ButtonGroup>
+            <div className="ButtonGroup">
               <CustomButton main onOpen={onOpenModal} lable="New Booking">
                 <PlusIcon />
               </CustomButton>
-            </ButtonGroup>
-          </PageBtn>
+            </div>
+          </div>
         </Row>
 
         <Row
@@ -380,7 +227,7 @@ function Index(props) {
             </div>
           </Col>
         </Row>
-      </PageContentFix>
+      </div>
       <BookingModal
         open={open}
         onOpenModal={onOpenModal}

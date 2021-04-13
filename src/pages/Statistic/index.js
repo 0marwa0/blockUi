@@ -2,13 +2,16 @@ import { ReservationsData } from "../../fakeData";
 import React, { useRef, useState, useEffect } from "react";
 import SideBar from "../Sidebar";
 import { BiExport, BiDollar } from "react-icons/bi";
+import "./styles/index.css";
 import moment from "moment";
+import ChartBar from "../Dashboard/chart/ChartBar";
 import LoadingBar from "react-top-loading-bar";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Col, Row, Input, Button, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { CustomButton } from "../shared/SharedComponents";
 import "../../App.css";
+import "../shared/style/widget.css";
 import { ReactComponent as PlusIcon } from "../../public/images/plus.svg";
 import { useHistory } from "react-router-dom";
 import FullCalendar from "@fullcalendar/react";
@@ -22,7 +25,9 @@ import { LoadBooking, LoadData } from "../../API";
 import { SuccessMesg, FailedMesg, Mesg } from "../../API/APIMessage";
 import { SmileOutlined } from "@ant-design/icons";
 import "../../App.css";
+import Expanse from "./Expanse";
 
+import Income from "./Income";
 import {
   PageContent,
   PageTitle,
@@ -323,25 +328,34 @@ function Index(props) {
   );
 
   // let d = "2020-11-05T00:00:00.000Z";
+  useEffect(() => {
+    if (localStorage.getItem("isLight") === "dark") {
+      document.body.style.background = "black";
+    } else {
+      document.body.style.background = "lighterGray";
+    }
+  }, []);
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className="CustomPageWrapper">
       <GlobalStyle />
       <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
 
       <SideBar />
-      <PageContentFix>
+      <div className="PageContentFix">
         <PageHeader>
-          <PageTitle> Statices</PageTitle>
+          <div className="PageTitle"> Statices</div>
         </PageHeader>
         <Row>
-          <PageBtn>
+          {/**<PageBtn>
             <div></div>
-            {/**  <ButtonGroup>
+             <ButtonGroup>
               <CustomButton main onOpen={onOpenModal} lable="New Booking">
                 <PlusIcon />
               </CustomButton>
-            </ButtonGroup>*/}
-          </PageBtn>
+            </ButtonGroup>
+          </PageBtn>*/}
         </Row>
 
         <Row
@@ -359,50 +373,50 @@ function Index(props) {
               height: "auto",
             }}
           >
-            <Clander>
-              <FullCalendar
-                customButtons={{
-                  myCustomButton: {
-                    text: "custom!",
-                    click: function () {
-                      alert("clicked the custom button!");
+            <div className={darkMod ? "dark-clander" : ""}>
+              <div className={darkMod ? "mainWidget-dark" : "mainWidget"}>
+                <FullCalendar
+                  customButtons={{
+                    myCustomButton: {
+                      text: "custom!",
+                      click: function () {
+                        alert("clicked the custom button!");
+                      },
                     },
-                  },
-                }}
-                header={{
-                  left: "prev,next today myCustomButton",
-                  center: "title",
-                  right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
-                }}
-                plugins={[dayGridPlugin]}
-                initialView="dayGridMonth"
-                height="700px"
-                // eventClick={(e) =>
-                //   props.history.push(
-                //     `/bookingdetalis/${e.event._def.extendedProps.bookId}`
-                //   )
-                // }
-                eventMouseEnter={(item) => onEnter(item)}
-                eventMouseLeave={(item) => onLeave(item)}
-                // initialDate={change ? "2020-12-01T00:00:00.000Z" : CurrentMonth}
-                events={BookDates}
-              />
-            </Clander>
+                  }}
+                  header={{
+                    left: "prev,next today myCustomButton",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                  }}
+                  plugins={[dayGridPlugin]}
+                  initialView="dayGridMonth"
+                  height="700px"
+                  // eventClick={(e) =>
+                  //   props.history.push(
+                  //     `/bookingdetalis/${e.event._def.extendedProps.bookId}`
+                  //   )
+                  // }
+                  eventMouseEnter={(item) => onEnter(item)}
+                  eventMouseLeave={(item) => onLeave(item)}
+                  // initialDate={change ? "2020-12-01T00:00:00.000Z" : CurrentMonth}
+                  events={BookDates}
+                />
+              </div>
+            </div>
           </Col>
 
           <Col style={{ height: "100%" }}>
             <div className="r-ctrl">
-              {/*               <Reservation Reservations={Reservations} Loading={Loading} />
-               */}
+              <Income />
             </div>
             <div style={{ height: "3%" }}></div>
             <div className="s-ctrl">
-              {/*               <Statistic Loading={Loading} statistics={statistics} />
-               */}
+              <Expanse />
             </div>
           </Col>
         </Row>
-      </PageContentFix>
+      </div>
     </div>
   );
 }

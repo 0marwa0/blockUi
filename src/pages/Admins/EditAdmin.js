@@ -9,7 +9,7 @@ import { ProfileImage } from "../Profile";
 import { Upload } from "antd";
 import "../../App.css";
 import { Scrollbars } from "react-custom-scrollbars";
-
+import "../shared/style/index.css";
 import { Values } from "./index";
 import Select, { components } from "react-select";
 
@@ -185,7 +185,8 @@ function Index(props) {
             className="Modal"
             ref={(nods) => {
               node = nods;
-            }}>
+            }}
+          >
             <SideModal>
               <div style={{ height: "150vh" }}>
                 <Title>
@@ -210,16 +211,21 @@ function Index(props) {
                     display: "flex",
                     justifyContent: "center",
                     alignContent: "center",
-                  }}>
+                  }}
+                >
                   <div>
-                    <ProfileImage src={ImageUrl}>
+                    <div
+                      className="ProfileImage"
+                      style={{ backgroundImage: require(ImageUrl) }}
+                    >
                       {/* {ImageUrl === "" ? name : ""} */}
-                    </ProfileImage>
+                    </div>
                     <Space style={{ cursor: "pointer" }}>
                       <Upload
                         {...Props}
                         onChange={(e) => handleImage(e)}
-                        defaultFileList={imageName && [imageName]}>
+                        defaultFileList={imageName && [imageName]}
+                      >
                         Upload Photo
                       </Upload>
                     </Space>
@@ -302,13 +308,15 @@ function Index(props) {
               <div
                 style={{
                   marginTop: "40px",
-                }}>
+                }}
+              >
                 <ModalFooter>
                   <div
                     style={{
                       marginBottom: "5px",
                       float: "right",
-                    }}>
+                    }}
+                  >
                     <CustomModleButton main extra fun={props.handleSubmit}>
                       {props.type === "create" ? "Create" : "Save"}
                     </CustomModleButton>

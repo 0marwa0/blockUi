@@ -1,0 +1,25 @@
+.ModalFooter {
+  height: 5%;
+}
+
+.Title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  align-items: center;
+}
+.Space {
+  height: 8px;
+}
+.SideModal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+  justify-content: space-between;
+  width: 400px;
+  padding: 30px 40px;
+  margin-bottom: 20px;
+}

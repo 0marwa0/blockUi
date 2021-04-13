@@ -14,6 +14,8 @@ import { FailedMesg, Mesg, SuccessMesg } from "../../API/APIMessage";
 import { DateName } from "../Dashboard";
 import Exportpage from "./newRecord";
 import { getSectionClassNames } from "@fullcalendar/react";
+//import { Print } from "@syncfusion/ej2-schedule";
+import Print from "./print";
 export const Values = React.createContext();
 function Records(props) {
   const [open, setOpen] = useState(false);
@@ -46,6 +48,7 @@ function Records(props) {
         BookData.push({
           Status: item.Status,
           Title: item.Title,
+          print: { print: onOpenModal },
           StartingDate: item.bookDates
 
             .filter((i, index) => index === 0)
@@ -308,7 +311,9 @@ function Records(props) {
           center
           showCloseIcon={false}
           classNames={{ modal: "customModal" }}
-        ></Modal>
+        >
+          <Print />
+        </Modal>
       </Values.Provider>
 
       {showexport ? <Exportpage fun={() => onOpenExport(false)} /> : null}

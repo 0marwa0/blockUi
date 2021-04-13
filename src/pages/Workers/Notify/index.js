@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Input, InputNumber } from "antd";
-import { Menu, Dropdown, Button, Select } from "antd";
+import { Upload, Menu, Dropdown, Button, Select } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Mesg, FailedMesg, SuccessMesg } from "../../../API/APIMessage";
-
+import "../../shared/style/index.css";
+import "../../Admins/Admin/index.css";
 import {
   InputLable,
   ModleFooter,
@@ -102,73 +103,162 @@ function Index(props) {
     //   // props.Close();
     // }
   };
+  const [imageName, setimageName] = useState();
+  const [file, setfile] = useState("");
+  const [ImageUrl, setImageUrl] = useState("");
+  const Image = (e) => {
+    setfile(e);
+  };
+
+  const handleImage = (info, fileList) => {
+    Image(info.originFileObj);
+
+    if (info.file.status === "done") {
+      let data = {
+        uid: info.file.uid,
+        name: info.file.name,
+        url: info.file.response.url,
+      };
+      setimageName(data);
+      props.handleSelect(info.file.response.url, "image");
+      // console.log(fileList, "respone");
+    }
+  };
   const handleClose = (e) => {
     if (node.contains(e.target)) {
       return;
     }
     props.Close(false);
   };
+  const Props = {
+    //multiple: false,
+    name: "image",
+    action: "https://station-solo.herokuapp.com/dash/v1/upload",
+    headers: { token: localStorage.getItem("station_token") },
+    showUploadList: false,
+    transformFile(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const canvas = document.createElement("canvas");
+          const img = document.createElement("img");
+          img.src = reader.result;
+
+          img.onload = () => {
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+            ctx.fillStyle = "yellow";
+            ctx.textBaseline = "middle";
+            setImageUrl(img.src);
+            ctx.fillText("Ant Design", 20, 20);
+            canvas.toBlob(resolve);
+          };
+        };
+      });
+    },
+  };
   let node;
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className="Overlay" onClick={(e) => handleClose(e)}>
       <div
-        className="Modal"
+        className={darkMod ? "Modal-dark" : "Modal"}
         ref={(nods) => {
           node = nods;
-        }}>
-        <PageWrapper>
-          <div>
-            <ModleHeader>
-              Send notification
+        }}
+      >
+        <div className="SideModal">
+          <div style={{ height: "150vh" }}>
+            <div className="Title">
+              <div>Add new Admin</div>
               <Close
                 onClick={() => {
-                  props.Close();
-                  clear();
+                  props.fun(false);
                 }}
                 cursor="pointer"
               />
-            </ModleHeader>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <div>
+                <div
+                  className="ProfileImage"
+                  // style={{ backgroundImage: require(ImageUrl) }}
+                ></div>
+                {/* {ImageUrl === "" ? name : ""} */}
+              </div>
+              <div className="Space" style={{ cursor: "pointer" }}>
+                <Upload
+                  {...Props}
+                  onChange={(e) => handleImage(e)}
+                  defaultFileList={imageName && [imageName]}
+                >
+                  Upload Photo
+                </Upload>
+              </div>
+            </div>
+            <div className="Space" /> <div />
             <InputLable>
-              <span>
-                Title <GiNorthStarShuriken color="red" size={8} />
-              </span>
-              <CustomInput
-                onChange={(e) => handleInput(e, "title")}
-                placeholder="Write notification title"
+              Full Name
+              <Input
+                className={darkMod ? "input-rg-dark" : "input-rg"}
+                onChange={(e) => props.handleInput(e, "name")}
+                placeholder="Write admin name"
               />
             </InputLable>
-            <Space />
+            <div className="Space" /> <div />
             <InputLable>
-              <span>
-                {" "}
-                Message <GiNorthStarShuriken color="red" size={8} />
-              </span>
-
-              <CustomInputArea
-                rows={4}
-                onChange={(e) => handleInput(e, "mesg")}
-                placeholder="Write notification message ..."
+              Username
+              <Input
+                className={darkMod ? "input-rg-dark" : "input-rg"}
+                onChange={(e) => props.handleInput(e, "username")}
+                placeholder="Write admin username"
               />
-            </InputLable>{" "}
-            <Space />
-            {!props.all ? (
-              ""
-            ) : (
-              <InputLable>
-                User filter
-                <Select suffixIcon={<DropIcon />} placeholder="all">
-                  <Option key="all">All users</Option>
-                </Select>
-              </InputLable>
-            )}{" "}
+            </InputLable>
+            <div className="Space" /> <div />
+            <InputLable>
+              Email
+              <Input
+                placeholder="Write admin Email"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
+                onChange={(e) => props.handleInput(e, "email")}
+              />
+            </InputLable>
+            <div className="Space" /> <div />
+            <InputLable>
+              Phone
+              <Input
+                placeholder="Write admin phone number"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
+                onChange={(e) => props.handleInput(e, "phone")}
+              />
+            </InputLable>
+            <div className="Space" /> <div />
           </div>
-          <ModleFooter>
-            <CustomModleButton main fun={handleSubmit} loading={props.loading}>
-              Send
-            </CustomModleButton>
-          </ModleFooter>
-        </PageWrapper>{" "}
-        {/* </> */}
+          <Space />
+          <div
+            style={{
+              marginTop: "40px",
+            }}
+          >
+            <div className="ModalFooter">
+              <div style={{ float: "right" }}>
+                {" "}
+                <CustomModleButton main extra fun={props.handleSubmit}>
+                  {props.type === "create" ? "Create" : "Save"}
+                </CustomModleButton>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

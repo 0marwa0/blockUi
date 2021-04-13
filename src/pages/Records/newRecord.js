@@ -63,9 +63,19 @@ const Index = (props) => {
       <Container>
         <MultiStepForm activeStep={active}>
           <Step label="Templet">
-            <FirstStep />
+            <FirstStep data={[{ name: "water" }, { name: "Sewers" }]} />
           </Step>
-          <Step label="Add Item">
+          <Step label="choose tamplet ">
+            <FirstStep
+              data={[
+                { name: " 110mm Tube" },
+                { name: " 110mm Tube" },
+                { name: " 110mm Tube" },
+              ]}
+              onrow={true}
+            />
+          </Step>
+          <Step label="choose List">
             <SecondStep />
           </Step>
           <Step label="Submit">done </Step>
@@ -74,7 +84,7 @@ const Index = (props) => {
         {active !== 1 && (
           <Button onClick={() => setActive(active - 1)}>Previous</Button>
         )}
-        {active !== 3 && (
+        {active !== 4 && (
           <Button
             onClick={() => setActive(active + 1)}
             style={{ float: "right" }}

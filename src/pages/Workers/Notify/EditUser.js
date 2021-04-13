@@ -3,7 +3,7 @@ import { Input, InputNumber } from "antd";
 import { Menu, Dropdown, Button, Select, Upload } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Mesg, FailedMesg, SuccessMesg } from "../../../API/APIMessage";
-
+import "../../shared/style/index.css";
 import {
   InputLable,
   ModleFooter,
@@ -115,7 +115,8 @@ function Index(props) {
         className="Modal"
         ref={(nods) => {
           node = nods;
-        }}>
+        }}
+      >
         <PageWrapper>
           {" "}
           <UserContext.Consumer>
@@ -147,16 +148,21 @@ function Index(props) {
                     display: "flex",
                     justifyContent: "center",
                     alignContent: "center",
-                  }}>
+                  }}
+                >
                   <div>
-                    <ProfileImage src={ImageUrl}>
+                    <div
+                      className="ProfileImage"
+                      style={{ backgroundImage: require(ImageUrl) }}
+                    >
                       {/* {ImageUrl === "" ? name : ""} */}
-                    </ProfileImage>
+                    </div>
                     <Space style={{ cursor: "pointer" }}>
                       <Upload
                         {...Props}
                         onChange={(e) => handleImage(e)}
-                        defaultFileList={imageName && [imageName]}>
+                        defaultFileList={imageName && [imageName]}
+                      >
                         Upload Photo
                       </Upload>
                     </Space>
@@ -231,7 +237,8 @@ function Index(props) {
             <CustomModleButton
               main
               fun={props.handleSubmit}
-              loading={props.loading}>
+              loading={props.loading}
+            >
               Save
             </CustomModleButton>
           </ModleFooter>

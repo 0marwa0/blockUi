@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import ChartBar from "./chart/ChartBar";
+import ChartBar from "../Dashboard/chart/ChartBar";
 import "../shared/style/widget.css";
-import TimeAgo from "react-simple-timeago";
 
 function Index(props) {
   let darkMod =
@@ -9,7 +8,7 @@ function Index(props) {
   return (
     <div className={darkMod ? "Widget-dark" : "Widget"}>
       <div className="ItemHeader">
-        <span>Most Active Workers</span>
+        <span>Expanse</span>
         <div className="NumBtn">50</div>
       </div>
       <ChartBar />

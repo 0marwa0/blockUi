@@ -5,22 +5,14 @@ import { MdEventNote, MdAddShoppingCart } from "react-icons/md";
 import { BiBookAdd, BiLogIn } from "react-icons/bi";
 import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlineDashboard, AiOutlineLineChart } from "react-icons/ai";
-import { BiLineChart } from "react-icons/bi";
-import { BsSearch, BsFileRichtext } from "react-icons/bs";
-import { VscSourceControl } from "react-icons/vsc";
-import { CloudUploadOutlined } from "@ant-design/icons";
-import { IoMdNotificationsOutline } from "react-icons/io";
-import { FaRegUser, FaStarAndCrescent } from "react-icons/fa";
-import { RiNewspaperLine } from "react-icons/ri";
 import { Tooltip, Button, Popover } from "antd";
+import { FiSettings } from "react-icons/fi";
 import { useLocation, useHistory, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { ReactComponent as Booking } from "../public/images/Book.svg";
 import { BiCalendarWeek, BiUser } from "react-icons/bi";
 import Notification from "./Notification";
-import { render } from "@testing-library/react";
-import { createGlobalStyle } from "styled-components";
 
+import { BiBox } from "react-icons/bi";
 const NavItem = ({ slug, children, index, title }) => {
   const history = useHistory();
   const location = useLocation();
@@ -35,7 +27,7 @@ const NavItem = ({ slug, children, index, title }) => {
 
   useEffect(() => {
     // console.log(type, "type");
-  }, []);
+  }, [window.localStorage.getItem("isLight")]);
   if (slug === location.pathname.substr(1)) {
     isSelected = true;
   }
@@ -67,6 +59,7 @@ const NavItem = ({ slug, children, index, title }) => {
         //borderLeft: !isClicked
         // ? "2px solid var(--black)"
         // : "2px solid var(--yellow)",
+
         color: isClicked ? "var(--yellow)" : "var(--gray)",
       }}
       type={type}
@@ -77,12 +70,13 @@ const NavItem = ({ slug, children, index, title }) => {
       {children}
     </div>
   ) : (
-    <Tooltip title={dash ? "Dashboard" : text} placement="right">
+    <Tooltip title={dash ? "" : text} placement="right">
       <Link to={url}>
         <div
           className="SideItem"
           style={{
-            // borderLeft: !isClicked
+            borderLeft:
+              location.pathname == url ? "1px solid var(--yellow)" : "",
             //  ? "2px solid var(--black)"
             // : "2px solid var(--yellow)",
             color: isClicked ? "var(--yellow)" : "var(--gray)",
@@ -97,53 +91,7 @@ const NavItem = ({ slug, children, index, title }) => {
     </Tooltip>
   );
 };
-export const SideWrapper = styled.div`
-  width: 87px;
-  height: 100%;
-  display: flex;
-  position: fixed;
-  border: 1px solid ${(props) => (props.isDark ? "teal" : "transperant")};
-  padding-right: 4px;
-  z-index: 100;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: var(--black);
-`;
-const NotifiHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 30px;
-
-  font-size: 20px;
-  font-weight: 400;
-  align-items: center;
-  cursor: unset;
-`;
-// move
-export const SideItem = styled.li`
-  position: relative;
-  padding: 1.5vh 25px;
-
-  margin-bottom: 0.5rem;
-  border-left: ${(props) =>
-    props.type
-      ? "2px solid var(--black);"
-      : props.isSelected
-      ? "2px solid var(--yellow);"
-      : "2px solid var(--black);"};
-  font-size: 35px;
-  display: flex;
-  color: ${(props) => (props.isSelected ? "var(--yellow);" : "var(--gray);")};
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    border-left: 2px solid var(--yellow);
-
-    color: var(--yellow);
-  }
-`;
-
-export const UserImage = styled.img`
+const UserImage = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -159,45 +107,49 @@ function SideBar(props) {
   const location = useLocation();
   let { id } = useParams();
   let title = props.title;
-  let page = location.pathname.substr(1);
+  let page = location.pathname;
+
   return (
     <div>
       <div
         className={
-          //  localStorage.getItem("theme") === "dark"
-          //     ? "SideWarpper-dark"
-          // :
-          "SideWarpper"
+          window.localStorage.getItem("isLight") === "dark"
+            ? "SideWarpper-dark"
+            : "SideWarpper"
         }
       >
+        {console.log(localStorage.getItem("isDark"))}
         <div className="SideList">
           <img className="Logo" src={require("../public/images/logo1.svg")} />
           <NavItem slug="" title={title}>
-            <AiOutlineDashboard />
-          </NavItem>
-          <NavItem slug="statistics" title={title}>
-            <AiOutlineLineChart />
-          </NavItem>
+            <AiOutlineDashboard color={page === "/" ? "var(--yellow)" : ""} />
+          </NavItem>{" "}
           <NavItem slug="Records" title={title}>
-            <MdAddShoppingCart />
-          </NavItem>
-          <NavItem slug="admins" title={title}>
-            <BiUser />
+            <BiBox color={page === "/Records" ? "var(--yellow)" : ""} />
           </NavItem>
           <NavItem slug="Workers" title={title}>
-            <HiOutlineUsers />
+            <HiOutlineUsers
+              color={page === "/Workers" ? "var(--yellow)" : ""}
+            />
+          </NavItem>{" "}
+          <NavItem slug="admins" title={title}>
+            <BiUser color={page === "/admins" ? "var(--yellow)" : ""} />
+          </NavItem>
+          <NavItem slug="statistics" title={title}>
+            <AiOutlineLineChart
+              color={page === "/statistics" ? "var(--yellow)" : ""}
+            />
+          </NavItem>
+          <NavItem slug="settings" title={title}>
+            <FiSettings color={page === "/settings" ? "var(--yellow)" : ""} />
           </NavItem>
         </div>
         <li className="SideList">
-          <NavItem slug="Notifications">
-            {" "}
-            <FaStarAndCrescent onClick={props.changeMode} />
-          </NavItem>
           <NavItem slug="Notifications" title={title}>
             <Popover
               content={<Notification />}
               title={
-                <NotifiHeader>
+                <div className="NotifiHeader">
                   Notifications{" "}
                   <u
                     style={{
@@ -207,7 +159,7 @@ function SideBar(props) {
                   >
                     Mark all as read
                   </u>
-                </NotifiHeader>
+                </div>
               }
               trigger="click"
               placement="rightBottom"
@@ -215,7 +167,9 @@ function SideBar(props) {
               onVisibleChange={showPopup}
             >
               <div>
-                <BiLogIn />
+                <BiLogIn
+                  color={page === "/Notifications" ? "var(--yellow)" : ""}
+                />
               </div>
             </Popover>
           </NavItem>

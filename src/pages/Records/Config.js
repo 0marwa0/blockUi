@@ -154,16 +154,19 @@ export const BookingColumns = [
   {
     key: 8,
     title: "",
-    dataIndex: "edit",
+    dataIndex: "print",
     render: (item) => (
       <Popover
         content={() => (
           <div>
-            <div className="listItem">Edit</div>
+            <div className="listItem" onClick={item.print}>
+              Print
+            </div>
           </div>
         )}
         placement="left"
-        title={false}>
+        title={false}
+      >
         <BiDotsVerticalRounded
           style={{
             fontSize: "20px",

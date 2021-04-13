@@ -7,10 +7,11 @@ import { ReactComponent as Close } from "../../../public/images/close.svg";
 import styled from "styled-components";
 import { ProfileImage } from "../../Profile";
 import { Upload, Select } from "antd";
+import "../../shared/style/index.css";
 import { LoadData, addData, editData, addFile } from "../../../API";
 import "../../../App.css";
 import { Mesg, FailedMesg, SuccessMesg } from "../../../API/APIMessage";
-
+import "../../shared/style/index.css";
 import { CustomInput } from "../../shared/SharedStyle";
 export const option = (
   <Menu>
@@ -41,34 +42,6 @@ export const SideOverlay = styled.div`
 export const ModalFooter = styled.div`
   height: 5%;
 `;
-// export const SideModal = styled.div`
-//   position: absolute;
-//   top: 0;
-//   animation: listFade 0.6s;
-//   right: 0;
-//   display: flex;
-
-//   flex-direction: column;
-//   background-color: white;
-//   overflow: hidden;
-//   height: 100%;
-//   width: 540px;
-//   backgorund-color: red;
-//   padding: 30px 50px;
-// `;
-
-export const SideModal = styled.div`
-  width: max-content;
-
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow-y: scroll;
-  justify-content: space-between;
-  width: 540px;
-  padding: 30px 40px;
-  margin-bottom: 20px;
-`;
 export const Title = styled.div`
   display: flex;
   justify-content: space-between;
@@ -80,6 +53,17 @@ export const Title = styled.div`
 export const Space = styled.div`
   height: 8px;
 `;
+export const SideModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+  justify-content: space-between;
+  width: 400px;
+  padding: 30px 40px;
+  margin-bottom: 20px;
+`;
+
 const Imageholder = styled.div``;
 function Index(props) {
   const [Loading, setLoading] = useState(false);
@@ -139,16 +123,19 @@ function Index(props) {
     props.fun(false);
   };
   let node;
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className="Overlay" onClick={(e) => handleClose(e)}>
       <div
-        className="Modal"
+        className={darkMod ? "Modal-dark" : "Modal"}
         ref={(nods) => {
           node = nods;
-        }}>
+        }}
+      >
         <SideModal>
           <div style={{ height: "150vh" }}>
-            <Title>
+            <div className="Title">
               <div>Add new Admin</div>
               <Close
                 onClick={() => {
@@ -156,114 +143,84 @@ function Index(props) {
                 }}
                 cursor="pointer"
               />
-              {/* <AiOutlineClose /> */}
-            </Title>
-            <InputLable>
-              {" "}
-              <div style={{ fontSize: "17px" }}>Admin Info</div>
-            </InputLable>{" "}
-            <Space />
+            </div>
             <div
               style={{
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
                 alignContent: "center",
-              }}>
+              }}
+            >
               <div>
-                <ProfileImage src={ImageUrl}>
-                  {/* {ImageUrl === "" ? name : ""} */}
-                </ProfileImage>
-                <Space style={{ cursor: "pointer" }}>
-                  <Upload
-                    {...Props}
-                    onChange={(e) => handleImage(e)}
-                    defaultFileList={imageName && [imageName]}>
-                    Upload Photo
-                  </Upload>
-                </Space>
+                <div
+                  className="ProfileImage"
+                  // style={{ backgroundImage: require(ImageUrl) }}
+                ></div>
+                {/* {ImageUrl === "" ? name : ""} */}
+              </div>
+              <div className="Space" style={{ cursor: "pointer" }}>
+                <Upload
+                  {...Props}
+                  onChange={(e) => handleImage(e)}
+                  defaultFileList={imageName && [imageName]}
+                >
+                  Upload Photo
+                </Upload>
               </div>
             </div>
-            <Space /> <Space />
+            <div className="Space" /> <div />
             <InputLable>
               Full Name
-              <CustomInput
+              <Input
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => props.handleInput(e, "name")}
                 placeholder="Write admin name"
               />
             </InputLable>
-            <Space /> <Space />
+            <div className="Space" /> <div />
             <InputLable>
               Username
-              <CustomInput
+              <Input
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => props.handleInput(e, "username")}
                 placeholder="Write admin username"
               />
             </InputLable>
-            {props.type === "create" ? (
-              <div>
-                <Space /> <Space />{" "}
-                <InputLable>
-                  Password
-                  <CustomInput
-                    placeholder="Write admin password"
-                    onChange={(e) => props.handleInput(e, "password")}
-                  />
-                </InputLable>
-              </div>
-            ) : null}
-            <Space /> <Space />
+            <div className="Space" /> <div />
             <InputLable>
               Email
-              <CustomInput
+              <Input
                 placeholder="Write admin Email"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => props.handleInput(e, "email")}
               />
             </InputLable>
-            <Space /> <Space />
+            <div className="Space" /> <div />
             <InputLable>
               Phone
-              <CustomInput
+              <Input
                 placeholder="Write admin phone number"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => props.handleInput(e, "phone")}
               />
             </InputLable>
-            <Space /> <Space />
-            <InputLable>
-              Branch
-              <Select
-                suffixIcon={<DropIcon />}
-                placeholder=" Choose admin branch loaction"
-                onChange={(e) => props.handleSelect(e, "branch")}>
-                <Option key="baghdad">Baghadad</Option>
-                <Option key="mosul">Mosul</Option>
-              </Select>
-            </InputLable>
-            <Space /> <Space />
-            <InputLable>
-              Role
-              <Select
-                suffixIcon={<DropIcon />}
-                placeholder="Choose admin role"
-                onChange={(e) => props.handleRole(e, "type")}>
-                <Option key="Meadia Admin">Meadia Admin</Option>
-                <Option key="Book Admin">Book Admin</Option>
-              </Select>
-            </InputLable>
+            <div className="Space" /> <div />
           </div>
           <Space />
           <div
             style={{
               marginTop: "40px",
-            }}>
-            <ModalFooter>
+            }}
+          >
+            <div className="ModalFooter">
               <div style={{ float: "right" }}>
                 {" "}
                 <CustomModleButton main extra fun={props.handleSubmit}>
                   {props.type === "create" ? "Create" : "Save"}
                 </CustomModleButton>
               </div>
-            </ModalFooter>
+            </div>
           </div>
         </SideModal>
       </div>

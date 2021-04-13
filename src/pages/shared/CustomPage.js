@@ -1,36 +1,26 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BsFillGridFill } from "react-icons/bs";
 import { useState, useRef } from "react";
 import { Col, Row, Table, Input } from "antd";
 import React, { useEffect } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { TableLoading } from "../shared/Loading";
 import { ButtonStyled } from "../shared/SharedStyle";
-import { BiImport, BiExport } from "react-icons/bi";
 import { ReactComponent as ExportIcon } from "../../public/images/export.svg";
 import { ReactComponent as ImportIcon } from "../../public/images/import.svg";
 import { ReactComponent as PlusIcon } from "../../public/images/plus.svg";
 import "./style/index.css";
-import Prkgress from "react-progress-2";
 import { FiFilter } from "react-icons/fi";
-import {
-  CustomButton,
-  EmptyText,
-  LoadingText,
-} from "../shared/SharedComponents";
-import { AiOutlinePlus } from "react-icons/ai";
+import { CustomButton } from "../shared/SharedComponents";
 import SideBar from "../Sidebar";
 import styled, { createGlobalStyle } from "styled-components";
 import { ReactComponent as Upload } from "../../public/images/solid cloud-upload-alt.svg";
 import { ReactComponent as Notifiy } from "../../public/images/solid bell.svg";
-import { ReactComponent as TableIcon } from "../../public/images/Table.svg";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import ListItem from "../Records/ListItem";
 const GlobalStyle = createGlobalStyle`
 
 `;
 
-export const PageContent = styled.div`
+const PageContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -39,36 +29,22 @@ export const PageContent = styled.div`
 
   margin-right: 35px;
 `;
-export const PageContentFix = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 25px;
-  margin-left: 123px;
 
-  margin-right: 35px;
-`;
-export const PageBtn = styled.div`
+const PageBtn = styled.div`
   display: flex;
   flex-cirection: row;
   justify-content: space-between;
   margin-bottom: 17px;
   width: 100%;
 `;
-export const ButtonGroup = styled.div`
+const ButtonGroup = styled.div`
   display: flex;
   gap: 10px;
   algin-items: cneter;
   justify-content: flex-end;
   margin-right: ${(props) => (props.space ? "10px" : "0")};
 `;
-export const PageTitle = styled.div`
-  color: var(--black);
-  font-size: 30px;
-  font-weight: bold;
-  padding: 10px 0;
-`;
-export const Pagination = styled.div`
+const Pagination = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0px 20px;
@@ -79,16 +55,16 @@ export const Pagination = styled.div`
   border-top: none;
   width: 100%;
 `;
-export const PageText = styled.div`
+const PageText = styled.div`
   color: var(--darkGray);
   margin-top: 12px;
 `;
-export const PageNmber = styled.div`
+const PageNmber = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
 `;
-export const IconCss = styled.span`
+const IconCss = styled.span`
   color: ${(props) => (props.active ? "var(--yellow)" : "var(--textGray)")};
 `;
 function CustomPage(props) {
@@ -151,11 +127,11 @@ function CustomPage(props) {
       localStorage.setItem("theme", "light");
       theme = lightTheme;
       //  document.body.style.background = "white";
-      // setDark(false);
+      //setDark(false);
     } else {
       localStorage.setItem("theme", "dark");
       theme = darkTheme;
-      //setDark(true);
+      // setDark(true);
       // document.body.style.background = "black";
     }
   }
@@ -172,21 +148,19 @@ function CustomPage(props) {
     // }
   };
   useEffect(() => {
-    //    if (localStorage.getItem("theme") === "dark") {
-    //     document.body.style.background = "black";
-    //  } else {
-    //   document.body.style.background = "white";
-    // }
-    //if (!localStorage.getItem("theme")) {
-    // localStorage.setItem("theme", "light");
-    // }
-
+    if (localStorage.getItem("isLight") === "dark") {
+      document.body.style.background = "black";
+    } else {
+      document.body.style.background = "white";
+    }
     if (props.Loading) {
       ref.current.staticStart();
     } else {
       ref.current.complete();
     }
-  }, [localStorage.getItem("theme")]);
+  }, []);
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div>
       <div className="CustomPageWrapper">
@@ -195,15 +169,15 @@ function CustomPage(props) {
         <SideBar
           title={props.pageTitle}
           // changeMode={() => changeMode}
-          isDark={isDark}
+          isDark={localStorage.getItem("isDark")}
         />
         <PageContent>
           <Row>
             <Col>
-              <PageTitle>
+              <div className="PageTitle">
                 {props.pageTitle.charAt(0).toUpperCase() +
                   props.pageTitle.slice(1)}
-              </PageTitle>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -374,14 +348,7 @@ function CustomPage(props) {
                     <Input
                       loading={props.Loading}
                       onChange={(e) => props.HandleSearch(e)}
-                      style={{
-                        borderRadius: "6px",
-                        // border: "1px solid #353535",
-                        height: "30px",
-                        // backgroundColor: isDark ? "#353535" : "white",
-                        color: isDark ? "white" : "black",
-                        width: "220px",
-                      }}
+                      className={darkMod ? "input-rg-dark" : "input-rg"}
                       placeholder="Search"
                     />
                     {props.pageTitle === "resources" ? (
@@ -481,13 +448,13 @@ function CustomPage(props) {
                 ""
               ) : showTable ? (
                 <div style={{ width: "100%" }}>
-                  <div
-
-                  // className={isDark ? "isDark" : ""}
-                  >
+                  <div className={darkMod ? "isDark" : ""}>
                     <Table
                       columns={columns}
                       rowClassName="tableRow"
+                      rowClassName={(record, index, m) =>
+                        console.log(record, index, m, "rowwwwwwww")
+                      }
                       pagination={false}
                       dataSource={Data}
                       locale={{

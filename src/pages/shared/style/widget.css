@@ -1,0 +1,115 @@
+.mainWidget,
+.mainWidget-dark {
+  background-color: white;
+  border-radius: 7px;
+  padding: 15px 25px;
+  height: 100%;
+  margin-bottom: 10%;
+  min-height: 0px;
+  min-width: 0px;
+  border: 1px solid var(--lighterGray);
+}
+.mainWidget-dark {
+  color: var(--darkGray);
+  background-color: black;
+  border: 1px solid rgb(46, 46, 46);
+}
+.Widget,
+.Widget-dark {
+  border-radius: 7px;
+  border: 1px solid var(--lighterGray);
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  transition: 2s ease;
+  padding: 17px 17px 8px 17px;
+  width: 100%;
+  flex-direction: column;
+}
+.Widget-dark {
+  color: var(--darkGray);
+  background-color: black;
+  border: 1px solid rgb(46, 46, 46);
+}
+.Widget-dark div {
+  color: var(--darkGray);
+}
+.darkIcon {
+  background-color: rgb(46, 46, 46);
+}
+.BoldText {
+  color: black;
+  font-weight: 600;
+  font-size: 0.9vw;
+}
+.GrayText {
+  color: var(--textGray);
+  font-size: 0.7vw;
+}
+.ItemHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+
+  align-items: center;
+}
+.DropBtn {
+  padding: 8px 8px;
+  border-radius: 8px;
+  height: 28px;
+  font-size: 12px;
+  display: flex;
+  border: 1px solid var(--lighterGray);
+  align-items: center;
+  width: 65px;
+  justify-content: space-between;
+}
+.ReservationItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 7px;
+  padding: 7px 0;
+  align-items: center;
+  color: var(--darkBlue);
+  font-size: 1vw;
+}
+.TotleReservationsIcon {
+  width: 2.6vw;
+  height: 2.5vw;
+  border-radius: 45%;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  justify-content: center;
+}
+.orange {
+  background-color: var(--lightOrange);
+}
+.red {
+  background-color: var(--lightRed);
+}
+.green {
+  background-color: var(--lightGreen);
+}
+.blue {
+  background-color: var(--lightBlue);
+}
+
+.ItemHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.ItemHeader span {
+  font-size: 1.1vw;
+  font-weight: bold;
+}
+.ItemHeader .NumBtn {
+  background-color: var(--yellow);
+  padding-top: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 7px;
+  font-size: 0.8vw;
+}

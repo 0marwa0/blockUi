@@ -1,0 +1,24 @@
+.dark-clander .fc-media-screen {
+  background-color: black !important;
+}
+.dark-clander .fc-daygrid-day {
+  background-color: transparent !important;
+
+  color: var(--darkGray);
+}
+.dark-clander .fc-col-header-cell {
+  background-color: black !important;
+  color: var(--darkGray);
+}
+.dark-clander .fc-scrollgrid table {
+  background-color: black !important;
+}
+.dark-clander .fc-prev-button,
+.dark-clander .fc-next-button {
+  color: var(--darkGray) !important;
+  border: 1px solid rgb(44, 43, 43) !important;
+  background-color: rgb(29, 29, 29) !important;
+}
+.dark-clander .fc-liquid-hack td {
+  border: 1px solid rgb(44, 43, 43) !important;
+}

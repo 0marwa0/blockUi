@@ -1,0 +1,37 @@
+.setting-page li {
+  margin: 10px;
+}
+.ant-switch-checked {
+  background-color: var(--black) !important;
+}
+.widget-title {
+  font-size: 17px;
+  display: flex;
+  gap: 10px;
+}
+.widget-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  align-items: center;
+}
+.widget-item .input,
+.widget-item .input-dark {
+  border: none;
+  border-bottom: 1px solid var(--black);
+}
+.widget-item .input-dark {
+  color: white;
+  background-color: black;
+}
+.suggestion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sugges-icon {
+  display: flex;
+  gap: 10px;
+  font-size: 17px;
+  padding: 10px 0;
+}

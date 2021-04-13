@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./styles/index.css";
-import "./styles/steps.css";
+import "../styles/index.css";
+import "../styles/steps.css";
+import "./index.css";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import { CustomButton } from "../shared/SharedComponents";
+import { CustomButton } from "../../shared/SharedComponents";
 import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
 import arrayMove from "array-move";
 import { FaPlus } from "react-icons/fa";
@@ -87,75 +88,37 @@ function Index(props) {
   };
   return (
     <div className={darkMod ? "record-items-dark" : "record-items"}>
-      <div className={darkMod ? "record-head-dark" : "record-head"}>
-        <span className="flex-row">
-          Item
-          <Icon />
-        </span>
+      <div className={darkMod ? "print-page-dark" : "print-page"}>
+        <div>Print </div>{" "}
+        <div className={darkMod ? "record-head-dark" : "record-head"}>
+          <span className="flex-row">
+            Item
+            <Icon />
+          </span>
 
-        <span className="flex-row">
-          Price
-          <Icon />
-        </span>
-        <span className="flex-row">
-          Quantity <Icon />
-        </span>
+          <span className="flex-row">
+            Price
+            <Icon />
+          </span>
+          <span className="flex-row">
+            Quantity <Icon />
+          </span>
 
-        <span className="flex-row">
-          Discount
-          <Icon />
-        </span>
+          <span className="flex-row">
+            Discount
+            <Icon />
+          </span>
 
-        <div></div>
-      </div>
-      <SortableList items={state} onSortEnd={onSortEnd} />;
-      <div className="input-row">
-        <div className="flex-row">
-          {" "}
-          <div>
-            {" "}
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="item"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("name", e.target.value)}
-            />
-          </div>
-          <div>
-            {" "}
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="price"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("price", e.target.value)}
-            />
-          </div>
-          <div>
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="quantity"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("note", e.target.value)}
-            />{" "}
-          </div>
-          <div>
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="discount"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("note", e.target.value)}
-            />
-          </div>
+          <div></div>
         </div>
-        <div>
-          <CustomButton
-            main
-            lable={<FaPlus color="var(--black)" />}
-            //   pageTitle={pageTitle}
-            loading={props.Loading}
-            //  onOpen={() => props.onOpenModal(true)}
-          ></CustomButton>
-        </div>
+        <SortableList items={state} onSortEnd={onSortEnd} />
+        <CustomButton
+          main
+          lable="Print"
+          //loading={props.Loading}
+          // pageTitle={pageTitle}
+          //onOpen={() => props.onOpenModal(true)}
+        ></CustomButton>
       </div>
     </div>
   );

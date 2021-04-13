@@ -10,7 +10,7 @@ import PasswordRest from "./PasswordRest";
 import { AdminsData } from "../../fakeData/index";
 import { AdminsColumns } from "./Config";
 // import { Modal } from "react-responsive-modal";
-import Admin from "./Admin";
+import Admin from "./Admin/index.js";
 import { Drawer } from "antd";
 import { LoadData, addData, editData, addFile } from "../../API";
 import EditAdmin from "./EditAdmin";
@@ -317,7 +317,7 @@ function Admins(props) {
         data={Filterdata}
         HandleSearch={HandleSearch}
         filter={Filter}
-        onOpenModal={onOpenModal}
+        onOpenModal={() => console.log("dfjhso")}
         EmptyTitle="No Admins found"
         Item="Admin"
         onOpenModal={() => onOpenModal(true)}
@@ -354,7 +354,8 @@ function Admins(props) {
           type: info ? info.type : "",
           branch: info ? info.gov : "",
           image: info ? info.image : "",
-        }}>
+        }}
+      >
         {openEdit ? (
           <EditAdmin
             fun={onCloseModalEdit}
@@ -377,7 +378,8 @@ function Admins(props) {
         showCloseIcon={false}
         classNames={{
           modal: "customModal",
-        }}>
+        }}
+      >
         <PasswordRest
           id={id}
           onClose={() => onOpenModalPass(null, false)}

@@ -27,7 +27,8 @@
   cursor: unset;
 }
 
-.SideItem {
+.SideItem,
+.SideItem-dark {
   position: relative;
   padding: 1.5vh 25px;
   width: 100%;
@@ -38,9 +39,13 @@
   justify-content: center;
   align-items: center;
 }
+.SideItem-Active {
+  border-left: 3px solid var(--yellow);
+}
+.SideItem:hover {
+  border-left: 3px solid var(--yellow);
+}
 .SideItem :hover {
-  border-left: 2px solid var(--yellow);
-
   color: var(--yellow);
 }
 .UserImage {

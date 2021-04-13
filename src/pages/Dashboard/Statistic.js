@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import "../shared/style/widget.css";
 import { Widget } from "./index";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { ReactComponent as DropIcon } from "../../public/images/dropdown.svg";
@@ -13,27 +14,8 @@ import { StatisticData } from "../../fakeData";
 import { BiDollar } from "react-icons/bi";
 import { Button, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-const ReservationItem = styled.div`
-  background-color: white;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 7px;
-  padding: 7px 0;
-  align-items: center;
-  color: var(--darkBlue);
-  font-size: 1vw;
-`;
-const ItemHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
+import "../shared/style/widget.css";
 
-  align-items: center;
-`;
-const GrayText = styled.div`
-  color: var(--textGray);
-  font-size: 0.7vw;
-`;
 const menu2 = (
   <Menu>
     <Menu.Item key="1">1st menu item</Menu.Item>
@@ -41,63 +23,7 @@ const menu2 = (
     <Menu.Item key="3">3rd menu item</Menu.Item>
   </Menu>
 );
-const TotleReservationsIcon = styled.div`
-  width: 2.6vw;
-  height: 2.5vw;
-  border-radius: 45%;
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  justify-content: center;
-  background-color: var(--LightGreen);
-`;
-const TotlaEvents = styled.div`
-  width: 2.6vw;
-  height: 2.5vw;
-  border-radius: 45%;
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  justify-content: center;
-  background-color: var(--lightOrange);
-`;
-const TotlaBooked = styled.div`
-  width: 2.6vw;
-  height: 2.5vw;
 
-  border-radius: 45%;
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  justify-content: center;
-  background-color: var(--lightRed);
-`;
-const TotlaCost = styled.div`
-  width: 2.6vw;
-  height: 2.5vw;
-  border-radius: 45%;
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  justify-content: center;
-  background-color: var(--LightGreen);
-`;
-const BoldText = styled.div`
-  color: black;
-  font-weight: 600;
-  font-size: 0.9vw;
-`;
-const DropBtn = styled.div`
-  padding: 8px 8px;
-  border-radius: 8px;
-  height: 28px;
-  font-size: 12px;
-  display: flex;
-  border: 1px solid var(--lighterGray);
-  align-items: center;
-  width: 65px;
-  justify-content: space-between;
-`;
 function Index(props) {
   useEffect(() => {}, []);
 
@@ -119,21 +45,29 @@ function Index(props) {
         break;
     }
   };
+  useEffect(() => {
+    if (localStorage.getItem("isLight") === "dark") {
+      document.body.style.background = "black";
+    } else {
+      document.body.style.background = "var(--lightGray";
+    }
+  });
   let statistics = props.statistics;
-
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
-    <Widget main>
-      <ItemHeader>
+    <div className={darkMod ? "Widget-dark" : "Widget"}>
+      <div className="ItemHeader">
         <span style={{ fontWeight: "bold", fontSize: "1.2vw" }}>
           Statistics
         </span>
         <Dropdown overlay={menu2}>
-          <DropBtn>
+          <div className="DropBtn">
             Oct
             <DropIcon />
-          </DropBtn>
+          </div>
         </Dropdown>
-      </ItemHeader>{" "}
+      </div>{" "}
       <div>
         {props.Loading ? (
           [1, 2, 3, 4, 5].map((i) => {
@@ -141,60 +75,79 @@ function Index(props) {
           })
         ) : (
           <div>
-            <ReservationItem>
-              <TotleReservationsIcon>
+            <div className="ReservationItem">
+              <div
+                className={`TotleReservationsIcon ${
+                  darkMod ? "darkIcon" : "blue"
+                }`}
+              >
                 <GiElectric color="var(--blue)" size={15} />
-              </TotleReservationsIcon>
-              <div>
-                Number of Sold Record<GrayText></GrayText>
               </div>
-              <BoldText>8824</BoldText>
-            </ReservationItem>
-            <ReservationItem>
-              <TotlaEvents>
+              <div>
+                Number of Sold Record<div className="GrayText"></div>
+              </div>
+              <div className="BoldText">8824</div>
+            </div>
+            <div className="ReservationItem">
+              <div
+                className={`TotleReservationsIcon ${
+                  darkMod ? "darkIcon" : "orange"
+                }`}
+              >
                 {" "}
                 <MdShowChart color="var(--orange)" size={20} />
-              </TotlaEvents>
-              <div>
-                Total Incom
-                <GrayText></GrayText>
               </div>
-              <BoldText>12,000,00</BoldText>
-            </ReservationItem>
-            <ReservationItem>
-              <TotlaBooked>
+              <div>
+                Total Incom<div className="GrayText"></div>
+              </div>
+              <div className="BoldText">12,000,00</div>
+            </div>
+            <div className="ReservationItem">
+              <div
+                className={`TotleReservationsIcon ${
+                  darkMod ? "darkIcon" : "red"
+                }`}
+              >
                 <MdShowChart color="var(--red)" size={20} />
-              </TotlaBooked>
+              </div>
               <div>
                 Number Of sold Records
-                <GrayText></GrayText>
+                <div className="GrayText"></div>
               </div>
-              <BoldText>5555</BoldText>
-            </ReservationItem>
+              <div className="BoldText">5555</div>
+            </div>
 
-            <ReservationItem>
-              <TotlaCost>
+            <div className="ReservationItem">
+              <div
+                className={`TotleReservationsIcon ${
+                  darkMod ? "darkIcon" : "green"
+                }`}
+              >
                 <BiDollar color="var(--darkGreen)" size={17} />
-              </TotlaCost>
-              <div>
-                Total Income in $<GrayText></GrayText>
               </div>
-              <BoldText>88,000</BoldText>
-            </ReservationItem>
-            <ReservationItem>
-              <TotleReservationsIcon>
+              <div>
+                Total Income in $<div className="GrayText"></div>
+              </div>
+              <div className="BoldText">88,000</div>
+            </div>
+            <div className="ReservationItem">
+              <div
+                className={`TotleReservationsIcon ${
+                  darkMod ? "darkIcon" : "blue"
+                }`}
+              >
                 <GiElectric color="var(--blue)" size={15} />
-              </TotleReservationsIcon>
+              </div>
               <div>
                 Total Income in QRD
-                <GrayText></GrayText>
+                <div className="GrayText"></div>
               </div>
-              <BoldText>555557</BoldText>
-            </ReservationItem>
+              <div className="BoldText">555557</div>
+            </div>
           </div>
         )}
       </div>
-    </Widget>
+    </div>
   );
 }
 
