@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import { Mesg, FailedMesg } from "./API/APIMessage";
+import WorkerINFO from "./pages/Workers/workerInfo";
 import { LoadData } from "./API";
 import logo from "./logo.svg";
 import "./App.css";
@@ -11,10 +12,12 @@ import Records from "./pages/Records";
 import NewRecord from "./pages/Records/newRecord.js";
 import Workers from "./pages/Workers";
 import Admins from "./pages/Admins";
-import Login from "./pages/Login";
+import { resources } from "./resources";
+import { LocaleProvider } from "react-easy-localization";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import Settings from "./pages/Settings";
+import Login from "./pages/Login";
 import Statistic from "./pages/Statistic/index";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 function App(props) {
@@ -60,9 +63,8 @@ function App(props) {
       //.log(props.history);
     }
   }, []);
-
   return (
-    <div>
+    <LocaleProvider resources={resources}>
       <Switch>
         <Route
           path="/"
@@ -98,6 +100,16 @@ function App(props) {
           exact
         />{" "}
         <Route
+          path="/login"
+          render={(props) => <Login {...props} id={userId} />}
+          exact
+        />{" "}
+        <Route
+          path="/workerProfile"
+          render={(props) => <WorkerINFO {...props} id={userId} />}
+          exact
+        />{" "}
+        <Route
           path="/records"
           render={(props) => <Records {...props} id={userId} />}
           exact
@@ -108,7 +120,7 @@ function App(props) {
           exact
         />
       </Switch>
-    </div>
+    </LocaleProvider>
   );
 }
 

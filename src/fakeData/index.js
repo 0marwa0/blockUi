@@ -303,7 +303,7 @@ export const ArticlesData = [
     Createdby: u6,
   },
 ];
-export const CustomersData = [
+export const WorkersData = [
   {
     name: "Ali Ahmed",
     email: "ricole_saf@web.de",

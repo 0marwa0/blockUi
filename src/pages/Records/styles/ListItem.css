@@ -5,18 +5,23 @@
   gap: 20px;
 }
 
-.List-holder .btn {
+.List-holder .btn,
+.List-holder .btn-dark {
   color: #ffffff;
-  padding: 0.2rem;
+  padding: 5px 20px;
   font-size: 14px;
   border-radius: 4px;
   font-weight: 400;
-  display: block;
-  width: 100%;
+  display: flex;
+
+  width: max-content;
   margin: 0 10px;
   cursor: pointer;
   border: 1px solid rgba(201, 198, 198, 0.2);
   background: rgb(231, 228, 228);
+}
+.List-holder .btn-dark {
+  background-color: black;
 }
 .List-holder .flex-line {
   display: flex;
@@ -35,12 +40,21 @@
 .flex-line span {
   color: rgb(160, 149, 149);
 }
+.List-holder .card-user-dark,
 .List-holder .card-user {
   color: black;
   width: 100%;
   display: flex;
   padding: 10px 20px;
   justify-content: space-between;
+}
+.List-holder .card-user-dark {
+  color: rgb(160, 149, 149);
+}
+.List-holder img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 .List-holder .card-user img {
   width: 30px;
@@ -73,7 +87,8 @@
   justify-content: center;
   flex-wrap: wrap;
 }
-.List-holder .card {
+.List-holder .card,
+.List-holder .card-dark {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   display: flex;
   width: 320px;
@@ -83,12 +98,24 @@
   color: black;
   background-color: white;
 }
-
+.List-holder .card-dark {
+  background-color: black;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.25);
+}
+.List-holder .card_content-dark,
 .List-holder .card_content {
   padding: 1rem 0;
   /* background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%); */
 }
-
+.List-holder .card_content-dark {
+  color: var(--darkGray);
+}
+.List-owner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .List-holder .card_title {
   color: black;
   font-size: 1.1rem;
@@ -101,8 +128,8 @@
   color: rgb(160, 149, 149);
 }
 
-.List-holder .card_text {
-  color: black;
+.List-holder .card_text,
+.List-holder .card_text-dark {
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
@@ -110,4 +137,7 @@
   justify-content: space-between;
   font-weight: 400;
   display: flex;
+}
+.List-holder .card_text-dark {
+  color: var(--lighterGray);
 }

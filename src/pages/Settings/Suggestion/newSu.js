@@ -143,7 +143,8 @@ function Index(props) {
           }}
         />{" "}
       </div>
-      <div className="input-row">
+
+      <div className={darkMod ? "input-row-dark" : "input-row"}>
         <div className="flex-row">
           {" "}
           <div>

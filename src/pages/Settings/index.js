@@ -1,32 +1,27 @@
 //import Modal from "react-modal";
 import { FaPlus } from "react-icons/fa";
+import { useLocale } from "react-easy-localization";
 import NewSu from "./Suggestion/newSu.js";
+import ScrollArea from "react-scrollbar";
 import { RiEdit2Fill } from "react-icons/ri";
 import { ReservationsData } from "../../fakeData";
 import React, { useRef, useState, useEffect } from "react";
 import "../shared/style/widget.css";
 import "../shared/style/index.css";
+import { setLanguage } from "react-localization";
+import Local from "./Local";
 import SideBar from "../Sidebar";
 import { BiExport, BiDollar } from "react-icons/bi";
-import moment from "moment";
 import LoadingBar from "react-top-loading-bar";
 import { Col, Row, Input, Switch, Button, Menu, Dropdown } from "antd";
-import Suggestion from "./Suggestion/index";
 import { DownOutlined } from "@ant-design/icons";
 import { ImPrinter } from "react-icons/im";
 import { GiTimeBomb } from "react-icons/gi";
 import "./styles/index.css";
 import "../../App.css";
 import { Modal } from "react-responsive-modal";
-
-import {
-  PageContent,
-  PageTitle,
-  PageContentFix,
-  PageBtn,
-  ButtonGroup,
-} from "../shared/CustomPage";
 import styled from "styled-components";
+import strings from "./Local.js";
 const menu = (
   <Menu>
     <Menu.Item>
@@ -37,53 +32,10 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-export const Widget = styled.div`
-  background-color: white;
-  border-radius: 7px;
-  border: 1px solid var(--lighterGray);
-  display: flex;
 
-  overflow: hidden;
-  transition: 2s ease;
-  padding: 17px 17px 8px 17px;
-  width: 100%;
-  flex-direction: column;
-`;
-
-const Clander = styled.div`
-  background-color: white;
-  border-radius: 7px;
-  padding: 15px 25px;
-  height: 100%;
-  margin-bottom: 10%;
-  min-height: 0px;
-  min-width: 0px;
-  border: 1px solid var(--lighterGray);
-`;
-
-const PageHeader = styled(Row)`
-  align-items: center;
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-export const DateName = (date) => {
-  let result = moment(date, "YYYY-MM-DD HH:mm:ss")
-    .format("D-MMMM-yyy")
-    .replace("-", " ")
-    .replace("-", " ");
-  return result;
-};
-export const getTime = (date) => {
-  let result = moment(date, "YYYY-MM-DD HH:mm:ss")
-    .format("h-mm")
-    .replace("-", ":");
-  return result;
-};
 function Index(props) {
   const ref = useRef(null);
-
+  const { i18n, languageCode, changeLanguage } = useLocale();
   const [Loading, setLoading] = useState(false);
 
   const loadApiData = () => {
@@ -96,7 +48,9 @@ function Index(props) {
       ref.current.complete();
     }, 1200);
   };
-
+  const toggleLanguage = () => {
+    return languageCode === "en" ? changeLanguage("ar") : changeLanguage("en");
+  };
   useEffect(() => {
     loadApiData();
   }, []);
@@ -111,7 +65,6 @@ function Index(props) {
     let mode = e ? "light" : "dark";
     window.localStorage.setItem("isLight", mode);
     setTheme(mode);
-    console.log(localStorage.getItem("isLight"), "seeeeeeeeeeeeeting");
   };
   const themeToggler = () => {
     theme === "light" ? setMode("dark") : setMode("light");
@@ -129,167 +82,172 @@ function Index(props) {
   let darkMod =
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
-    <div className="CustomPageWrapper setting-page">
-      <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+    <ScrollArea speed={0.8} smoothScrolling={true} horizontal={false}>
+      <div className="CustomPageWrapper setting-page">
+        <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
 
-      <SideBar isDark={theme} />
-      <div className="PageContentFix">
-        <PageHeader>
-          <div className="PageTitle"> Settings</div>
-        </PageHeader>
-        <Row></Row>
+        <SideBar isDark={theme} />
 
-        <Row
-          className="cl-ctrl"
-          style={{
-            display: "grid",
-            gap: "25px",
-            gridTemplateColumns: "auto 23vw",
-          }}
-        >
-          <Col
+        <div className="PageContentFix">
+          <div className="PageHeader">
+            <div className="PageTitle">{i18n.settingTitle}</div>
+          </div>
+          <Row></Row>
+
+          <Row
+            className="cl-ctrl"
             style={{
-              minHeight: "0px",
-              minWidth: "0px",
-              height: "auto",
+              display: "grid",
+
+              gap: "25px",
+              gridTemplateColumns: "auto 23vw",
             }}
           >
-            <div className={darkMod ? "mainWidget-dark" : "mainWidget"}>
-              <div>
-                <div className="widget-title">
-                  <ImPrinter color="var(--black)" />
-                  Printer Settings
-                </div>
+            <Col
+              style={{
+                minHeight: "0px",
+                minWidth: "0px",
+                height: "auto",
+              }}
+            >
+              <div className={darkMod ? "mainWidget-dark" : "mainWidget"}>
+                <div>
+                  <div className="widget-title">
+                    <ImPrinter color="var(--black)" />
+                    {i18n.printerSettings}
+                  </div>
 
-                <ul>
-                  <li className="widget-item">
-                    <span>Title</span>
-                    <div>
+                  <ul>
+                    <li className="widget-item">
+                      <div>{i18n.printTitle}</div>
                       <Input
                         className={darkMod ? "input-rg-dark" : "input-rg"}
                       />
-                    </div>{" "}
-                  </li>{" "}
-                  <li className="widget-item">
-                    Address{" "}
-                    <div>
-                      {" "}
-                      <Input
-                        className={darkMod ? "input-rg-dark" : "input-rg"}
-                      />
-                    </div>{" "}
-                  </li>{" "}
-                  <li className="widget-item ">
-                    Language :{" "}
-                    <span>
-                      <Dropdown overlay={menu}>
-                        <a
-                          className="ant-dropdown-link"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          English <DownOutlined />
-                        </a>
-                      </Dropdown>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div className="widget-title">
-                  <GiTimeBomb color="var(--black)" />{" "}
-                  <span>Serveic Expair</span>
+                    </li>{" "}
+                    <li className="widget-item">
+                      {i18n.printAddress}
+                      <div>
+                        {" "}
+                        <Input
+                          className={darkMod ? "input-rg-dark" : "input-rg"}
+                        />
+                      </div>{" "}
+                    </li>{" "}
+                    <li className="widget-item ">
+                      {i18n.language}
+                      <span>
+                        <Dropdown overlay={menu}>
+                          <a
+                            className="ant-dropdown-link"
+                            onClick={(e) => e.preventDefault()}
+                          >
+                            English <DownOutlined />
+                          </a>
+                        </Dropdown>
+                      </span>
+                    </li>
+                  </ul>
                 </div>
-                <ul>
-                  <li className="flex-line">
-                    Time left : <span>5 months</span>{" "}
-                  </li>{" "}
-                  <li className="widget-item">
-                    Enter Code :
-                    <span>
-                      <Input
-                        className={darkMod ? "input-rg-dark" : "input-rg"}
-                      />
-                    </span>
-                  </li>{" "}
-                </ul>
+                <div>
+                  <div className="widget-title">
+                    <GiTimeBomb color="var(--black)" />{" "}
+                    <span>{i18n.serveicExpair}</span>
+                  </div>
+                  <ul>
+                    <li className="flex-line">
+                      {i18n.timeLeft} : <span>5months</span>{" "}
+                    </li>{" "}
+                    <li className="widget-item">
+                      {i18n.enterCode} :
+                      <span>
+                        <Input
+                          className={darkMod ? "input-rg-dark" : "input-rg"}
+                        />
+                      </span>
+                    </li>{" "}
+                  </ul>
+                </div>
               </div>
-            </div>
-          </Col>
+            </Col>
 
-          <Col style={{ height: "100%" }}>
-            <div className="r-ctrl">
-              <div className={darkMod ? "Widget-dark" : "Widget"}>
-                <div className="ItemHeader">
-                  <span>System Information</span>
-                  {/**   <div className="NumBtn">50</div>*/}
+            <Col style={{ height: "100%" }}>
+              <div className="r-ctrl">
+                <div className={darkMod ? "Widget-dark" : "Widget"}>
+                  <div className="ItemHeader">
+                    <span>{i18n.systemInfo}</span>
+                    {/**   <div className="NumBtn">50</div>*/}
+                  </div>
+                  <ul>
+                    <li className="flex-line">
+                      {i18n.version} : <span>7.7</span>
+                    </li>{" "}
+                    <li className="flex-line ">
+                      {i18n.userNum} : <span>07778452222</span>
+                    </li>
+                    <li className="flex-line">
+                      {i18n.userName} : <span>Marwa Jawad</span>
+                    </li>{" "}
+                  </ul>
                 </div>
-                <ul>
-                  <li className="flex-line">
-                    Version : <span>7.7</span>
-                  </li>{" "}
-                  <li className="flex-line ">
-                    User Num : <span>07778452222</span>
-                  </li>
-                  <li className="flex-line active-li">
-                    User Name : <span>Marwa Jawad</span>{" "}
-                  </li>{" "}
-                  <li className="flex-line active-li">
-                    Mode : <span>Light</span>
-                  </li>
-                </ul>
               </div>
-            </div>
-            <div style={{ height: "3%" }}></div>
-            <div className="s-ctrl">
-              <div className={darkMod ? "Widget-dark" : "Widget"}>
-                <div className="ItemHeader">
-                  <span>Change Settings</span>
-                </div>{" "}
-                <ul>
-                  <li className="flex-line">
-                    Mode{" "}
-                    <Switch
-                      defaultChecked={true}
-                      size="small"
-                      onChange={setMode}
-                    />{" "}
-                  </li>{" "}
-                  <li className="flex-line ">
-                    Language :{" "}
-                    <span>
-                      <Dropdown overlay={menu}>
-                        <a
-                          className="ant-dropdown-link"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          English <DownOutlined />
-                        </a>
-                      </Dropdown>
-                    </span>
-                  </li>
-                </ul>
+              <div className="widget-space"></div>
+              <div className="s-ctrl">
+                <div className={darkMod ? "Widget-dark" : "Widget"}>
+                  <div className="ItemHeader">
+                    <span>{i18n.changeSettings}</span>
+                  </div>{" "}
+                  <ul>
+                    <li className="flex-line">
+                      {i18n.mode}
+                      <Switch
+                        defaultChecked={true}
+                        size="small"
+                        onChange={setMode}
+                      />{" "}
+                    </li>{" "}
+                    <li className="flex-line ">
+                      {languageCode === "en" ? "English : " : "العربية : "}
+                      <span>
+                        <Switch
+                          defaultChecked={true}
+                          size="small"
+                          onChange={toggleLanguage}
+                        />{" "}
+                        {/** <Dropdown overlay={menu}>
+                          <a
+                            className="ant-dropdown-link"
+                            onClick={() => toggleLanguage}
+                          >
+                            English <DownOutlined />
+                          </a>
+                        </Dropdown>*/}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
               </div>{" "}
+              <div className="widget-space"></div>{" "}
               <div className={darkMod ? "Widget-dark" : "Widget"}>
                 <div className="ItemHeader">
-                  <span>Sugestion</span>
-                  <span className="NumBtn">Upload</span>
+                  <span>{i18n.storage}</span>
+                  <span className="NumBtn">{i18n.storeDownload}</span>
                 </div>
-                <div className="suggestion">
-                  55 items
+                <div className="store">
+                  55 {i18n.items}
                   <div className="sugges-icon">
                     <FaPlus color="var(--yellow)" onClick={openModal} />
                     <RiEdit2Fill color="var(--black)" onClick={openModal} />
                   </div>{" "}
                 </div>
               </div>
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        </div>
+        <Modal open={modalIsOpen} onClose={openModal}>
+          <NewSu />
+        </Modal>
       </div>
-      <Modal open={modalIsOpen} onClose={openModal}>
-        <NewSu />
-      </Modal>
-    </div>
+    </ScrollArea>
   );
 }
 

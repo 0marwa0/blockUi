@@ -277,14 +277,14 @@ const ListItem = (props) => {
       Price: "9999",
     },
   ];
-
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className="List-holder">
       {items.map((item) => (
-        <div class="card">
-          <div class="card_image"></div>
-          <div class="card_content">
-            <div className="card-user">
+        <div class={darkMod ? "card-dark" : "card"}>
+          <div class={darkMod ? "card_content-dark" : "card_content"}>
+            <div className={darkMod ? "card-user-dark" : "card-user"}>
               <img src={require("" + "../../public/images/0.png")} />
               <span>name</span>
               <span>
@@ -294,7 +294,8 @@ const ListItem = (props) => {
                 <FaEdit color="var(--black)" /> :2/5/2021
               </span>
             </div>
-            <p class="card_text">
+            <div className="List-owner"> record owner</div>
+            <p class={darkMod ? "card_text-dark" : "card_text"}>
               <ul>
                 <li className="flex-line">
                   Residual : <span>{item.Residual}</span>
@@ -324,14 +325,23 @@ const ListItem = (props) => {
                 </li>
               </ul>
             </p>
-            <div className="flex-line">
-              <button class="btn card_btn">
+            <div className="flex-line" style={{ justifyContent: "center" }}>
+              <button
+                class={darkMod ? "btn-dark card_btn" : "btn card_btn"}
+                // class="btn card_btn"
+              >
+                <AiOutlineClose color="red" />
+              </button>{" "}
+              <button
+                class={darkMod ? "btn-dark card_btn" : "btn card_btn"}
+                // class="btn card_btn"
+              >
                 <FaEdit color="green" />
               </button>
-              <button class="btn card_btn">
-                <AiOutlineClose color="red" />
-              </button>
-              <button class="btn card_btn">
+              <button
+                class={darkMod ? "btn-dark card_btn" : "btn card_btn"}
+                //   class="btn card_btn"
+              >
                 <FiEye color="blue" />
               </button>
             </div>

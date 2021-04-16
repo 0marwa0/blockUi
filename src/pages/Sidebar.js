@@ -56,10 +56,6 @@ const NavItem = ({ slug, children, index, title }) => {
     <div
       className="SideItem"
       style={{
-        //borderLeft: !isClicked
-        // ? "2px solid var(--black)"
-        // : "2px solid var(--yellow)",
-
         color: isClicked ? "var(--yellow)" : "var(--gray)",
       }}
       type={type}
@@ -78,7 +74,6 @@ const NavItem = ({ slug, children, index, title }) => {
             borderLeft:
               location.pathname == url ? "1px solid var(--yellow)" : "",
             //  ? "2px solid var(--black)"
-            // : "2px solid var(--yellow)",
             color: isClicked ? "var(--yellow)" : "var(--gray)",
           }}
           type={type}
@@ -118,7 +113,6 @@ function SideBar(props) {
             : "SideWarpper"
         }
       >
-        {console.log(localStorage.getItem("isDark"))}
         <div className="SideList">
           <img className="Logo" src={require("../public/images/logo1.svg")} />
           <NavItem slug="" title={title}>

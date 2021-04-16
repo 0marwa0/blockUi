@@ -1,8 +1,8 @@
 // Customer page
 import React, { useState, useEffect, createContext } from "react";
 import CustomPage from "../shared/CustomPage";
-import { CustomersColumns, UsersData } from "./Config";
-import { CustomersData } from "../../fakeData";
+import { WorkersColumns, UsersData } from "./Config";
+import { WorkersData } from "../../fakeData";
 import { DateName } from "../Dashboard";
 import NotifyUser from "./NotifyUser";
 import "react-responsive-modal/styles.css";
@@ -178,7 +178,7 @@ function Workers(props) {
       //     } else {
       let Users = [];
       //   setUsersData(data.data.rows);
-      CustomersData.map((user) => {
+      WorkersData.map((user) => {
         Users.push({
           id: {
             id: user.id,
@@ -241,13 +241,14 @@ function Workers(props) {
       {/* <Progress.Component thumbStyle={{ background: "var(--yellow)" }} /> */}
       <CustomPage
         pageTitle="workers"
-        columns={CustomersColumns}
+        columns={WorkersColumns}
         data={Filterdata}
         HandleSearch={HandleSearch}
         filter={Filter}
         onOpenModal={onOpenModal}
         Loading={Loading}
         Item="workers"
+        onRow={() => props.history.push("/workerProfile")}
       />
       {/* <Modal
         closeOnOverlayClick={false}

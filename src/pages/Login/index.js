@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import { Input, Button, Checkbox } from "antd";
-import { ReactComponent as LogoIcon } from "../../public/images/LogoIcon.svg";
+import Icon from "../../public/images/logo1.svg";
+import { ReactComponent as LogoIcon } from "../../public/images/logo1.svg";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -193,7 +194,7 @@ export default function Index(props) {
       <LoginForm>
         <LoginContent>
           <Logo>
-            <LogoIcon />
+            <img src={Icon} width={200} />
           </Logo>
           <Space />
           <div>
@@ -253,7 +254,8 @@ export default function Index(props) {
                 justifyContent: "center",
                 fontSize: "18px",
                 height: "60px",
-              }}>
+              }}
+            >
               Login
             </Button>
             {/* </Link> */}
@@ -277,7 +279,8 @@ export default function Index(props) {
         <Slider
           arrows={false}
           // ref={(slider) => (this.slider = slider)}
-          {...settings}>
+          {...settings}
+        >
           <SlideItem />
           <SlideItem />
           <SlideItem />

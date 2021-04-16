@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import { CustomInput } from "../shared/SharedStyle";
 import { BsExclamationCircle } from "react-icons/bs";
-import { ButtonStyledModle } from "../shared/SharedStyle";
 import { Mesg, SuccessMesg, FailedMesg } from "../../API/APIMessage";
 import pic from "../../public/images/b.jpg";
 import "../shared/style/index.css";
+import { CustomButton } from "../shared/SharedComponents";
 function Index(props) {
   let user = props.admins.filter((i) => i.id === props.id);
   let data = {};
@@ -142,9 +142,9 @@ function Index(props) {
           <div className="PageTitle">
             My Profile
             <div>
-              <ButtonStyledModle main onClick={Save}>
+              <CustomButton main={true} onOpen={Save}>
                 Save
-              </ButtonStyledModle>
+              </CustomButton>
             </div>
           </div>
         </div>

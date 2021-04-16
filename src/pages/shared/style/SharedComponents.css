@@ -1,0 +1,68 @@
+.ButtonStyledModle,
+.ButtonStyledModleMain {
+  height: 40px;
+  background-color: var(--lightGray);
+  border-radius: 7px;
+  border: 1px solid var(--lighterGray);
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  width: 100px;
+  padding: 0;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.extra {
+  border-radius: 2px;
+}
+.ButtonStyledModleMain {
+  border: none;
+  background-color: var(--yellow);
+}
+.ButtonStyledModle:hover {
+  background-color: var(--lightGray);
+}
+.ButtonStyledModleMain:hover {
+  background-color: var(--yellow);
+}
+.ButtonStyledModle:focus {
+  background-color: var(--lightGray);
+}
+.ButtonStyledModleMain:focus {
+  background-color: var(--yellow);
+}
+
+.ButtonStyledMain,
+.ButtonStyled {
+  background-color: var(--lightGray);
+  border-radius: 7px;
+  border: 1px solid var(--lighterGray);
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  padding: 0 8px;
+  align-items: center;
+  text-align: center;
+  color: black;
+  justify-content: center;
+  height: 30px;
+}
+
+.btnExtra {
+  padding: 0 50px;
+  width: 80px;
+  height: 110px;
+  border-radius: 2px;
+}
+.ButtonStyled:hover {
+  background-color: var(--lightGray);
+}
+.ButtonStyledMain {
+  border: none;
+  padding: 0 20px;
+  background-color: var(--yellow);
+}

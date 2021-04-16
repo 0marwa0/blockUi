@@ -5,7 +5,7 @@ import { Checkbox, Tag, Popover } from "antd";
 import { Popconfirm } from "antd";
 import { ReactComponent as Notifiy } from "../../public/images/solid bell.svg";
 import { IoMdNotificationsOutline } from "react-icons/io";
-export const CustomersColumns = [
+export const WorkersColumns = [
   { key: 1, title: "", dataIndex: "", render: () => <Checkbox /> },
   {
     key: 2,
@@ -100,7 +100,8 @@ export const CustomersColumns = [
           </div>
         )}
         placement="left"
-        title={false}>
+        title={false}
+      >
         <BiDotsVerticalRounded
           style={{
             fontSize: "20px",
@@ -112,7 +113,7 @@ export const CustomersColumns = [
     ),
   },
 ];
-export const UsersData = (data, callback) => {
+export const WorkersData = (data, callback) => {
   let Users = [];
 
   // data.map((user) => {

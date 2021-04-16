@@ -2,29 +2,52 @@
   display: flex;
   flex-direction: row;
 }
+.widget-space {
+  height: 3%;
+}
 /*shared button style*/
 .CustomButton {
 }
 .ButtonGroup {
   display: flex;
   gap: 10px;
-
   align-items: center;
   justify-content: flex-end;
   /*margin-right: ${(props) => (props.space ? "10px" : "0")};*/
 }
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: 1px solid transparent !important;
+}
 .input-rg,
 .input-rg-dark {
-  border-radius: 6px !important;
-  border: 1px solid #353535 !important;
-  height: "30px";
-  width: 220px !important;
+  background-color: transparent !important;
+  border: 1px solid var(--textGray) !important;
+  height: 30px;
+  border-radius: 7px !important;
+  width: 100% !important;
+}
+.borderLess {
+  border: none !important;
 }
 .input-rg-dark {
   border: none !important;
-  color: white !important;
-  background-color: #353535 !important;
+  color: black !important;
+  background: #353535 !important;
 }
+.isDark .ant-select-selector {
+  border: none !important;
+  color: black !important;
+  background: #353535 !important;
+}
+.isDark .rc-virtual-list-holder-inner,
+.isDark .ant-select-item,
+.isDark .ant-select-item-option,
+.isDark .ant-select-item-option-active {
+  border: none !important;
+  color: black !important;
+  background: #353535 !important;
+}
+
 .PageBtn {
   display: flex;
   flex-direction: row;
@@ -82,4 +105,11 @@
 }
 .isDark .ant-table-container {
   border: 1px solid #353535 !important;
+}
+.isDark .ant-tag {
+  background-color: #353535 !important;
+  color: var(--ligherGray) !important;
+}
+.isDark .ant-checkbox-inner {
+  background-color: #353535 !important;
 }

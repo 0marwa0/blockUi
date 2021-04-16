@@ -63,35 +63,50 @@ const Index = (props) => {
       <Container>
         <MultiStepForm activeStep={active}>
           <Step label="Templet">
-            <FirstStep data={[{ name: "water" }, { name: "Sewers" }]} />
-          </Step>
-          <Step label="choose tamplet ">
             <FirstStep
               data={[
-                { name: " 110mm Tube" },
-                { name: " 110mm Tube" },
-                { name: " 110mm Tube" },
+                { name: "water", num: "55" },
+                { name: "Sewers", num: "55" },
+              ]}
+            />
+          </Step>
+          <Step label="Choose Tamplet ">
+            <FirstStep
+              data={[
+                { name: " 110mm Tube", num: "55" },
+                { name: " 110mm Tube", num: "55" },
+                { name: " 110mm Tube", num: "55" },
               ]}
               onrow={true}
             />
           </Step>
-          <Step label="choose List">
+          <Step label="Build Record">
             <SecondStep />
           </Step>
           <Step label="Submit">done </Step>
         </MultiStepForm>
-
-        {active !== 1 && (
-          <Button onClick={() => setActive(active - 1)}>Previous</Button>
-        )}
-        {active !== 4 && (
-          <Button
-            onClick={() => setActive(active + 1)}
-            style={{ float: "right" }}
-          >
-            Next
-          </Button>
-        )}
+        <div style={{ padding: "10px 0" }}>
+          {active !== 1 && (
+            <Button
+              style={{ backgroundColor: "var(--yellow)" }}
+              onClick={() => setActive(active - 1)}
+            >
+              Previous
+            </Button>
+          )}
+          {active !== 4 && (
+            <Button
+              style={{
+                color: "black",
+                backgroundColor: "var(--yellow)",
+                float: "right",
+              }}
+              onClick={() => setActive(active + 1)}
+            >
+              Next
+            </Button>
+          )}
+        </div>
       </Container>
     </CustomPage>
   );

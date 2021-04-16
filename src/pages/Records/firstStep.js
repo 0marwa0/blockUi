@@ -9,7 +9,12 @@ import "./styles/steps.css";
 import { Modal } from "react-responsive-modal";
 import { Table, Checkbox, Tag, Popover } from "antd";
 const templet = [
-  { id: "11", tempName: "water", row: [{ name: "test", price: "55$" }] },
+  {
+    id: "11",
+    tempName: "water",
+
+    row: [{ name: "test", price: "55$" }],
+  },
 ];
 export const RecordsColumns = [
   { key: 1, title: "", dataIndex: "", render: () => <Checkbox /> },
@@ -17,6 +22,15 @@ export const RecordsColumns = [
     key: 2,
     title: "Templet Name",
     dataIndex: "name",
+    sorter: {
+      compare: (a, b) => a.english - b.english,
+      multiple: 1,
+    },
+  },
+  {
+    key: 2,
+    title: "Number of Items",
+    dataIndex: "num",
     sorter: {
       compare: (a, b) => a.english - b.english,
       multiple: 1,

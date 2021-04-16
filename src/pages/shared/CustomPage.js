@@ -9,13 +9,17 @@ import { ReactComponent as ExportIcon } from "../../public/images/export.svg";
 import { ReactComponent as ImportIcon } from "../../public/images/import.svg";
 import { ReactComponent as PlusIcon } from "../../public/images/plus.svg";
 import "./style/index.css";
+import { useHistory } from "react-router-dom";
+import { useLocale } from "react-easy-localization";
 import { FiFilter } from "react-icons/fi";
+import { MdFeaturedPlayList } from "react-icons/md";
+import { VscListFlat } from "react-icons/vsc";
 import { CustomButton } from "../shared/SharedComponents";
 import SideBar from "../Sidebar";
 import styled, { createGlobalStyle } from "styled-components";
 import { ReactComponent as Upload } from "../../public/images/solid cloud-upload-alt.svg";
 import { ReactComponent as Notifiy } from "../../public/images/solid bell.svg";
-import ListItem from "../Records/ListItem";
+import ListItem from "../Records/RecordItem";
 const GlobalStyle = createGlobalStyle`
 
 `;
@@ -70,12 +74,13 @@ const IconCss = styled.span`
 function CustomPage(props) {
   const ref = useRef(null);
 
+  const { i18n, languageCode, changeLanguage } = useLocale();
   let pageTitle = props.pageTitle;
   const columns = props.columns;
   const data = props.data;
   // const [next, setNext] = useState(true);
   // const [prev, setprev] = useState(false);
-
+  let history = useHistory();
   const [showList, setShowList] = useState(false);
   const showListItem = () => {
     setShowList(true);
@@ -167,7 +172,7 @@ function CustomPage(props) {
         <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
 
         <SideBar
-          title={props.pageTitle}
+          title={props.Title}
           // changeMode={() => changeMode}
           isDark={localStorage.getItem("isDark")}
         />
@@ -187,7 +192,7 @@ function CustomPage(props) {
               ) : (
                 <>
                   {" "}
-                  <ButtonGroup space>
+                  <div className="ButtonGroup" space>
                     {props.pageTitle === "Records" ? (
                       <div
                         style={{
@@ -196,151 +201,20 @@ function CustomPage(props) {
                           alignItems: "center",
                         }}
                       >
-                        <svg
-                          cursor="pointer"
+                        <VscListFlat
+                          size={30}
+                          color={
+                            showTable ? "var(--yellow)" : "var(--lighterGray)"
+                          }
                           onClick={showTableItem}
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="22.5"
-                          height="22.5"
-                          viewBox="0 0 22.5 22.5"
-                        >
-                          <g
-                            id="Group_8468"
-                            data-name="Group 8468"
-                            transform="translate(0.431 1.074)"
-                          >
-                            <rect
-                              id="Rectangle_6614"
-                              data-name="Rectangle 6614"
-                              width="21"
-                              height="8"
-                              rx="2"
-                              transform="translate(0.319 -0.324)"
-                              fill={showTable ? "var(--yellow)" : "white"}
-                              stroke={
-                                showTable
-                                  ? "var(--yellow)"
-                                  : "var(--lighterGray)"
-                              }
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="1.5"
-                            />
-                            <rect
-                              id="Rectangle_6615"
-                              data-name="Rectangle 6615"
-                              width="21"
-                              height="8"
-                              rx="2"
-                              transform="translate(0.319 12.676)"
-                              fill={showTable ? "var(--yellow)" : "white"}
-                              stroke={
-                                showTable
-                                  ? "var(--yellow)"
-                                  : "var(--lighterGray)"
-                              }
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="1.5"
-                            />
-                          </g>
-                        </svg>
-
-                        <svg
+                        />
+                        <MdFeaturedPlayList
+                          size={30}
+                          fill={
+                            showList ? "var(--yellow)" : "var(--lighterGray)"
+                          }
                           onClick={showListItem}
-                          cursor="pointer"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="32.011"
-                          height="32.011"
-                          viewBox="0 0 32.011 32.011"
-                        >
-                          <g
-                            id="Group_8458"
-                            data-name="Group 8458"
-                            transform="translate(32.011 32.011) rotate(180)"
-                          >
-                            <path
-                              id="Path_2839"
-                              data-name="Path 2839"
-                              d="M0,0H32.011V32.011H0Z"
-                              fill="none"
-                            />
-                            <g
-                              id="Group_8459"
-                              data-name="Group 8459"
-                              transform="translate(5.335 5.335)"
-                            >
-                              <rect
-                                id="Rectangle_6614"
-                                data-name="Rectangle 6614"
-                                width="8"
-                                height="8"
-                                rx="2"
-                                transform="translate(0.665 -0.324)"
-                                fill={showList ? "var(--yellow)" : "white"}
-                                stroke={
-                                  showList
-                                    ? "var(--yellow)"
-                                    : "var(--lighterGray)"
-                                }
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              />
-                              <rect
-                                id="Rectangle_6618"
-                                data-name="Rectangle 6618"
-                                width="8"
-                                height="8"
-                                rx="2"
-                                transform="translate(0.665 12.676)"
-                                fill={showList ? "var(--yellow)" : "white"}
-                                stroke={
-                                  showList
-                                    ? "var(--yellow)"
-                                    : "var(--lighterGray)"
-                                }
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              />
-                              <rect
-                                id="Rectangle_6616"
-                                data-name="Rectangle 6616"
-                                width="8"
-                                height="8"
-                                rx="2"
-                                transform="translate(13.665 -0.324)"
-                                fill={showList ? "var(--yellow)" : "white"}
-                                stroke={
-                                  showList
-                                    ? "var(--yellow)"
-                                    : "var(--lighterGray)"
-                                }
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              />
-                              <rect
-                                id="Rectangle_6617"
-                                data-name="Rectangle 6617"
-                                width="8"
-                                height="8"
-                                rx="2"
-                                transform="translate(13.665 12.676)"
-                                fill={showList ? "var(--yellow)" : "white"}
-                                stroke={
-                                  showList
-                                    ? "var(--yellow)"
-                                    : "var(--lighterGray)"
-                                }
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              />
-                            </g>
-                          </g>
-                        </svg>
+                        />
                       </div>
                     ) : (
                       ""
@@ -357,7 +231,7 @@ function CustomPage(props) {
                       ""
                     ) : (
                       <CustomButton
-                        lable="Filter"
+                        lable={i18n.filter}
                         filter
                         loading={props.Loading}
                         //fun={props.filter}i
@@ -365,7 +239,7 @@ function CustomPage(props) {
                         <FiFilter />
                       </CustomButton>
                     )}
-                  </ButtonGroup>
+                  </div>
                   <ButtonGroup>
                     {props.pageTitle === "resources" ? (
                       ""
@@ -378,22 +252,22 @@ function CustomPage(props) {
                     ) : props.pageTitle === "articles" ? (
                       ""
                     ) : (
-                      <CustomButton lable="Import" loading={props.Loading}>
+                      <CustomButton lable={i18n.import} loading={props.Loading}>
                         <ImportIcon />
                       </CustomButton>
                     )}
 
                     <CustomButton
-                      lable="Export"
+                      lable={i18n.export}
                       loading={props.Loading}
-                      fun={props.export}
+                      //   fun={props.export}
                     >
                       <ExportIcon />
                     </CustomButton>
 
                     {pageTitleName == "customer" ? (
                       <CustomButton
-                        main
+                        main={true}
                         lable={`Notify Users`}
                         loading={props.Loading}
                         pageTitle={pageTitle}
@@ -404,7 +278,7 @@ function CustomPage(props) {
                     ) : pageTitleName === "resource" ||
                       pageTitleName === "file Uploade" ? (
                       <CustomButton
-                        main
+                        main={true}
                         lable={`Upload`}
                         pageTitle={pageTitle}
                         loading={props.Loading}
@@ -414,7 +288,7 @@ function CustomPage(props) {
                       </CustomButton>
                     ) : pageTitleName === "event" ? (
                       <CustomButton
-                        main
+                        main={true}
                         lable={`New Booking `}
                         pageTitle={pageTitle}
                         loading={props.Loading}
@@ -423,18 +297,18 @@ function CustomPage(props) {
                         <PlusIcon />
                       </CustomButton>
                     ) : pageTitleName === "articles" ? null : (
-                      <ButtonStyled
-                        main
+                      <CustomButton
+                        main={true}
                         pageTitle={pageTitle}
                         loading={props.Loading}
-                        onClick={props.onOpenModal}
+                        onOpen={props.onOpenModal}
                       >
                         <PlusIcon />
                         {`New ${
                           pageTitleName.charAt(0).toUpperCase() +
                           pageTitleName.slice(1)
                         }`}
-                      </ButtonStyled>
+                      </CustomButton>
                     )}
                   </ButtonGroup>
                 </>
@@ -452,8 +326,13 @@ function CustomPage(props) {
                     <Table
                       columns={columns}
                       rowClassName="tableRow"
-                      rowClassName={(record, index, m) =>
-                        console.log(record, index, m, "rowwwwwwww")
+                      onRow={() =>
+                        props.pageTitle === "workers"
+                          ? //   props.pageTitle==="Workers"
+                            {
+                              onClick: () => history.push("/workerprofile"),
+                            }
+                          : ""
                       }
                       pagination={false}
                       dataSource={Data}

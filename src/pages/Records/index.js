@@ -1,23 +1,17 @@
-import { notification } from "antd";
 import React, { useEffect, useState } from "react";
 import CustomPage from "../shared/CustomPage";
 import { BookingColumns } from "./Config";
-import Progress from "react-progress-2";
 import { BookingData } from "../../fakeData/index";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
-//import NewBooking from "./NewBooking/NewBooking";
-import { monthNames } from "../shared/assets";
-import { EmptyText } from "../../pages/shared/SharedComponents";
-import { LoadData, LoadBooking, LoadDataByID, addData } from "../../API";
-import { FailedMesg, Mesg, SuccessMesg } from "../../API/APIMessage";
-import { DateName } from "../Dashboard";
 import Exportpage from "./newRecord";
-import { getSectionClassNames } from "@fullcalendar/react";
 //import { Print } from "@syncfusion/ej2-schedule";
 import Print from "./print";
+
+import { useLocale } from "react-easy-localization";
 export const Values = React.createContext();
 function Records(props) {
+  const { i18n, languageCode, changeLanguage } = useLocale();
   const [open, setOpen] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [Book, setBook] = useState([]);
@@ -49,13 +43,15 @@ function Records(props) {
           Status: item.Status,
           Title: item.Title,
           print: { print: onOpenModal },
-          StartingDate: item.bookDates
+          StartingDate: "",
+          // item.bookDates
 
-            .filter((i, index) => index === 0)
-            .map((i) => DateName(i.start)),
-          EndingDate: item.bookDates
-            .filter((i, index) => index === 0)
-            .map((i) => DateName(i.end)),
+          // .filter((i, index) => index === 0)
+          // .map((i) => DateName(i.start)),
+          EndingDate: "",
+          // tem.bookDates
+          //  .filter((i, index) => index === 0)
+          // .map((i) => DateName(i.end)),
           Space: item.Space,
           CreationDate: item.CreationDate,
           BookedBy: item.BookedBy,
@@ -227,7 +223,7 @@ function Records(props) {
     setTimeout(() => {
       setLoading(false);
 
-      SuccessMesg("Booking Created Successfully !");
+      //d      SuccessMesg("Booking Created Successfully !");
     }, 1200);
     // setLoading(false);
     // onOpenModal(false);
@@ -278,6 +274,7 @@ function Records(props) {
     <div>
       <CustomPage
         pageTitle="Records"
+        Title={i18n.recordTitle}
         columns={BookingColumns}
         data={FilterdData}
         Item="event"

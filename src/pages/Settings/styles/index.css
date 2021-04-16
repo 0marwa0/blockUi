@@ -1,6 +1,9 @@
 .setting-page li {
   margin: 10px;
 }
+.scroll {
+  color: red;
+}
 .ant-switch-checked {
   background-color: var(--black) !important;
 }
@@ -12,9 +15,12 @@
 .widget-item {
   display: flex;
   gap: 10px;
+  flex-direction: column;
+  width: 400px;
+  justify-content: flex-start;
   padding: 10px 0;
-  align-items: center;
 }
+
 .widget-item .input,
 .widget-item .input-dark {
   border: none;
@@ -24,7 +30,7 @@
   color: white;
   background-color: black;
 }
-.suggestion {
+.store {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

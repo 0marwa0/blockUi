@@ -16,6 +16,7 @@ import { Button, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import "../shared/style/widget.css";
 
+import { useLocale } from "react-easy-localization";
 const menu2 = (
   <Menu>
     <Menu.Item key="1">1st menu item</Menu.Item>
@@ -52,6 +53,8 @@ function Index(props) {
       document.body.style.background = "var(--lightGray";
     }
   });
+
+  const { i18n, languageCode, changeLanguage } = useLocale();
   let statistics = props.statistics;
   let darkMod =
     window.localStorage.getItem("isLight") === "light" ? false : true;
@@ -59,7 +62,7 @@ function Index(props) {
     <div className={darkMod ? "Widget-dark" : "Widget"}>
       <div className="ItemHeader">
         <span style={{ fontWeight: "bold", fontSize: "1.2vw" }}>
-          Statistics
+          {i18n.statistics}
         </span>
         <Dropdown overlay={menu2}>
           <div className="DropBtn">
@@ -84,7 +87,8 @@ function Index(props) {
                 <GiElectric color="var(--blue)" size={15} />
               </div>
               <div>
-                Number of Sold Record<div className="GrayText"></div>
+                {i18n.numberofSoldRecord}
+                <div className="GrayText"></div>
               </div>
               <div className="BoldText">8824</div>
             </div>
@@ -98,7 +102,8 @@ function Index(props) {
                 <MdShowChart color="var(--orange)" size={20} />
               </div>
               <div>
-                Total Incom<div className="GrayText"></div>
+                {i18n.total}
+                <div className="GrayText"></div>
               </div>
               <div className="BoldText">12,000,00</div>
             </div>
@@ -111,13 +116,13 @@ function Index(props) {
                 <MdShowChart color="var(--red)" size={20} />
               </div>
               <div>
-                Number Of sold Records
+                {i18n.numberofSoldRecord}
                 <div className="GrayText"></div>
               </div>
               <div className="BoldText">5555</div>
             </div>
 
-            <div className="ReservationItem">
+            {/* <div className="ReservationItem">
               <div
                 className={`TotleReservationsIcon ${
                   darkMod ? "darkIcon" : "green"
@@ -130,7 +135,7 @@ function Index(props) {
               </div>
               <div className="BoldText">88,000</div>
             </div>
-            <div className="ReservationItem">
+           <div className="ReservationItem">
               <div
                 className={`TotleReservationsIcon ${
                   darkMod ? "darkIcon" : "blue"
@@ -143,7 +148,7 @@ function Index(props) {
                 <div className="GrayText"></div>
               </div>
               <div className="BoldText">555557</div>
-            </div>
+              </div>*/}
           </div>
         )}
       </div>

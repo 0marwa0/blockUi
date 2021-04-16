@@ -1,0 +1,13 @@
+.worker-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.worker-widget img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px solid var(--lightGray);
+}
