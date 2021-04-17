@@ -1,8 +1,7 @@
 .List-holder {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  justify-content: space-between;
 }
 
 .List-holder .btn,
@@ -21,7 +20,7 @@
   background: rgb(231, 228, 228);
 }
 .List-holder .btn-dark {
-  background-color: black;
+  background-color: var(--black);
 }
 .List-holder .flex-line {
   display: flex;
@@ -42,7 +41,7 @@
 }
 .List-holder .card-user-dark,
 .List-holder .card-user {
-  color: black;
+  color: var(--black);
   width: 100%;
   display: flex;
   padding: 10px 20px;
@@ -93,13 +92,14 @@
   display: flex;
   width: 320px;
   flex-direction: column;
+  margin-bottom: 30px;
   overflow: hidden;
   border-radius: 18px;
-  color: black;
+  color: var(--black);
   background-color: white;
 }
 .List-holder .card-dark {
-  background-color: black;
+  background-color: var(--black);
   box-shadow: 0 0 10px rgba(128, 128, 128, 0.25);
 }
 .List-holder .card_content-dark,
@@ -117,7 +117,7 @@
   align-items: center;
 }
 .List-holder .card_title {
-  color: black;
+  color: var(--black);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 1px;

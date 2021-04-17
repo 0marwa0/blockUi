@@ -19,19 +19,19 @@
 }
 .ButtonStyledModleMain {
   border: none;
-  background-color: var(--yellow);
+  background-color: var(--cyan);
 }
 .ButtonStyledModle:hover {
   background-color: var(--lightGray);
 }
 .ButtonStyledModleMain:hover {
-  background-color: var(--yellow);
+  background-color: var(--cyan);
 }
 .ButtonStyledModle:focus {
   background-color: var(--lightGray);
 }
 .ButtonStyledModleMain:focus {
-  background-color: var(--yellow);
+  background-color: var(--cyan);
 }
 
 .ButtonStyledMain,
@@ -47,7 +47,7 @@
   padding: 0 8px;
   align-items: center;
   text-align: center;
-  color: black;
+  color: var(--black);
   justify-content: center;
   height: 30px;
 }
@@ -64,5 +64,5 @@
 .ButtonStyledMain {
   border: none;
   padding: 0 20px;
-  background-color: var(--yellow);
+  background-color: var(--cyan);
 }

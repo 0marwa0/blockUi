@@ -260,7 +260,7 @@ const Index = (props) => {
   return (
     <div>test</div>
     // <CustomPageWrapper>
-    //   {/* <LoadingBar color="var(--yellow)" ref={ref} shadow={true} /> */}
+    //   {/* <LoadingBar color="var(--cyan)" ref={ref} shadow={true} /> */}
 
     //   <GlobalStyle />
     //   <SideBar />

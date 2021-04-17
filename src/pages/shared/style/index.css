@@ -31,12 +31,12 @@
 }
 .input-rg-dark {
   border: none !important;
-  color: black !important;
+  color: var(--black) !important;
   background: #353535 !important;
 }
 .isDark .ant-select-selector {
   border: none !important;
-  color: black !important;
+  color: var(--black) !important;
   background: #353535 !important;
 }
 .isDark .rc-virtual-list-holder-inner,
@@ -44,7 +44,7 @@
 .isDark .ant-select-item-option,
 .isDark .ant-select-item-option-active {
   border: none !important;
-  color: black !important;
+  color: var(--black) !important;
   background: #353535 !important;
 }
 
@@ -66,7 +66,7 @@
   margin-right: 35px;
 }
 .PageTitle {
-  color: var(--black);
+  color: var(--yellow);
   font-size: 30px;
   font-weight: bold;
   padding: 10px 0;
@@ -75,13 +75,13 @@
 
 .isDark .ant-table {
   color: white !important ;
-  background-color: black !important;
+  background-color: var(--black) !important;
 }
 .ProfileImage {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 1px solid var(--yellow);
+  border: 1px solid var(--cyan);
   display: flex;
   align-items: center;
   background-position: cover;
@@ -93,7 +93,7 @@
   font-size: 25px;
   margin-bottom: 15px;
   position: relative;
-  color: var(--yellow);
+  color: var(--cyan);
 }
 .isDark .ant-table-thead > tr > th {
   color: white !important ;
@@ -112,4 +112,7 @@
 }
 .isDark .ant-checkbox-inner {
   background-color: #353535 !important;
+}
+.isDark .ant-switch-small {
+  background-color: var(--yellow) !important;
 }

@@ -92,7 +92,7 @@
 }
 .record-dark {
   color: var(--darkGray);
-  background-color: black;
+  background-color: var(--black);
   border: 1px solid rgb(44, 43, 43);
 }
 
@@ -109,7 +109,7 @@
   background-color: white;
 }
 .templetPopup-dark {
-  background-color: black;
+  background-color: var(--black);
   border: 1px solid var(--secDark);
 }
 .record-templet {
@@ -146,5 +146,5 @@
   color: gray;
   gap: 10px;
   justify-content: center;
-  background-color: var(--black);
+  background-color: var(--yellow);
 }

@@ -12,7 +12,7 @@
 }
 
 .SideWarpper-dark {
-  background-color: black !important;
+  background-color: var(--black) !important;
   border-right: 1px solid #353535 !important;
 }
 .NotifiHeader {
@@ -34,18 +34,18 @@
   margin-bottom: 0.5rem;
   font-size: 35px;
   display: flex;
-  /*   color: ${(props) => (props.isSelected ? "var(--yellow);" : "var(--gray);")};*/
+  /*   color: ${(props) => (props.isSelected ? "var(--cyan);" : "var(--gray);")};*/
   justify-content: center;
   align-items: center;
 }
 .SideItem-Active {
-  border-left: 3px solid var(--yellow);
+  border-left: 3px solid var(--cyan);
 }
 .SideItem:hover {
-  border-left: 3px solid var(--yellow);
+  border-left: 3px solid var(--cyan);
 }
 .SideItem :hover {
-  color: var(--yellow);
+  color: var(--cyan);
 }
 .UserImage {
   width: 40px;
@@ -59,7 +59,7 @@
   position: absolute;
   bottom: 14px;
   right: 30%;
-  border: 2px solid var(--black);
+  border: 2px solid var(--yellow);
   background-color: var(--RayGreen);
 }
 

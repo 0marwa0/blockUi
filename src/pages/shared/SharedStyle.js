@@ -6,13 +6,13 @@ export const CustomInput = styled(Input)`
   border-radius: ${(props) => (props.search ? "7px 7px 0 0" : "7px")};
   border: 1px solid #e1e4e8;
   border-bottom: ${(props) => (props.search ? "none" : "1px solid #e1e4e8")};
-  color: ${(props) => (props.gray ? " var(--darkGray)" : "black")};
+  color: ${(props) => (props.gray ? " var(--darkGray)" : "var(--black)")};
   background-color: ${(props) => (props.gray ? "var(--lighterGray)" : "white")};
 `;
 export const CustomInputArea = styled(TextArea)`
   border-radius: 7px;
   border: 1px solid #e1e4e8;
-  color: ${(props) => (props.gray ? " var(--darkGray)" : "black")};
+  color: ${(props) => (props.gray ? " var(--darkGray)" : "var(--black)")};
   background-color: ${(props) => (props.gray ? "var(--lighterGray)" : "white")};
 `;
 
@@ -55,7 +55,7 @@ export const EmptyTextHolder = styled.div`
   margin: 3% 0;
 `;
 export const CreateText = styled.u`
-  color: black;
+  color: var(--black);
   cursor: pointer;
   margintop: 10px;
 `;

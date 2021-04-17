@@ -288,10 +288,10 @@ const ListItem = (props) => {
               <img src={require("" + "../../public/images/0.png")} />
               <span>name</span>
               <span>
-                <MdCreateNewFolder color="var(--black)" /> :2/5/2021
+                <MdCreateNewFolder color="var(--yellow)" /> :2/5/2021
               </span>
               <span>
-                <FaEdit color="var(--black)" /> :2/5/2021
+                <FaEdit color="var(--yellow)" /> :2/5/2021
               </span>
             </div>
             <div className="List-owner"> record owner</div>

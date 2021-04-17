@@ -55,11 +55,11 @@ const ShortCat = styled.div`
 `;
 const BoldText = styled.h3`
   font-weight: 700;
-  color: black;
+  color: var(--black);
 `;
 const CopyRights = styled.div`
   font-size: 16px;
-  color: var(--yellow);
+  color: var(--cyan);
   position: absolute;
   width: 100%;
   padding: 20px;
@@ -243,7 +243,7 @@ export default function Index(props) {
               loading={Loading}
               disabled={Loading ? true : false}
               style={{
-                backgroundColor: "var(--yellow)",
+                backgroundColor: "var(--cyan)",
                 borderRadius: "5px",
                 border: "none",
                 display: "flex",

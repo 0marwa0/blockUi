@@ -11,7 +11,7 @@
 }
 .mainWidget-dark {
   color: var(--darkGray);
-  background-color: black;
+  background-color: var(--black);
   border: 1px solid rgb(46, 46, 46);
 }
 .Widget,
@@ -28,7 +28,7 @@
 }
 .Widget-dark {
   color: var(--darkGray);
-  background-color: black;
+  background-color: var(--black);
   border: 1px solid rgb(46, 46, 46);
 }
 .Widget-dark div {
@@ -38,7 +38,7 @@
   background-color: rgb(46, 46, 46);
 }
 .BoldText {
-  color: black;
+  color: var(--black);
   font-weight: 600;
   font-size: 0.9vw;
 }
@@ -106,7 +106,7 @@
   font-weight: bold;
 }
 .ItemHeader .NumBtn {
-  background-color: var(--yellow);
+  background-color: var(--cyan);
   padding-top: 2px;
   padding-left: 6px;
   padding-right: 6px;

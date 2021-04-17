@@ -15,6 +15,7 @@ import { CustomersColumns, WorkersColumns } from "./Config";
 import { CustomersData, WorkersData } from "../../fakeData";
 import ChartBar from "../Dashboard/chart/ChartBar";
 import { Modal } from "react-responsive-modal";
+import { HiViewGrid, HiViewList } from "react-icons/hi";
 import "./style/workerinfo.css";
 function Index(props) {
   const ref = useRef(null);
@@ -101,7 +102,7 @@ function Index(props) {
     const localTheme = window.localStorage.getItem("isLight");
     localTheme && setTheme(localTheme);
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
     }
@@ -110,7 +111,7 @@ function Index(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className="CustomPageWrapper setting-page">
-      <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+      <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
       <SideBar isDark={theme} />
       <div className="PageContentFix">
@@ -144,14 +145,14 @@ function Index(props) {
                       alignItems: "center",
                     }}
                   >
-                    <VscListFlat
+                    <HiViewList
                       size={30}
-                      color={showTable ? "var(--yellow)" : "var(--lighterGray)"}
+                      color={showTable ? "var(--cyan)" : "var(--lighterGray)"}
                       onClick={showTableItem}
                     />
-                    <MdFeaturedPlayList
+                    <HiViewGrid
                       size={30}
-                      fill={showList ? "var(--yellow)" : "var(--lighterGray)"}
+                      fill={showList ? "var(--cyan)" : "var(--lighterGray)"}
                       onClick={showListItem}
                     />
                   </div>

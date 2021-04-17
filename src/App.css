@@ -70,7 +70,7 @@ ul {
 }
 .Modal-dark {
   color: var(--darkGray);
-  background-color: black;
+  background-color: var(--black);
   border-left: 1px solid var(--darkGray);
 }
 
@@ -127,7 +127,7 @@ ul {
   font-weight: 500;
 }
 .MuiAppBar-colorPrimary {
-  color: black !important;
+  color: var(--black) !important;
   background-color: white !important;
   border-bottom: 1px solid var(--lighterGray) !important;
 }
@@ -146,7 +146,7 @@ ul {
   font-size: 20px !important;
 
   border-radius: 6px;
-  background-color: var(--yellow);
+  background-color: var(--cyan);
 }
 .NavBar_ctrl ul {
   list-style: none;
@@ -166,7 +166,7 @@ ul {
 .ant-upload-list-item-error,
 .ant-upload-list-item-error .ant-upload-text-icon > .anticon,
 .ant-upload-list-item-error .ant-upload-list-item-name {
-  color: black !important;
+  color: var(--black) !important;
 }
 
 .Overlay {
@@ -301,7 +301,7 @@ body {
   float: left;
   margin: 2px 3px;
   transition: all 10s ease-in-out;
-  background-color: var(--yellow);
+  background-color: var(--cyan);
   -webkit-transition: background-color 0.5s, width 0.5s;
   -o-transition: background-color 0.5s, width 0.5s;
   transition: background-color 0.5s, width 0.5s;
@@ -314,8 +314,8 @@ body {
 /***********************editeerjs icon *********************/
 .ce-toolbar__plus {
   border-radius: 7px !important;
-  color: black !important;
-  background-color: var(--yellow) !important;
+  color: var(--black) !important;
+  background-color: var(--cyan) !important;
 }
 
 /**********************************************************/
@@ -381,7 +381,7 @@ body {
 }
 .fc-today-button {
   background-color: white !important;
-  color: black !important;
+  color: var(--black) !important;
   padding: 3px 15px !important;
   border-radius: 8px !important;
   text-transform: capitalize !important;
@@ -572,7 +572,7 @@ background-color: rebeccapurple !important;
   padding-right: 20px;
 }
 .upload_modal [type="file"] + label {
-  color: black;
+  color: var(--black);
   cursor: pointer;
   outline: none;
   padding: 5px 10px;
@@ -604,7 +604,7 @@ a {
   color: var(--darkGray) !important;
 }
 a:hover {
-  color: var(--yellow) !important;
+  color: var(--cyan) !important;
 }
 
 /*********************Resrvation item style *************************/
@@ -659,13 +659,13 @@ a {
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
-  background-color: var(--yellow) !important;
-  border-color: var(--yellow) !important;
+  background-color: var(--cyan) !important;
+  border-color: var(--cyan) !important;
 }
 .ant-checkbox-wrapper:hover .ant-checkbox-inner,
 .ant-checkbox:hover .ant-checkbox-inner,
 .ant-checkbox-input:focus + .ant-checkbox-inner {
-  border: 1px solid var(--yellow) !important;
+  border: 1px solid var(--cyan) !important;
 }
 
 .ant-checkbox-wrapper,
@@ -689,7 +689,7 @@ a {
 }
 
 .slick-dots li.slick-active button:before {
-  color: var(--yellow) !important;
+  color: var(--cyan) !important;
 }
 
 .ant-table-container {
@@ -726,9 +726,10 @@ th:last-child {
 
 /***************************************************************/
 :root {
-  --black: #e1c340;
-  --yellow: #a4e8e0;
-  --secDark: rgb(29, 29, 29);
+  --black: #000000;
+  --yellow: #e1c340;
+  --cyan: #a4e8e0;
+  --secDark: #1d1d1d;
   --gray: #8a8a8a;
   --darkGray: #a1a1a1;
   --textGray: #c7c7c7;

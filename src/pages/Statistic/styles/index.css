@@ -1,5 +1,5 @@
 .dark-clander .fc-media-screen {
-  background-color: black !important;
+  background-color: var(--black) !important;
 }
 .dark-clander .fc-daygrid-day {
   background-color: transparent !important;
@@ -7,11 +7,11 @@
   color: var(--darkGray);
 }
 .dark-clander .fc-col-header-cell {
-  background-color: black !important;
+  background-color: var(--black) !important;
   color: var(--darkGray);
 }
 .dark-clander .fc-scrollgrid table {
-  background-color: black !important;
+  background-color: var(--black) !important;
 }
 .dark-clander .fc-prev-button,
 .dark-clander .fc-next-button {

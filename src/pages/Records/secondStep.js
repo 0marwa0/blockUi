@@ -169,7 +169,7 @@ function Index(props) {
         <div>
           {/**   <CustomButton
             main
-            lable={<FaPlus color="var(--black)" />}
+            lable={<FaPlus color="var(--yellow)" />}
             //   pageTitle={pageTitle}
             loading={props.Loading}
             //  onOpen={() => props.onOpenModal(true)}

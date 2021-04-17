@@ -88,7 +88,7 @@ const Index = (props) => {
         <div style={{ padding: "10px 0" }}>
           {active !== 1 && (
             <Button
-              style={{ backgroundColor: "var(--yellow)" }}
+              style={{ backgroundColor: "var(--cyan)" }}
               onClick={() => setActive(active - 1)}
             >
               Previous
@@ -97,8 +97,8 @@ const Index = (props) => {
           {active !== 4 && (
             <Button
               style={{
-                color: "black",
-                backgroundColor: "var(--yellow)",
+                color: "var(--black)",
+                backgroundColor: "var(--cyan)",
                 float: "right",
               }}
               onClick={() => setActive(active + 1)}

@@ -116,7 +116,7 @@ function Index(props) {
       render: () => (
         <div className="sugges-icon">
           <FaTrash color="red" />
-          <RiEdit2Fill color="var(--yellow)" />
+          <RiEdit2Fill color="var(--cyan)" />
         </div>
       ),
     },
@@ -185,7 +185,7 @@ function Index(props) {
         <div>
           <CustomButton
             main
-            lable={<FaPlus color="var(--black)" />}
+            lable={<FaPlus color="var(--yellow)" />}
             //   pageTitle={pageTitle}
             loading={props.Loading}
             //  onOpen={() => props.onOpenModal(true)}

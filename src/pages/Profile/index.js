@@ -30,7 +30,7 @@ function Index(props) {
     //   props.history.push("/login");
     // }
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
     }

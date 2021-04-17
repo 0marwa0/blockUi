@@ -127,7 +127,7 @@ export const TableLoading = (Loading, Item) => {
       <div>
         <img src={require("../../../public/images/noData.png")} />
       </div>
-      <div style={{ color: "black" }}>No {Item + "s"} found</div>
+      <div style={{ color: "var(--black)" }}>No {Item + "s"} found</div>
       <div style={{ width: "248px" }}>
         You havent't add any {Item} yet . Tap here to add your first {Item}
       </div>

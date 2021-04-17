@@ -61,7 +61,7 @@ function Index(props) {
   useEffect(() => {
     loadApiData();
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
     }
@@ -80,7 +80,7 @@ function Index(props) {
   const { i18n, languageCode, changeLanguage } = useLocale();
   return (
     <div className="CustomPageWrapper">
-      <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+      <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
       <SideBar />
       <div className="PageContentFix">

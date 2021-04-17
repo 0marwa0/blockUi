@@ -74,7 +74,7 @@ function Index(props) {
     const localTheme = window.localStorage.getItem("isLight");
     localTheme && setTheme(localTheme);
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
     }
@@ -84,7 +84,7 @@ function Index(props) {
   return (
     <ScrollArea speed={0.8} smoothScrolling={true} horizontal={false}>
       <div className="CustomPageWrapper setting-page">
-        <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+        <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
         <SideBar isDark={theme} />
 
@@ -113,7 +113,7 @@ function Index(props) {
               <div className={darkMod ? "mainWidget-dark" : "mainWidget"}>
                 <div>
                   <div className="widget-title">
-                    <ImPrinter color="var(--black)" />
+                    <ImPrinter color="var(--yellow)" />
                     {i18n.printerSettings}
                   </div>
 
@@ -150,7 +150,7 @@ function Index(props) {
                 </div>
                 <div>
                   <div className="widget-title">
-                    <GiTimeBomb color="var(--black)" />{" "}
+                    <GiTimeBomb color="var(--yellow)" />{" "}
                     <span>{i18n.serveicExpair}</span>
                   </div>
                   <ul>
@@ -198,7 +198,7 @@ function Index(props) {
                   </div>{" "}
                   <ul>
                     <li className="flex-line">
-                      {i18n.mode}
+                      {i18n.mode + " :  "}
                       <Switch
                         defaultChecked={true}
                         size="small"
@@ -235,8 +235,8 @@ function Index(props) {
                 <div className="store">
                   55 {i18n.items}
                   <div className="sugges-icon">
-                    <FaPlus color="var(--yellow)" onClick={openModal} />
-                    <RiEdit2Fill color="var(--black)" onClick={openModal} />
+                    <FaPlus color="var(--cyan)" onClick={openModal} />
+                    <RiEdit2Fill color="var(--yellow)" onClick={openModal} />
                   </div>{" "}
                 </div>
               </div>

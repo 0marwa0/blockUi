@@ -11,5 +11,5 @@
 .print-page-dark {
   color: var(--darkGray);
   border: 1px solid var(--secDark);
-  background-color: black;
+  background-color: var(--black);
 }

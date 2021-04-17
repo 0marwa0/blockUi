@@ -275,7 +275,7 @@ function Index(props) {
   `;
   const PageTitle = styled.div`
     display: flex;
-    color: var(--black);
+    color: var(--yellow);
     font-size: 30px;
     font-weight: bold;
   `;
@@ -294,7 +294,7 @@ function Index(props) {
   let design = data ? Designs.filter((item) => item.id != data.designId) : null;
   return Object.keys(Data).length != 0 ? (
     <CustomPageWrapper>
-      <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+      <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
       {/* <GlobalStyle /> */}
       <SideBar />
@@ -324,7 +324,8 @@ function Index(props) {
                 <div
                   style={{
                     marginTop: "50px",
-                  }}>
+                  }}
+                >
                   <ButtonStyled main>View Event</ButtonStyled>
                 </div>
               ) : (
@@ -334,7 +335,8 @@ function Index(props) {
                     gap: "10px",
 
                     marginTop: "50px",
-                  }}>
+                  }}
+                >
                   <div
                     style={{ fontSize: "20px" }}
                     className={
@@ -345,7 +347,8 @@ function Index(props) {
                         : Data.status === "pending"
                         ? "pending"
                         : ""
-                    }>
+                    }
+                  >
                     {" "}
                     <spna>
                       {Data.status
@@ -372,7 +375,8 @@ function Index(props) {
                     <ButtonStyled
                       Loading={Loading}
                       // onClick={() => history.push(`/createEvent/${id}`)}
-                      main>
+                      main
+                    >
                       Create Event
                     </ButtonStyled>
                   ) : (
@@ -395,7 +399,8 @@ function Index(props) {
                 borderTop: "1px solid var(--lighterGray)",
                 display: "flex",
                 width: "100%",
-              }}>
+              }}
+            >
               <Col
                 style={{
                   width: "70%",
@@ -403,7 +408,8 @@ function Index(props) {
                   paddingBottom: "30px",
                   paddingRight: "50px",
                   borderRight: "1px solid var(--lighterGray)",
-                }}>
+                }}
+              >
                 <BoldText>Event Details</BoldText>
                 <EventDetails>
                   <DetailItem>
@@ -557,7 +563,8 @@ function Index(props) {
                           <div
                             style={{
                               width: "max-content",
-                            }}>
+                            }}
+                          >
                             <TimeAgo date={data.createdAt} />
                           </div>
                         </GrayText>
@@ -615,7 +622,7 @@ function Index(props) {
         <dvi className="load_ctrl">
           <Loader
             type="Puff"
-            color="var(--black)"
+            color="var(--yellow)"
             height={100}
             width={100}
             timeout={3000} //3 secs

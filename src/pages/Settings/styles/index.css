@@ -5,7 +5,7 @@
   color: red;
 }
 .ant-switch-checked {
-  background-color: var(--black) !important;
+  background-color: var(--yellow) !important;
 }
 .widget-title {
   font-size: 17px;
@@ -24,11 +24,11 @@
 .widget-item .input,
 .widget-item .input-dark {
   border: none;
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--yellow);
 }
 .widget-item .input-dark {
   color: white;
-  background-color: black;
+  background-color: var(--black);
 }
 .store {
   display: flex;

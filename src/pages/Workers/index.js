@@ -238,7 +238,7 @@ function Workers(props) {
   return (
     <div>
       {/* <button onClick={() => notify(55, true)}>open</button> */}
-      {/* <Progress.Component thumbStyle={{ background: "var(--yellow)" }} /> */}
+      {/* <Progress.Component thumbStyle={{ background: "var(--cyan)" }} /> */}
       <CustomPage
         pageTitle="workers"
         columns={WorkersColumns}

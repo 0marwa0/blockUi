@@ -12,12 +12,10 @@ import { CustomButton } from "../shared/SharedComponents";
 const NotificationsHolder = styled.div`
   display: flex;
   flex-direction: column;
-  color: black;
+  color: var(--black);
   height: 400px;
   align-items: center;
-
   width: 500px;
-
   font-size: 14px;
 `;
 
@@ -105,7 +103,8 @@ function Index(props) {
                       height: "85px",
                       padding: "10px 0",
                       borderBottom: "1px solid var(--lighterGray)",
-                    }}>
+                    }}
+                  >
                     <ContentLoader
                       speed={2}
                       width={400}
@@ -113,7 +112,8 @@ function Index(props) {
                       viewBox="0 0 600 160"
                       backgroundColor="#f3f3f3"
                       foregroundColor="#ecebeb"
-                      {...props}>
+                      {...props}
+                    >
                       <rect
                         x="90"
                         y="26"
@@ -142,7 +142,7 @@ function Index(props) {
                   <NotifiItem key={i}>
                     <NotifiImage src={require("../../public/images/6.png")} />
                     <Text>
-                      <span style={{ color: "black" }}>
+                      <span style={{ color: "var(--black)" }}>
                         {users
                           .filter((i) => i.id === item.userId)
                           .map((i) => i.name)
@@ -155,9 +155,10 @@ function Index(props) {
                         display: "flex",
 
                         justifyContent: "center",
-                      }}>
+                      }}
+                    >
                       <BsDot
-                        color="var(--yellow)"
+                        color="var(--cyan)"
                         size={30}
                         style={{ marginTop: "-5px" }}
                       />
@@ -180,7 +181,8 @@ function Index(props) {
           height: "50px",
           alignItems: "center",
           justifyContent: "center",
-        }}>
+        }}
+      >
         <CustomButton main>See All Activity</CustomButton>
       </div>
     </div>

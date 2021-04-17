@@ -56,7 +56,7 @@ const NavItem = ({ slug, children, index, title }) => {
     <div
       className="SideItem"
       style={{
-        color: isClicked ? "var(--yellow)" : "var(--gray)",
+        color: isClicked ? "var(--cyan)" : "var(--gray)",
       }}
       type={type}
       isSelected={isSelected}
@@ -71,10 +71,9 @@ const NavItem = ({ slug, children, index, title }) => {
         <div
           className="SideItem"
           style={{
-            borderLeft:
-              location.pathname == url ? "1px solid var(--yellow)" : "",
-            //  ? "2px solid var(--black)"
-            color: isClicked ? "var(--yellow)" : "var(--gray)",
+            borderLeft: location.pathname == url ? "1px solid var(--cyan)" : "",
+            //  ? "2px solid var(--yellow)"
+            color: isClicked ? "var(--cyan)" : "var(--gray)",
           }}
           type={type}
           onClick={() => setClicked}
@@ -116,26 +115,24 @@ function SideBar(props) {
         <div className="SideList">
           <img className="Logo" src={require("../public/images/logo1.svg")} />
           <NavItem slug="" title={title}>
-            <AiOutlineDashboard color={page === "/" ? "var(--yellow)" : ""} />
+            <AiOutlineDashboard color={page === "/" ? "var(--cyan)" : ""} />
           </NavItem>{" "}
           <NavItem slug="Records" title={title}>
-            <BiBox color={page === "/Records" ? "var(--yellow)" : ""} />
+            <BiBox color={page === "/Records" ? "var(--cyan)" : ""} />
           </NavItem>
           <NavItem slug="Workers" title={title}>
-            <HiOutlineUsers
-              color={page === "/Workers" ? "var(--yellow)" : ""}
-            />
+            <HiOutlineUsers color={page === "/Workers" ? "var(--cyan)" : ""} />
           </NavItem>{" "}
           <NavItem slug="admins" title={title}>
-            <BiUser color={page === "/admins" ? "var(--yellow)" : ""} />
+            <BiUser color={page === "/admins" ? "var(--cyan)" : ""} />
           </NavItem>
           <NavItem slug="statistics" title={title}>
             <AiOutlineLineChart
-              color={page === "/statistics" ? "var(--yellow)" : ""}
+              color={page === "/statistics" ? "var(--cyan)" : ""}
             />
           </NavItem>
           <NavItem slug="settings" title={title}>
-            <FiSettings color={page === "/settings" ? "var(--yellow)" : ""} />
+            <FiSettings color={page === "/settings" ? "var(--cyan)" : ""} />
           </NavItem>
         </div>
         <li className="SideList">
@@ -162,7 +159,7 @@ function SideBar(props) {
             >
               <div>
                 <BiLogIn
-                  color={page === "/Notifications" ? "var(--yellow)" : ""}
+                  color={page === "/Notifications" ? "var(--cyan)" : ""}
                 />
               </div>
             </Popover>

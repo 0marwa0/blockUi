@@ -4,6 +4,8 @@ import { Col, Row, Table, Input } from "antd";
 import React, { useEffect } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { TableLoading } from "../shared/Loading";
+import { HiViewList } from "react-icons/hi";
+import { HiViewGrid } from "react-icons/hi";
 import { ButtonStyled } from "../shared/SharedStyle";
 import { ReactComponent as ExportIcon } from "../../public/images/export.svg";
 import { ReactComponent as ImportIcon } from "../../public/images/import.svg";
@@ -69,7 +71,7 @@ const PageNmber = styled.div`
   gap: 12px;
 `;
 const IconCss = styled.span`
-  color: ${(props) => (props.active ? "var(--yellow)" : "var(--textGray)")};
+  color: ${(props) => (props.active ? "var(--cyan)" : "var(--textGray)")};
 `;
 function CustomPage(props) {
   const ref = useRef(null);
@@ -137,7 +139,7 @@ function CustomPage(props) {
       localStorage.setItem("theme", "dark");
       theme = darkTheme;
       // setDark(true);
-      // document.body.style.background = "black";
+      // document.body.style.background = "var(--black)";
     }
   }
 
@@ -149,12 +151,12 @@ function CustomPage(props) {
     //  } else {
     //   localStorage.setItem("theme", "dark");
     //  theme = darkTheme;
-    // document.body.style.background = "black";
+    // document.body.style.background = "var(--black)";
     // }
   };
   useEffect(() => {
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "white";
     }
@@ -169,7 +171,7 @@ function CustomPage(props) {
   return (
     <div>
       <div className="CustomPageWrapper">
-        <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+        <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
         <SideBar
           title={props.Title}
@@ -201,18 +203,16 @@ function CustomPage(props) {
                           alignItems: "center",
                         }}
                       >
-                        <VscListFlat
+                        <HiViewList
                           size={30}
                           color={
-                            showTable ? "var(--yellow)" : "var(--lighterGray)"
+                            showTable ? "var(--cyan)" : "var(--lighterGray)"
                           }
                           onClick={showTableItem}
                         />
-                        <MdFeaturedPlayList
+                        <HiViewGrid
                           size={30}
-                          fill={
-                            showList ? "var(--yellow)" : "var(--lighterGray)"
-                          }
+                          fill={showList ? "var(--cyan)" : "var(--lighterGray)"}
                           onClick={showListItem}
                         />
                       </div>

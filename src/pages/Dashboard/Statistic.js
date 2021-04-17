@@ -48,7 +48,7 @@ function Index(props) {
   };
   useEffect(() => {
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
     }

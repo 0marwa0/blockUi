@@ -141,7 +141,7 @@ function Index(props) {
       title.innerHTML = `${data.title}`;
       titleLable.innerHTML = `Event Title`;
       time.innerHTML = `${data.time}`;
-      time.style.color = "black";
+      time.style.color = "var(--black)";
       timeLable.innerHTML = `Time`;
       DayWrap.appendChild(day);
       DayWrap.appendChild(date);
@@ -330,7 +330,7 @@ function Index(props) {
   // let d = "2020-11-05T00:00:00.000Z";
   useEffect(() => {
     if (localStorage.getItem("isLight") === "dark") {
-      document.body.style.background = "black";
+      document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "lighterGray";
     }
@@ -340,7 +340,7 @@ function Index(props) {
   return (
     <div className="CustomPageWrapper">
       <GlobalStyle />
-      <LoadingBar color="var(--yellow)" ref={ref} shadow={true} />
+      <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
       <SideBar />
       <div className="PageContentFix">
