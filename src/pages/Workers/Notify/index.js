@@ -15,7 +15,7 @@ import styled from "styled-components";
 import { ReactComponent as DropIcon } from "../../../public/images/dropdown.svg";
 import { ReactComponent as Close } from "../../../public/images/close.svg";
 import { addData } from "../../../API";
-
+import { AiFillCamera } from "react-icons/ai";
 import { GiNorthStarShuriken } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
 import { CustomModleButton } from "../../shared/SharedComponents";
@@ -172,13 +172,8 @@ function Index(props) {
         <div className="SideModal">
           <div style={{ height: "150vh" }}>
             <div className="Title">
-              <div>Add new Admin</div>
-              <Close
-                onClick={() => {
-                  props.fun(false);
-                }}
-                cursor="pointer"
-              />
+              <div>Add new Worker</div>
+              <Close onClick={props.Close} cursor="pointer" />
             </div>
             <div
               style={{
@@ -188,21 +183,20 @@ function Index(props) {
                 alignContent: "center",
               }}
             >
-              <div>
-                <div
-                  className="ProfileImage"
-                  // style={{ backgroundImage: require(ImageUrl) }}
-                ></div>
+              <div
+                className="ProfileImage"
+                style={{ backgroundImage: "../public/images/0.png" }}
+              >
                 {/* {ImageUrl === "" ? name : ""} */}
-              </div>
-              <div className="Space" style={{ cursor: "pointer" }}>
-                <Upload
-                  {...Props}
-                  onChange={(e) => handleImage(e)}
-                  defaultFileList={imageName && [imageName]}
-                >
-                  Upload Photo
-                </Upload>
+                <div className="Space camra-icon" style={{ cursor: "pointer" }}>
+                  <Upload
+                    {...Props}
+                    onChange={(e) => handleImage(e)}
+                    defaultFileList={imageName && [imageName]}
+                  >
+                    <AiFillCamera color="var(--yellow)" size={25} />
+                  </Upload>
+                </div>
               </div>
             </div>
             <div className="Space" /> <div />

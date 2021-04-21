@@ -12,6 +12,7 @@ import { LoadData, addData, editData, addFile } from "../../../API";
 import "../../../App.css";
 import { Mesg, FailedMesg, SuccessMesg } from "../../../API/APIMessage";
 import "../../shared/style/index.css";
+import { AiFillCamera } from "react-icons/ai";
 import { CustomInput } from "../../shared/SharedStyle";
 export const option = (
   <Menu>
@@ -152,21 +153,20 @@ function Index(props) {
                 alignContent: "center",
               }}
             >
-              <div>
-                <div
-                  className="ProfileImage"
-                  // style={{ backgroundImage: require(ImageUrl) }}
-                ></div>
+              <div
+                className="ProfileImage"
+                style={{ backgroundImage: "../public/images/0.png" }}
+              >
                 {/* {ImageUrl === "" ? name : ""} */}
-              </div>
-              <div className="Space" style={{ cursor: "pointer" }}>
-                <Upload
-                  {...Props}
-                  onChange={(e) => handleImage(e)}
-                  defaultFileList={imageName && [imageName]}
-                >
-                  Upload Photo
-                </Upload>
+                <div className="Space camra-icon" style={{ cursor: "pointer" }}>
+                  <Upload
+                    {...Props}
+                    onChange={(e) => handleImage(e)}
+                    defaultFileList={imageName && [imageName]}
+                  >
+                    <AiFillCamera color="var(--yellow)" size={25} />
+                  </Upload>
+                </div>
               </div>
             </div>
             <div className="Space" /> <div />

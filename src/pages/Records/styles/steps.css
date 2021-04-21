@@ -1,8 +1,52 @@
+/**********************final step stylesl*****************************/
+.finalStep {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 /**********************second step styles*****************************/
+.div-inside input {
+  border: 1px solid rgb(41, 40, 40) !important;
+  border-radius: 5px;
+  height: 26px !important;
+  padding: 0 5px;
+  border: none !important;
+  color: #c2c2c2 !important;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+.dev-inside input:focus {
+  border: none !important;
+}
+.ant-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+.div-inside:last-child {
+  background-color: transparent !important;
+}
+.div-inside div {
+  padding: 2px 5px !important;
+  cursor: pointer;
+}
+.isDark .div-inside div {
+  color: #c2c2c2 !important;
+  background-color: rgb(41, 40, 40) !important;
+}
+.input-row-dark .input-rg-dark {
+  border-radius: 0px !important;
+}
+.isDark input {
+  background-color: rgb(41, 40, 40) !important;
+}
 .record-items,
 .record-items-dark {
   width: 100%;
-  border-radius: 7px;
+  border-radius: 7px 7px 0px 0px;
   text-align: left;
   padding-bottom: 5px;
   border: 1px solid #f0f0f0;
@@ -54,6 +98,7 @@
 .input-row-dark {
   display: flex;
   width: 100%;
+  height: max-content;
   flex-direction: row;
 }
 .input-row-dark {

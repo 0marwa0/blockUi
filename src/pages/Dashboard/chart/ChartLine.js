@@ -68,7 +68,6 @@ const lineOptions = {
     enabled: true,
   },
 };
-
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center",
@@ -78,7 +77,7 @@ const ChartLine = () => (
   <div className="chartLine-ovrlay">
     <div className="chartLine-holder">
       <div style={styles}>
-        <Line data={data} options={lineOptions} />
+        <Line data={data} options={lineOptions} height={130} />
       </div>
     </div>
   </div>

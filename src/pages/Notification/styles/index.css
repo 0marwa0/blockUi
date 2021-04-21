@@ -1,0 +1,78 @@
+.notific-holer-dark,
+.notific-holer {
+  display: flex;
+  flex-direction: column;
+  color: var(--black);
+  height: 400px;
+  align-items: center;
+  width: 500px !important;
+  font-size: 14px;
+}
+/*.ant-popover-inner {
+  background-color: black !important
+  ;
+}*/
+
+.new-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 2px;
+}
+.new-arrow:after {
+  display: block;
+  width: 20px;
+  height: 10px;
+  position: relative;
+  margin-left: -20px;
+  content: "";
+  border-left: 15px solid transparent;
+  border-right: 17px solid white;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+.isDark .new-arrow::after {
+  border-right: 17px solid rgb(19, 18, 18);
+}
+.ant-popover-title {
+  border-bottom: 1px solid rgb(73, 72, 72) !important;
+}
+.ant-popover-placement-rightBottom > .ant-popover-content > .ant-popover-arrow {
+  display: none;
+  left: 6px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+}
+.notific-holer-dark {
+  background-color: rgb(19, 18, 18);
+}
+.NotifiItem,
+.NotifiItem-dark {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 15px;
+  font-size: 12px;
+  padding: 20px 40px;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid var(--lighterGray);
+}
+.NotifiItem-dark {
+  color: rgb(122, 122, 122);
+  border-bottom: 1px solid rgb(73, 72, 72);
+}
+.NotifiImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.Text {
+  display: inline-block;
+  width: 100%;
+  color: var(--darkGray);
+  white-space: nowrap;
+
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}

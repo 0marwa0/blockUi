@@ -1,5 +1,6 @@
 import React, { FC, useState, useCallback, useRef } from "react";
 import styled from "styled-components";
+import FinalStep from "./finalStep";
 import { Button, DatePicker, Checkbox, Space, Input } from "antd";
 import "./styles/index.css";
 import { CustomButton } from "../shared/SharedComponents";
@@ -11,6 +12,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import FirstStep from "./firstStep";
 import ThirdStep from "./thirdStep";
 import SecondStep from "./secondStep";
+import { render } from "@testing-library/react";
 const { RangePicker } = DatePicker;
 export const TextNote = styled.div`
   color: var(--darkGray);
@@ -48,68 +50,72 @@ const itemsData = [
   { name: "Nono", price: "2000", note: "55" },
   { name: "marwa", price: "2000", note: "55" },
 ];
-const Index = (props) => {
-  const [state, setState] = useState(itemsData);
-  let node;
-  const handleClose = (e) => {
-    if (node.contains(e.target)) {
-      return;
-    }
-    props.fun(false);
+let node;
+export default class index extends React.Component {
+  state = {
+    active: 1,
   };
-  const [active, setActive] = React.useState(1);
-  return (
-    <CustomPage custom={true} pageTitle="New Record" data={[]}>
-      <Container>
-        <MultiStepForm activeStep={active}>
-          <Step label="Templet">
-            <FirstStep
-              data={[
-                { name: "water", num: "55" },
-                { name: "Sewers", num: "55" },
-              ]}
-            />
-          </Step>
-          <Step label="Choose Tamplet ">
-            <FirstStep
-              data={[
-                { name: " 110mm Tube", num: "55" },
-                { name: " 110mm Tube", num: "55" },
-                { name: " 110mm Tube", num: "55" },
-              ]}
-              onrow={true}
-            />
-          </Step>
-          <Step label="Build Record">
-            <SecondStep />
-          </Step>
-          <Step label="Submit">done </Step>
-        </MultiStepForm>
-        <div style={{ padding: "10px 0" }}>
-          {active !== 1 && (
-            <Button
-              style={{ backgroundColor: "var(--cyan)" }}
-              onClick={() => setActive(active - 1)}
-            >
-              Previous
-            </Button>
-          )}
-          {active !== 4 && (
-            <Button
-              style={{
-                color: "var(--black)",
-                backgroundColor: "var(--cyan)",
-                float: "right",
-              }}
-              onClick={() => setActive(active + 1)}
-            >
-              Next
-            </Button>
-          )}
-        </div>
-      </Container>
-    </CustomPage>
-  );
-};
+  setActive = (num) => {
+    this.setState({ active: num });
+  };
 
-export default Index;
+  render() {
+    return (
+      <CustomPage custom={true} pageTitle="New Record" data={[]}>
+        <Container>
+          <MultiStepForm activeStep={this.state.active}>
+            <Step label="Templet">
+              <FirstStep
+                data={[
+                  { name: "water", num: "55" },
+                  { name: "Sewers", num: "55" },
+                ]}
+                onrow={true}
+                next={() => this.setActive(this.state.active + 1)}
+              />
+            </Step>
+            <Step label="Choose Tamplet ">
+              <FirstStep
+                data={[
+                  { name: " 110mm Tube", num: "55" },
+                  { name: " 110mm Tube", num: "55" },
+                  { name: " 110mm Tube", num: "55" },
+                ]}
+                onrow={true}
+                next={() => this.setActive(this.state.active + 1)}
+              />
+            </Step>
+            <Step label="Build Record">
+              <SecondStep />
+            </Step>
+            <Step label="Submit">
+              <FinalStep />
+            </Step>
+          </MultiStepForm>
+          <div style={{ padding: "10px 0" }}>
+            {this.state.active !== 1 && (
+              <Button
+                style={{ backgroundColor: "var(--cyan)" }}
+                onClick={() => this.setActive(this.state.active - 1)}
+              >
+                Previous
+              </Button>
+            )}
+            {this.state.active !== 4 && (
+              <Button
+                style={{
+                  color: "var(--black)",
+                  backgroundColor: "var(--cyan)",
+                  float: "right",
+                }}
+                onClick={() => this.setActive(this.state.active + 1)}
+              >
+                Next
+              </Button>
+            )}
+          </div>
+        </Container>
+      </CustomPage>
+    );
+  }
+}

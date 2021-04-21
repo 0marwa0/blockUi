@@ -6,8 +6,23 @@
   height: 3%;
 }
 /*shared button style*/
-.CustomButton {
+.PageContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 25px;
+  margin-left: 50px;
+  margin-right: 35px;
 }
+
+.PageBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 17px;
+  width: 100%;
+}
+
 .ButtonGroup {
   display: flex;
   gap: 10px;
@@ -31,7 +46,7 @@
 }
 .input-rg-dark {
   border: none !important;
-  color: var(--black) !important;
+  color: var(--darkGray) !important;
   background: #353535 !important;
 }
 .isDark .ant-select-selector {
@@ -61,7 +76,7 @@
   flex-direction: column;
   width: 100%;
   margin-top: 25px;
-  margin-left: 123px;
+  margin-left: 50px;
 
   margin-right: 35px;
 }
@@ -89,11 +104,18 @@
   object-fit: cover;
   background-size: cover;
   justify-content: center;
-  /*  background-image: url(${(props) => props.src});*/
+  background-image: url("../../../public/images/0.png");
   font-size: 25px;
   margin-bottom: 15px;
   position: relative;
   color: var(--cyan);
+  position: relative;
+}
+.camra-icon {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  color: var(--yellow);
 }
 .isDark .ant-table-thead > tr > th {
   color: white !important ;

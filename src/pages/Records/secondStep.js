@@ -1,22 +1,13 @@
 import React, { useState } from "react";
-import "./styles/index.css";
-import "./styles/steps.css";
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import { CustomButton } from "../shared/SharedComponents";
-import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
-import arrayMove from "array-move";
-import { FaPlus } from "react-icons/fa";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { AutoComplete, Input } from "antd";
-function Index(props) {
-  const itemsData = [
-    { item: " 110mm Tube", price: [200], quantity: "0", discount: ["5%"] },
-    { item: " 110mm Tube", price: [1000], quantity: "0", discount: ["5%"] },
-    { item: " 110mm Tube", price: [20], quantity: "0", discount: ["5%"] },
-  ];
-
+import { Input } from "antd";
+import Autocomplete from "react-autocomplete";
+import TextField from "@material-ui/core/TextField";
+import RecordTemplet from "./recordTemplet.js";
+import { ItemDescription } from "semantic-ui-react";
+export default function AutoInput() {
   const [name, setName] = useState("");
   const [note, setNote] = useState("");
+  const [quantity, setquantity] = useState("");
   const [price, setPrice] = useState("");
   const handelInput = (name, v) => {
     switch (name) {
@@ -26,6 +17,10 @@ function Index(props) {
       case "price":
         setPrice(v);
         break;
+      case "quantity":
+        setquantity(v);
+        break;
+
       case "note":
         setNote(v);
         break;
@@ -34,150 +29,92 @@ function Index(props) {
         break;
     }
   };
-  const add = () => {
-    itemsData.push({ name: name, price: price, amount: note });
-
-    setState(itemsData);
-  };
-
-  const [state, setState] = useState(itemsData);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
-  const SortableItem = SortableElement(({ value }) => (
-    <div tabIndex={0} className={darkMod ? "record-dark" : "record"}>
-      <div>{value.item}</div>
-      <div className={darkMod ? "tag-dark green" : "tag green"}>
-        {value.price + "$"}
-      </div>
-      <div>{value.quantity}</div>
-      <div className={darkMod ? "tag-dark  org" : "tag org"}>
-        {value.discount}
-      </div>
-      <BiDotsVerticalRounded
-        style={{
-          fontSize: "20px",
-          cursor: "pointer",
-          color: "var(--lighterGray)",
-        }}
-      />
-    </div>
-  ));
-
-  const onSortEnd = ({ oldIndex, newIndex }) => {
-    setState(arrayMove(state, oldIndex, newIndex));
-  };
-  const SortableList = SortableContainer(({ items }) => {
-    return (
-      <div>
-        {items.map((value, index) => (
-          <SortableItem key={`item-${value}`} index={index} value={value} />
-        ))}
-      </div>
-    );
-  });
-  const Icon = () => {
-    return (
-      <div className="record-icon">
-        <div
-          style={{
-            position: "relative",
-          }}
-        >
-          <VscTriangleUp style={{ position: "absolute", top: "-8px" }} />
-        </div>
-        <VscTriangleDown />
-      </div>
-    );
-  };
-  const options = [
+  const itemsData = [
     {
-      text: "item2",
-      value: 111,
+      id: 222,
+      note: "no",
+      item: " 222110mm Tube",
+      price: [200],
+      quantity: "0",
+      discount: ["5%"],
+    },
 
-      price: "522$",
-      quantity: "55",
-      discount: "55",
+    {
+      id: 33,
+      note: "no",
+      item: "888 110mm Tube",
+      price: [1000],
+      quantity: "0",
+      discount: ["5%"],
     },
     {
-      text: "item1 ",
-      value: 222,
-      price: "522$",
-      quantity: "55",
-      discount: "55",
+      id: 44,
+      note: "no",
+      item: "5555110mm Tube25",
+      price: [20888888],
+      quantity: "0",
+      discount: ["5%"],
     },
   ];
-  const [x, setX] = useState("");
-  const onSelect = (a, b) => {
-    console.log(b.children);
-    setX(b.children);
+  const getValues = (e) => {
+    setvalue(e);
+    let item;
+    let filterd = itemsData.filter((x) => x.item === e);
+    item = filterd[0];
+    console.log(item, "our obj", e);
+    setPrice(item.price[0]);
+    setNote(item.note);
+    setquantity(item.quantity);
   };
+
+  const [value, setvalue] = useState("");
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className={darkMod ? "isDark" : ""}>
-      <div className={darkMod ? "record-items-dark" : "record-items"}>
-        <div className={darkMod ? "record-head-dark" : "record-head"}>
-          <span className="flex-row">
-            Item
-            <Icon />
-          </span>
-
-          <span className="flex-row">
-            Price
-            <Icon />
-          </span>
-          <span className="flex-row">
-            Quantity <Icon />
-          </span>
-
-          <span className="flex-row">
-            Discount
-            <Icon />
-          </span>
-
-          <div></div>
-        </div>
-        <SortableList items={state} onSortEnd={onSortEnd} />
+      <RecordTemplet data={[{ item: "oo", price: "00" }]}>
         <div className={darkMod ? "input-row-dark" : "input-row"}>
-          <AutoComplete
-            style={{
-              width: 200,
-            }}
-            className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
-            value={x}
-            onSelect={onSelect}
-            dataSource={options}
-            placeholder="item"
-          />{" "}
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
             placeholder="price"
+            value={price}
             style={{ border: "none", width: "max-content " }}
             onChange={(e) => handelInput("price", e.target.value)}
           />
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
             placeholder="quantity"
+            value={quantity}
             style={{ border: "none", width: "max-content" }}
-            onChange={(e) => handelInput("note", e.target.value)}
+            onChange={(e) => handelInput("quantity", e.target.value)}
           />{" "}
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
             placeholder="discount"
+            value={note}
             style={{ border: "none", width: "max-content" }}
             onChange={(e) => handelInput("note", e.target.value)}
-          />
+          />{" "}
+          <div className="div-inside">
+            <Autocomplete
+              //   className={darkMod ? "input-rg-dark" : "input-rg"}
+              getItemValue={(item) => item.item}
+              items={itemsData}
+              renderItem={(item, isHighlighted) => (
+                <div
+                  style={{ background: isHighlighted ? "lightgray" : "white" }}
+                >
+                  {item.item}
+                </div>
+              )}
+              inputProps={{ placeholder: "item name" }}
+              value={value}
+              onChange={(e) => setvalue(e.target.value)}
+              onSelect={(val) => getValues(val)}
+            />
+          </div>
         </div>
-        <div>
-          {/**   <CustomButton
-            main
-            lable={<FaPlus color="var(--yellow)" />}
-            //   pageTitle={pageTitle}
-            loading={props.Loading}
-            //  onOpen={() => props.onOpenModal(true)}
-          ></CustomButton>*/}
-        </div>
-      </div>
+      </RecordTemplet>
     </div>
   );
 }
-
-export default Index;

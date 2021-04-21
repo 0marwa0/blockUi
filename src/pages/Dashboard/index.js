@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import SideBar from "../Sidebar";
 import Reservation from "./Reservation";
 import moment from "moment";
-
+import Stock from "./Stocks.js";
 import { useLocale } from "react-easy-localization";
 import ChartLine from "./chart/ChartLine";
 import Statistic from "./Statistic";
@@ -118,6 +118,7 @@ function Index(props) {
             }}
           >
             <ChartLine />
+            <Stock />
             {/*<Clander></Clander>*/}
           </Col>
 

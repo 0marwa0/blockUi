@@ -1,4 +1,6 @@
 //import Modal from "react-modal";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 import { FaPlus } from "react-icons/fa";
 import { useLocale } from "react-easy-localization";
 import NewSu from "./Suggestion/newSu.js";
@@ -8,20 +10,16 @@ import { ReservationsData } from "../../fakeData";
 import React, { useRef, useState, useEffect } from "react";
 import "../shared/style/widget.css";
 import "../shared/style/index.css";
-import { setLanguage } from "react-localization";
-import Local from "./Local";
 import SideBar from "../Sidebar";
-import { BiExport, BiDollar } from "react-icons/bi";
 import LoadingBar from "react-top-loading-bar";
-import { Col, Row, Input, Switch, Button, Menu, Dropdown } from "antd";
+import { Col, Row, Input, Switch, Button, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { ImPrinter } from "react-icons/im";
 import { GiTimeBomb } from "react-icons/gi";
 import "./styles/index.css";
 import "../../App.css";
 import { Modal } from "react-responsive-modal";
-import styled from "styled-components";
-import strings from "./Local.js";
+const options = ["English", "Arabic"];
 const menu = (
   <Menu>
     <Menu.Item>
@@ -48,8 +46,21 @@ function Index(props) {
       ref.current.complete();
     }, 1200);
   };
-  const toggleLanguage = () => {
-    return languageCode === "en" ? changeLanguage("ar") : changeLanguage("en");
+  const toggleLanguage = (value) => {
+    let code = value == "English" ? "en" : "ar";
+    //    return languageCode === "en" ? changeLanguage("ar") : changeLanguage("en");
+    if (value === "Arabic") {
+      document.body.style.direction = "rtl";
+      console.log(localStorage.getItem("isEnglish"), value, code, "fistif");
+      localStorage.setItem("isEnglish", "false");
+      changeLanguage(code);
+    } else if (value === "English") {
+      localStorage.setItem("isEnglish", "true");
+
+      console.log(localStorage.getItem("isEnglish"), value, code, "secondif");
+      document.body.style.direction = "ltr";
+      changeLanguage(code);
+    }
   };
   useEffect(() => {
     loadApiData();
@@ -59,9 +70,10 @@ function Index(props) {
   function openModal() {
     setIsOpen(!modalIsOpen);
   }
-
+  const [isdark, setdark] = useState(false);
   const [theme, setTheme] = useState("light");
   const setMode = (e) => {
+    setdark(e);
     let mode = e ? "light" : "dark";
     window.localStorage.setItem("isLight", mode);
     setTheme(mode);
@@ -71,12 +83,19 @@ function Index(props) {
   };
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem("isLight");
-    localTheme && setTheme(localTheme);
     if (localStorage.getItem("isLight") === "dark") {
       document.body.style.background = "var(--black)";
     } else {
-      document.body.style.background = "var(--lightGray";
+      document.body.style.background = "var(--lightGray)";
+    }
+    if (localStorage.getItem("isEnglish")) {
+      if (localStorage.getItem("isEnglish") === "false") {
+        document.body.style.direction = "rtl";
+        changeLanguage("ar");
+      } else {
+        document.body.style.direction = "ltr";
+        changeLanguage("en");
+      }
     }
   }, [theme]);
   let darkMod =
@@ -136,14 +155,14 @@ function Index(props) {
                     <li className="widget-item ">
                       {i18n.language}
                       <span>
-                        <Dropdown overlay={menu}>
-                          <a
-                            className="ant-dropdown-link"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            English <DownOutlined />
-                          </a>
-                        </Dropdown>
+                        <Dropdown
+                          options={options}
+                          className="drop-css"
+                          //    onChange={(e) => toggleLanguage(e.value)}
+                          value={
+                            languageCode === "en" ? "English  " : "العربية  "
+                          }
+                        />
                       </span>
                     </li>
                   </ul>
@@ -197,32 +216,26 @@ function Index(props) {
                     <span>{i18n.changeSettings}</span>
                   </div>{" "}
                   <ul>
+                    <li style={{ display: "flex", alignItems: "center" }}>
+                      {i18n.language}
+                      {" : "}
+                      <Dropdown
+                        options={options}
+                        className="drop-css"
+                        onChange={(e) => toggleLanguage(e.value)}
+                        value={
+                          languageCode === "en" ? "English  " : "العربية  "
+                        }
+                      />
+                    </li>{" "}
                     <li className="flex-line">
                       {i18n.mode + " :  "}
                       <Switch
                         defaultChecked={true}
                         size="small"
-                        onChange={setMode}
+                        onChange={(e) => setMode(e)}
                       />{" "}
                     </li>{" "}
-                    <li className="flex-line ">
-                      {languageCode === "en" ? "English : " : "العربية : "}
-                      <span>
-                        <Switch
-                          defaultChecked={true}
-                          size="small"
-                          onChange={toggleLanguage}
-                        />{" "}
-                        {/** <Dropdown overlay={menu}>
-                          <a
-                            className="ant-dropdown-link"
-                            onClick={() => toggleLanguage}
-                          >
-                            English <DownOutlined />
-                          </a>
-                        </Dropdown>*/}
-                      </span>
-                    </li>
                   </ul>
                 </div>
               </div>{" "}

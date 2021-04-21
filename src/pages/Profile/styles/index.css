@@ -3,8 +3,9 @@
   margin: 15px 30%;
   border-radius: 6px;
   height: 700px;
+
   background-color: white;
-  width: max-content;
+  width: 600px;
   padding: 40px 60px;
   height: max-content;
 }
@@ -30,8 +31,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: 25px;
-  font-weight: bold;
 }
 .InputLable {
   display: grid;
@@ -42,13 +41,13 @@
 }
 .Form {
   display: flex;
+  gap: 13px;
   flex-direction: column;
-  align-items: center;
-  float: left;
 }
 .Space {
   margin-bottom: 25px;
 }
+
 .DeleteAccount {
   display: flex;
   gap: 5px;

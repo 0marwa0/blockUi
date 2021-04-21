@@ -5,6 +5,13 @@
 
   font-family: Px-Grotesk !important;
 }
+body,
+html {
+  height: 100% !important;
+}
+.ant-switch {
+  background-color: var(--darkGray) !important;
+}
 .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
 .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
 .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td,
@@ -728,7 +735,7 @@ th:last-child {
 :root {
   --black: #000000;
   --yellow: #e1c340;
-  --cyan: #a4e8e0;
+  --cyan: #01c5c4;
   --secDark: #1d1d1d;
   --gray: #8a8a8a;
   --darkGray: #a1a1a1;

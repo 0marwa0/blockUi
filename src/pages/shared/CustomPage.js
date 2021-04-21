@@ -1,87 +1,29 @@
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useState, useRef } from "react";
 import { Col, Row, Table, Input } from "antd";
 import React, { useEffect } from "react";
+import { BiImport, BiExport } from "react-icons/bi";
 import LoadingBar from "react-top-loading-bar";
 import { TableLoading } from "../shared/Loading";
 import { HiViewList } from "react-icons/hi";
 import { HiViewGrid } from "react-icons/hi";
-import { ButtonStyled } from "../shared/SharedStyle";
-import { ReactComponent as ExportIcon } from "../../public/images/export.svg";
-import { ReactComponent as ImportIcon } from "../../public/images/import.svg";
-import { ReactComponent as PlusIcon } from "../../public/images/plus.svg";
+import { AiOutlinePlus } from "react-icons/ai";
 import "./style/index.css";
+import Pagination from "./pagination";
 import { useHistory } from "react-router-dom";
 import { useLocale } from "react-easy-localization";
 import { FiFilter } from "react-icons/fi";
-import { MdFeaturedPlayList } from "react-icons/md";
-import { VscListFlat } from "react-icons/vsc";
 import { CustomButton } from "../shared/SharedComponents";
 import SideBar from "../Sidebar";
-import styled, { createGlobalStyle } from "styled-components";
-import { ReactComponent as Upload } from "../../public/images/solid cloud-upload-alt.svg";
-import { ReactComponent as Notifiy } from "../../public/images/solid bell.svg";
 import ListItem from "../Records/RecordItem";
-const GlobalStyle = createGlobalStyle`
 
-`;
-
-const PageContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 25px;
-  margin-left: 130px;
-
-  margin-right: 35px;
-`;
-
-const PageBtn = styled.div`
-  display: flex;
-  flex-cirection: row;
-  justify-content: space-between;
-  margin-bottom: 17px;
-  width: 100%;
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 10px;
-  algin-items: cneter;
-  justify-content: flex-end;
-  margin-right: ${(props) => (props.space ? "10px" : "0")};
-`;
-const Pagination = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 20px;
-  color: var(--darkGray);
-  border: ${(props) =>
-    props.noborder ? "none" : " 1px solid var(--lighterGray)"};
-  border-radius: 0 0 10px 10px;
-  border-top: none;
-  width: 100%;
-`;
-const PageText = styled.div`
-  color: var(--darkGray);
-  margin-top: 12px;
-`;
-const PageNmber = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`;
-const IconCss = styled.span`
-  color: ${(props) => (props.active ? "var(--cyan)" : "var(--textGray)")};
-`;
 function CustomPage(props) {
   const ref = useRef(null);
-
   const { i18n, languageCode, changeLanguage } = useLocale();
   let pageTitle = props.pageTitle;
   const columns = props.columns;
   const data = props.data;
-  // const [next, setNext] = useState(true);
-  // const [prev, setprev] = useState(false);
+  const [next, setNext] = useState(true);
+  const [prev, setprev] = useState(false);
   let history = useHistory();
   const [showList, setShowList] = useState(false);
   const showListItem = () => {
@@ -100,7 +42,7 @@ function CustomPage(props) {
     setShowTable(false);
   };
   const [currentPage, setcurrentPage] = useState(1);
-  const [pagePerOnce, setpagePerOnce] = useState(20);
+  const [pagePerOnce, setpagePerOnce] = useState(10);
   const [pageNumber, setpageNumber] = useState(0);
   const prevPage = () => {
     if (currentPage > 1) {
@@ -143,17 +85,6 @@ function CustomPage(props) {
     }
   }
 
-  const changeMode = () => {
-    // if (theme === darkTheme) {
-    //  localStorage.setItem("theme", "light");
-    // theme = lightTheme;
-    // document.body.style.background = "white";
-    //  } else {
-    //   localStorage.setItem("theme", "dark");
-    //  theme = darkTheme;
-    // document.body.style.background = "var(--black)";
-    // }
-  };
   useEffect(() => {
     if (localStorage.getItem("isLight") === "dark") {
       document.body.style.background = "var(--black)";
@@ -170,15 +101,15 @@ function CustomPage(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div>
+      {" "}
+      <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
       <div className="CustomPageWrapper">
-        <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
-
         <SideBar
           title={props.Title}
           // changeMode={() => changeMode}
           isDark={localStorage.getItem("isDark")}
         />
-        <PageContent>
+        <div className="PageContent">
           <Row>
             <Col>
               <div className="PageTitle">
@@ -188,7 +119,7 @@ function CustomPage(props) {
             </Col>
           </Row>
           <Row>
-            <PageBtn>
+            <div className="PageBtn">
               {props.custom ? (
                 props.children
               ) : (
@@ -206,13 +137,23 @@ function CustomPage(props) {
                         <HiViewList
                           size={30}
                           color={
-                            showTable ? "var(--cyan)" : "var(--lighterGray)"
+                            showTable
+                              ? "var(--cyan)"
+                              : darkMod
+                              ? "var(--darkGray)"
+                              : "var(--lighterGray)"
                           }
                           onClick={showTableItem}
                         />
                         <HiViewGrid
                           size={30}
-                          fill={showList ? "var(--cyan)" : "var(--lighterGray)"}
+                          fill={
+                            showList
+                              ? "var(--cyan)"
+                              : darkMod
+                              ? "var(--darkGray)"
+                              : "var(--lighterGray)"
+                          }
                           onClick={showListItem}
                         />
                       </div>
@@ -240,80 +181,43 @@ function CustomPage(props) {
                       </CustomButton>
                     )}
                   </div>
-                  <ButtonGroup>
-                    {props.pageTitle === "resources" ? (
-                      ""
-                    ) : props.pageTitle === "file Uploader" ? (
-                      ""
-                    ) : props.pageTitle === "customers" ? (
-                      ""
-                    ) : props.pageTitle === "admins" ? (
-                      ""
-                    ) : props.pageTitle === "articles" ? (
-                      ""
-                    ) : (
-                      <CustomButton lable={i18n.import} loading={props.Loading}>
-                        <ImportIcon />
-                      </CustomButton>
-                    )}
-
-                    <CustomButton
-                      lable={i18n.export}
-                      loading={props.Loading}
-                      //   fun={props.export}
-                    >
-                      <ExportIcon />
+                  <div className="ButtonGroup">
+                    <CustomButton lable={i18n.import} loading={props.Loading}>
+                      <BiImport
+                        color={
+                          darkMod ? "var(--darkGray)" : "var(--lighterGray)"
+                        }
+                      />
                     </CustomButton>
 
-                    {pageTitleName == "customer" ? (
-                      <CustomButton
-                        main={true}
-                        lable={`Notify Users`}
-                        loading={props.Loading}
-                        pageTitle={pageTitle}
-                        onOpen={() => props.onOpenModal(true)}
-                      >
-                        <Notifiy />
-                      </CustomButton>
-                    ) : pageTitleName === "resource" ||
-                      pageTitleName === "file Uploade" ? (
-                      <CustomButton
-                        main={true}
-                        lable={`Upload`}
-                        pageTitle={pageTitle}
-                        loading={props.Loading}
-                        onOpen={() => props.onOpenModal(true)}
-                      >
-                        <Upload />
-                      </CustomButton>
-                    ) : pageTitleName === "event" ? (
-                      <CustomButton
-                        main={true}
-                        lable={`New Booking `}
-                        pageTitle={pageTitle}
-                        loading={props.Loading}
-                        onOpen={() => props.onOpenModal(true)}
-                      >
-                        <PlusIcon />
-                      </CustomButton>
-                    ) : pageTitleName === "articles" ? null : (
-                      <CustomButton
-                        main={true}
-                        pageTitle={pageTitle}
-                        loading={props.Loading}
-                        onOpen={props.onOpenModal}
-                      >
-                        <PlusIcon />
-                        {`New ${
-                          pageTitleName.charAt(0).toUpperCase() +
-                          pageTitleName.slice(1)
-                        }`}
-                      </CustomButton>
-                    )}
-                  </ButtonGroup>
+                    <CustomButton lable={i18n.export} loading={props.Loading}>
+                      <BiExport
+                        color={
+                          darkMod ? "var(--darkGray)" : "var(--lighterGray)"
+                        }
+                      />
+                    </CustomButton>
+
+                    <CustomButton
+                      lable={`New ${
+                        pageTitleName.charAt(0).toUpperCase() +
+                        pageTitleName.slice(1)
+                      }`}
+                      main={true}
+                      pageTitle={pageTitle}
+                      loading={props.Loading}
+                      onOpen={props.onOpenModal}
+                    >
+                      <AiOutlinePlus
+                        color={
+                          darkMod ? "var(--darkGray)" : "var(--lighterGray)"
+                        }
+                      />
+                    </CustomButton>
+                  </div>
                 </>
               )}{" "}
-            </PageBtn>
+            </div>
           </Row>
 
           <Row>
@@ -338,42 +242,15 @@ function CustomPage(props) {
                       dataSource={Data}
                       locale={{
                         emptyText: TableLoading(props.Loading, props.Item),
-                        //EmptyText(props.Loading, props.Item),
                       }}
-                      // footer={() => (
-                      //   <Pagination>
-                      //     <PageText>
-                      //       View search of {Data.length} from {props.data.length}{" "}
-                      //       search we got .
-                      //     </PageText>
-                      //     <PageNmber>
-                      //       <IconCss active={currentPage > 1 ? true : false}>
-                      //         <LeftOutlined
-                      //           onClick={prevPage}
-                      //           style={{
-                      //             cursor:
-                      //               currentPage > 1 ? "pointer" : "not-allowed",
-                      //           }}
-                      //         />
-                      //       </IconCss>
-                      //       <p style={{ marginTop: "12px" }}>
-                      //         {currentPage}/ {totalPge}
-                      //       </p>
-                      //       <IconCss
-                      //         active={currentPage != totalPge ? true : false}>
-                      //         <RightOutlined
-                      //           onClick={nextPage}
-                      //           style={{
-                      //             cursor:
-                      //               currentPage != totalPge
-                      //                 ? "pointer"
-                      //                 : "not-allowed",
-                      //           }}
-                      //         />
-                      //       </IconCss>
-                      //     </PageNmber>
-                      //   </Pagination>
-                      // )}
+                    />
+                    <Pagination
+                      length={Data.length}
+                      currentPage={currentPage}
+                      prevPage={prevPage}
+                      totalPge={totalPge}
+                      nextPage={nextPage}
+                      lengthAll={props.data.length}
                     />
                   </div>
                 </div>
@@ -384,7 +261,7 @@ function CustomPage(props) {
               )}
             </Col>
           </Row>
-        </PageContent>
+        </div>
       </div>
     </div>
   );

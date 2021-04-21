@@ -54,10 +54,9 @@ const NavItem = ({ slug, children, index, title }) => {
   let text = slug.charAt(0).toUpperCase() + slug.slice(1);
   return slug === "Notifications" ? (
     <div
-      className="SideItem"
-      style={{
-        color: isClicked ? "var(--cyan)" : "var(--gray)",
-      }}
+      className={
+        !window.localStorage.getItem("isLight") ? "SideItem isDark" : "SideItem"
+      }
       type={type}
       isSelected={isSelected}
       move={true}
@@ -66,14 +65,13 @@ const NavItem = ({ slug, children, index, title }) => {
       {children}
     </div>
   ) : (
-    <Tooltip title={dash ? "" : text} placement="right">
+    <Tooltip title={slug} placement="right">
       <Link to={url}>
         <div
           className="SideItem"
           style={{
             borderLeft: location.pathname == url ? "1px solid var(--cyan)" : "",
             //  ? "2px solid var(--yellow)"
-            color: isClicked ? "var(--cyan)" : "var(--gray)",
           }}
           type={type}
           onClick={() => setClicked}
@@ -102,9 +100,10 @@ function SideBar(props) {
   let { id } = useParams();
   let title = props.title;
   let page = location.pathname;
-
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
-    <div>
+    <div className={darkMod ? "isDark" : ""}>
       <div
         className={
           window.localStorage.getItem("isLight") === "dark"
@@ -135,34 +134,42 @@ function SideBar(props) {
             <FiSettings color={page === "/settings" ? "var(--cyan)" : ""} />
           </NavItem>
         </div>
-        <li className="SideList">
+        <div className="SideList">
           <NavItem slug="Notifications" title={title}>
-            <Popover
-              content={<Notification />}
-              title={
-                <div className="NotifiHeader">
-                  Notifications{" "}
-                  <u
-                    style={{
-                      fontSize: "14px",
-                      color: "var(--darkGray)",
-                    }}
+            <div>
+              <Popover
+                overlayInnerStyle={{
+                  backgroundColor: darkMod ? "rgb(19, 18, 18)" : "",
+                  border: darkMod ? "1px solid rgb(19, 18, 18)" : "",
+                }}
+                content={<Notification />}
+                title={
+                  <div
+                    className={darkMod ? "NotifiHeader-dark" : "NotifiHeader"}
                   >
-                    Mark all as read
-                  </u>
+                    Notifications{" "}
+                    <u
+                      style={{
+                        fontSize: "14px",
+                        color: "var(--darkGray)",
+                      }}
+                    >
+                      Mark all as read
+                    </u>
+                  </div>
+                }
+                trigger="click"
+                placement="rightBottom"
+                visible={showNotification}
+                onVisibleChange={showPopup}
+              >
+                <div>
+                  <BiLogIn
+                    color={page === "/Notifications" ? "var(--cyan)" : ""}
+                  />
                 </div>
-              }
-              trigger="click"
-              placement="rightBottom"
-              visible={showNotification}
-              onVisibleChange={showPopup}
-            >
-              <div>
-                <BiLogIn
-                  color={page === "/Notifications" ? "var(--cyan)" : ""}
-                />
-              </div>
-            </Popover>
+              </Popover>
+            </div>
           </NavItem>
           <NavItem slug="profile" index={true}>
             <img
@@ -171,7 +178,7 @@ function SideBar(props) {
             />
             <div className="Active"></div>{" "}
           </NavItem>
-        </li>
+        </div>
       </div>
     </div>
   );

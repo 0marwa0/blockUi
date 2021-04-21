@@ -4,6 +4,20 @@
 .scroll {
   color: red;
 }
+.Dropdown-control {
+  border: none !important;
+  width: max-content !important;
+  background-color: transparent !important;
+}
+.Dropdown-menu {
+  width: max-content !important;
+
+  background-color: white !important;
+}
+.isDark .Dropdown-menu {
+  color: var(--darkGray) !important;
+  background-color: black !important;
+}
 .ant-switch-checked {
   background-color: var(--yellow) !important;
 }

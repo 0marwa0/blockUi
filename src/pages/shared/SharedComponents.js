@@ -3,6 +3,9 @@ import "./style/SharedComponents.css";
 import { RiArrowDownSFill } from "react-icons/ri";
 import ContentLoader from "react-content-loader";
 import { Button } from "antd";
+import Loader from "react-loader-spinner";
+
+import ClipLoader from "react-spinners/ClipLoader";
 export const CustomButton = ({
   lable,
   children,
@@ -15,26 +18,74 @@ export const CustomButton = ({
   loading,
   extra,
 }) => {
-  return (
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
+  return loading ? (
     <button
       className={main ? "ButtonStyledMain" : "ButtonStyled"}
-      //style={{
-      // padding: extra ? "0 50px" : "",
-      //width: extra ? "80px" : "",
-      //height: extra ? "110px" : "",
-      //borderRadius: extra ? "2px" : "",
-      // }}
+      style={{
+        borderColor: darkMod ? "transparent" : "",
+        color: darkMod ? "var(--darkGray)" : "",
+        backgroundColor: darkMod ? "#353535" : "",
+        cursor: "wait",
+      }}
+      disabled={true}
+      loading={loading}
+      //  onClick={main ? onOpen : fun}
+    >
+      <div style={{ marginTop: "5px" }}>
+        <ClipLoader
+          size={15}
+          color="var(--darkGray)"
+          timeout={3000} //3 secs
+        />
+      </div>
+      {lable}
+      {filter ? <RiArrowDownSFill color="var(--lighterGray)" /> : ""}
+    </button>
+  ) : (
+    <button
+      className={main ? "ButtonStyledMain" : "ButtonStyled"}
+      style={{
+        borderColor: darkMod ? "transparent" : "",
+        color: darkMod ? "var(--darkGray)" : "",
+        backgroundColor: darkMod ? "#353535" : "",
+      }}
       loading={loading}
       onClick={main ? onOpen : fun}
     >
       {children}
+
       {lable}
-      {filter ? <RiArrowDownSFill color="var(--lighterGray)" /> : ""}
+      {filter ? (
+        <RiArrowDownSFill
+          color={darkMod ? "var(--darkGray)" : "var(--lighterGray)"}
+        />
+      ) : (
+        ""
+      )}
     </button>
   );
 };
 export const CustomModleButton = ({ Loading, children, main, fun, extra }) => {
-  return (
+  return Loading ? (
+    <button
+      calssName={main ? "ButtonStyledModleMain" : "ButtonStyledModle"}
+      Loading={Loading}
+      // main={main}
+      //extra={extra}
+
+      onClick={fun}
+    >
+      <div style={{ marginTop: "5px" }}>
+        <ClipLoader
+          size={15}
+          color="var(--darkGray)"
+          timeout={3000} //3 secs
+        />
+      </div>
+    </button>
+  ) : (
     <button
       calssName={main ? "ButtonStyledModleMain" : "ButtonStyledModle"}
       Loading={Loading}

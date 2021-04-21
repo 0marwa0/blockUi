@@ -4,9 +4,6 @@
   border-radius: 7px;
   padding: 20px 25px;
   height: 100%;
-  margin-bottom: 7%;
-  min-height: 0px;
-  min-width: 0px;
   border: 1px solid var(--lighterGray);
 }
 .mainWidget-dark {
@@ -20,8 +17,7 @@
   border: 1px solid var(--lighterGray);
   display: flex;
   background-color: white;
-  overflow: hidden;
-  transition: 2s ease;
+  /*  transition: 2s ease;**/
   padding: 17px 17px 8px 17px;
   width: 100%;
   flex-direction: column;

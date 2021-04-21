@@ -5,7 +5,7 @@ import { BsDot } from "react-icons/bs";
 import { LoadData } from "../../API";
 import { Scrollbars } from "react-custom-scrollbars";
 import TimeAgo from "react-simple-timeago";
-
+import "./styles/index.css";
 import ContentLoader from "react-content-loader";
 import { Mesg, FailedMesg } from "../../API/APIMessage";
 import { CustomButton } from "../shared/SharedComponents";
@@ -89,10 +89,12 @@ function Index(props) {
       // );
     }, 1200);
   }, []);
+  let darkMod =
+    window.localStorage.getItem("isLight") === "light" ? false : true;
   let notifications = notification ? notification : [];
   return (
-    <div>
-      <NotificationsHolder>
+    <div className={darkMod ? "isDark" : ""}>
+      <div className={darkMod ? "notific-holer-dark" : "notific-holer"}>
         <Scrollbars style={{ width: "100%", height: "380px" }}>
           {Loading
             ? [1, 2].map((i) => {
@@ -139,8 +141,14 @@ function Index(props) {
               })
             : notifications.map((item, i) => {
                 return (
-                  <NotifiItem key={i}>
-                    <NotifiImage src={require("../../public/images/6.png")} />
+                  <div
+                    className={darkMod ? "NotifiItem-dark" : "NotifiItem"}
+                    key={i}
+                  >
+                    <img
+                      className="NotifiImage"
+                      src={require("../../public/images/6.png")}
+                    />
                     <Text>
                       <span style={{ color: "var(--black)" }}>
                         {users
@@ -167,11 +175,11 @@ function Index(props) {
                         {item.time}
                       </div>
                     </span>
-                  </NotifiItem>
+                  </div>
                 );
               })}{" "}
         </Scrollbars>
-      </NotificationsHolder>
+      </div>
 
       <div
         style={{
@@ -185,6 +193,7 @@ function Index(props) {
       >
         <CustomButton main>See All Activity</CustomButton>
       </div>
+      <div className="new-arrow"></div>
     </div>
   );
 }

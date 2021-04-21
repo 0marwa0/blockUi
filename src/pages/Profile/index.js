@@ -7,6 +7,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { CustomInput } from "../shared/SharedStyle";
 import { BsExclamationCircle } from "react-icons/bs";
 import { Mesg, SuccessMesg, FailedMesg } from "../../API/APIMessage";
+import { Input } from "antd";
 import pic from "../../public/images/b.jpg";
 import "../shared/style/index.css";
 import { CustomButton } from "../shared/SharedComponents";
@@ -140,64 +141,72 @@ function Index(props) {
             </div>
           </Link>
           <div className="PageTitle">
-            My Profile
-            <div>
-              <CustomButton main={true} onOpen={Save}>
-                Save
-              </CustomButton>
-            </div>
+            <div> My Profile</div>{" "}
+            <CustomButton main={true} onOpen={Save}>
+              Save
+            </CustomButton>
           </div>
         </div>
         <div className="ProfileContent">
-          <div className="Form">
-            <div style={{ width: "40%" }}>
-              <div
-                className="ProfileImage"
-                style={{
-                  backgroundImage: require("" + "../../public/images/b.jpg"),
-                }}
-              >
-                {/* {ImageUrl === "" ? name : ""} */}
-              </div>
-              <div className="Space" style={{ cursor: "pointer" }}>
-                <Upload {...Props}>Upload Photo</Upload>
-              </div>
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              className="ProfileImage"
+              style={{
+                backgroundImage: require("" + "../../public/images/b.jpg"),
+              }}
+            >
+              {/* {ImageUrl === "" ? name : ""} */}
             </div>
+            <div className="Space" style={{ cursor: "pointer" }}>
+              <Upload {...Props}>Upload Photo</Upload>
+            </div>
+          </div>
+          <div className="Form">
             <div calssName="Input-Lable">
               Full Name
               <span style={{ display: "flex", gap: "5px" }}>
-                <CustomInput
-                  defaultValue={data.name}
+                <Input
+                  placeholder="Write admin phone number"
+                  className={darkMod ? "input-rg-dark" : "input-rg"}
                   onChange={(e) => handleInput(e, "fillName")}
-                />{" "}
+                />
+
+                {/* 
                 <CustomInput
                   defaultValue={data.username}
                   onChange={(e) => handleInput(e, "userName")}
-                />
+                />*/}
               </span>
             </div>
             <div calssName="InputLable">
               Email Address
-              <CustomInput
-                gray
-                defaultValue={data.email}
+              <Input
+                placeholder="Write admin phone number"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => handleInput(e, "email")}
               />
             </div>
             <div calssName="InputLable">
               Password
-              <CustomInput
-                type="password"
-                gray
-                defaultValue={data.password}
+              <Input
+                placeholder="Write admin phone number"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => handleInput(e, "password")}
               />
             </div>
             <div className="Space">Change Password?</div>
             <div calssName="InputLable">
               Phone Number
-              <CustomInput
-                defaultValue={data.phone}
+              <Input
+                placeholder="Write admin phone number"
+                className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => handleInput(e, "phone")}
               />
             </div>

@@ -73,7 +73,7 @@ function Index(props) {
       </div>{" "}
       <div>
         {props.Loading ? (
-          [1, 2, 3, 4, 5].map((i) => {
+          [1, 2, 3, 4].map((i) => {
             return <StatisticLoading />;
           })
         ) : (
@@ -121,7 +121,20 @@ function Index(props) {
               </div>
               <div className="BoldText">5555</div>
             </div>
-
+            <div className="ReservationItem">
+              <div
+                className={`TotleReservationsIcon ${
+                  darkMod ? "darkIcon" : "red"
+                }`}
+              >
+                <MdShowChart color="var(--red)" size={20} />
+              </div>
+              <div>
+                {i18n.numberofSoldRecord}
+                <div className="GrayText"></div>
+              </div>
+              <div className="BoldText">5555</div>
+            </div>
             {/* <div className="ReservationItem">
               <div
                 className={`TotleReservationsIcon ${

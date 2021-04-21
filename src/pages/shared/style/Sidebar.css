@@ -1,21 +1,20 @@
 .SideWarpper,
 .SideWarpper-dark {
   width: 87px;
-  height: 100%;
+  height: 100vh;
   display: flex;
-  position: fixed;
   padding-right: 4px;
-  z-index: 100;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #e1c340;
+  background-color: var(--yellow);
 }
 
 .SideWarpper-dark {
   background-color: var(--black) !important;
   border-right: 1px solid #353535 !important;
 }
-.NotifiHeader {
+.NotifiHeader,
+.NotifiHeader-dark {
   display: flex;
   justify-content: space-between;
   padding: 20px 30px;
@@ -25,7 +24,9 @@
   align-items: center;
   cursor: unset;
 }
-
+.NotifiHeader-dark {
+  color: var(--darkGray);
+}
 .SideItem,
 .SideItem-dark {
   position: relative;
@@ -34,6 +35,7 @@
   margin-bottom: 0.5rem;
   font-size: 35px;
   display: flex;
+  color: var(--gray);
   /*   color: ${(props) => (props.isSelected ? "var(--cyan);" : "var(--gray);")};*/
   justify-content: center;
   align-items: center;
@@ -42,6 +44,7 @@
   border-left: 3px solid var(--cyan);
 }
 .SideItem:hover {
+  color: var(--cyan);
   border-left: 3px solid var(--cyan);
 }
 .SideItem :hover {

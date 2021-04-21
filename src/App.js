@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import { Mesg, FailedMesg } from "./API/APIMessage";
+import { useLocale } from "react-easy-localization";
 import WorkerINFO from "./pages/Workers/workerInfo";
 import { LoadData } from "./API";
 import logo from "./logo.svg";
@@ -43,7 +44,24 @@ function App(props) {
       }
     );
   };
+  const { i18n, languageCode, changeLanguage } = useLocale();
+
   useEffect(() => {
+    if (localStorage.getItem("isLight") === "dark") {
+      document.body.style.background = "var(--black)";
+    } else {
+      document.body.style.background = "var(--lightGray)";
+    }
+    if (localStorage.getItem("isEnglish")) {
+      if (localStorage.getItem("isEnglish") === "false") {
+        document.body.style.direction = "rtl";
+        changeLanguage("ar");
+      } else {
+        document.body.style.direction = "ltr";
+        changeLanguage("en");
+      }
+    }
+
     // LoadData(
     //   "Admins",
     //   (err, data) => {
