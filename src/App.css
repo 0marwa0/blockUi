@@ -267,8 +267,8 @@ body {
 }
 .react-datepicker__input-container input,
 .react-datepicker__input-container input:focus {
-  border: none !important;
   width: 180px;
+  border: 1px solid var(--textGray) !important;
   outline: none;
 }
 .datePickerIcon {

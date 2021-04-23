@@ -18,6 +18,11 @@ export const resources = {
     timeLeft: " Time Left",
     enterCode: "Enter Code",
     mode: "Mode",
+    filterSettings: "Filter Settings",
+    Item: "Item name",
+    Price: "Item price",
+    Discount: "Discount",
+    quantity: "quantity",
     //Dashboard
     dashbaordTitle: "Dashboard",
     mostActive: "Most Active Workers",
@@ -57,7 +62,13 @@ export const resources = {
     serveicExpair: "تارخ انتهاء الصلاحية",
     timeLeft: " الوقت المتبقي",
     enterCode: "ادخل الرمز",
-    mode: "واللة ما ادري",
+    mode: "المظهر",
+    filterSettings: "اعدادات البحث",
+    Item: "اسم العنصر",
+    Price: "السعر",
+    Discount: "الخصم",
+    quantity: "الكمية",
+
     //Dashboard
     dashbaordTitle: "لوحة التحكم",
     mostActive: "اكثر العمال نشاطأ",

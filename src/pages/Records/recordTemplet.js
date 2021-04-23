@@ -10,6 +10,20 @@ import arrayMove from "array-move";
 import { FaPlus } from "react-icons/fa";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { AutoComplete, Input } from "antd";
+export const Icon = () => {
+  return (
+    <div className="record-icon">
+      <div
+        style={{
+          position: "relative",
+        }}
+      >
+        <VscTriangleUp style={{ position: "absolute", top: "-8px" }} />
+      </div>
+      <VscTriangleDown />
+    </div>
+  );
+};
 function Index(props) {
   const itemsData = [
     { item: " 110mm Tube", price: [200], quantity: "0", discount: ["5%"] },
@@ -44,14 +58,14 @@ function Index(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   const SortableItem = SortableElement(({ value }) => (
     <div tabIndex={0} className={darkMod ? "record-dark" : "record"}>
-      <div>{value.item}</div>
+      <div className={darkMod ? "tag-dark  org" : "tag org"}>
+        {value.discount}
+      </div>
       <div className={darkMod ? "tag-dark green" : "tag green"}>
         {value.price + "$"}
       </div>
       <div>{value.quantity}</div>
-      <div className={darkMod ? "tag-dark  org" : "tag org"}>
-        {value.discount}
-      </div>
+      <div>{value.item}</div>
       <BiDotsVerticalRounded
         style={{
           fontSize: "20px",
@@ -74,20 +88,7 @@ function Index(props) {
       </div>
     );
   });
-  const Icon = () => {
-    return (
-      <div className="record-icon">
-        <div
-          style={{
-            position: "relative",
-          }}
-        >
-          <VscTriangleUp style={{ position: "absolute", top: "-8px" }} />
-        </div>
-        <VscTriangleDown />
-      </div>
-    );
-  };
+
   const options = [
     {
       text: "item2",
@@ -118,35 +119,32 @@ function Index(props) {
     console.log(itemsData, "finel ");
   }, [props.data]);
   return (
-    <div className={darkMod ? "isDark" : ""}>
-      <div className={darkMod ? "record-items-dark" : "record-items"}>
-        <div className={darkMod ? "record-head-dark" : "record-head"}>
-          <span className="flex-row">
-            Item
-            <Icon />
-          </span>
+    <div>
+      <div className={darkMod ? "isDark" : ""}>
+        <div className={darkMod ? "record-items-dark" : "record-items"}>
+          <div className={darkMod ? "record-head-dark" : "record-head"}>
+            <span className="flex-row">
+              Discount
+              <Icon />
+            </span>
+            <span className="flex-row">
+              Price
+              <Icon />
+            </span>
+            <span className="flex-row">
+              Quantity <Icon />
+            </span>
+            <span className="flex-row">
+              Item <Icon />
+            </span>
 
-          <span className="flex-row">
-            Price
-            <Icon />
-          </span>
-          <span className="flex-row">
-            Quantity <Icon />
-          </span>
-
-          <span className="flex-row">
-            Discount
-            <Icon />
-          </span>
-
-          <div></div>
+            <div></div>
+          </div>
+          <SortableList items={state} onSortEnd={onSortEnd} />
+          {props.children}
         </div>
-        <SortableList items={state} onSortEnd={onSortEnd} />
+      </div>
 
-        {props.children}
-
-        <div> </div>
-      </div>{" "}
       <Pagination
         length={Data.length}
         currentPage={currentPage}

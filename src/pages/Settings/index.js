@@ -10,6 +10,7 @@ import { ReservationsData } from "../../fakeData";
 import React, { useRef, useState, useEffect } from "react";
 import "../shared/style/widget.css";
 import "../shared/style/index.css";
+import { FiFilter } from "react-icons/fi";
 import SideBar from "../Sidebar";
 import LoadingBar from "react-top-loading-bar";
 import { Col, Row, Input, Switch, Button, Menu } from "antd";
@@ -19,6 +20,7 @@ import { GiTimeBomb } from "react-icons/gi";
 import "./styles/index.css";
 import "../../App.css";
 import { Modal } from "react-responsive-modal";
+import Checkbox from "antd/lib/checkbox/Checkbox";
 const options = ["English", "Arabic"];
 const menu = (
   <Menu>
@@ -129,43 +131,92 @@ function Index(props) {
                 height: "auto",
               }}
             >
-              <div className={darkMod ? "mainWidget-dark" : "mainWidget"}>
-                <div>
-                  <div className="widget-title">
-                    <ImPrinter color="var(--yellow)" />
-                    {i18n.printerSettings}
-                  </div>
+              <div
+                className={
+                  darkMod ? "mainWidget-dark" : "mainWidget paddingLeft"
+                }
+              >
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "20px",
+                  }}
+                >
+                  {" "}
+                  <div>
+                    <div className="widget-title">
+                      <ImPrinter color="var(--yellow)" />
+                      {i18n.printerSettings}
+                    </div>
 
-                  <ul>
-                    <li className="widget-item">
-                      <div>{i18n.printTitle}</div>
-                      <Input
-                        className={darkMod ? "input-rg-dark" : "input-rg"}
-                      />
-                    </li>{" "}
-                    <li className="widget-item">
-                      {i18n.printAddress}
-                      <div>
-                        {" "}
+                    <ul>
+                      <li className="widget-item">
+                        <div>{i18n.printTitle}</div>
                         <Input
+                          style={{ width: "max-content" }}
                           className={darkMod ? "input-rg-dark" : "input-rg"}
                         />
-                      </div>{" "}
-                    </li>{" "}
-                    <li className="widget-item ">
-                      {i18n.language}
-                      <span>
-                        <Dropdown
-                          options={options}
-                          className="drop-css"
-                          //    onChange={(e) => toggleLanguage(e.value)}
-                          value={
-                            languageCode === "en" ? "English  " : "العربية  "
-                          }
-                        />
-                      </span>
-                    </li>
-                  </ul>
+                      </li>{" "}
+                      <li className="widget-item">
+                        {i18n.printAddress}
+                        <div>
+                          {" "}
+                          <Input
+                            className={darkMod ? "input-rg-dark" : "input-rg"}
+                          />
+                        </div>{" "}
+                      </li>{" "}
+                      <li className="widget-item ">
+                        {i18n.language}
+                        <span>
+                          <Dropdown
+                            options={options}
+                            className="drop-css"
+                            //    onChange={(e) => toggleLanguage(e.value)}
+                            value={
+                              languageCode === "en" ? "English  " : "العربية  "
+                            }
+                          />
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="widget-title">
+                      <FiFilter color="var(--yellow)" />
+                      {i18n.filterSettings}
+                    </div>
+
+                    <ul>
+                      <li className="widget-item">
+                        <div className="flex-item">
+                          {" "}
+                          <Checkbox />
+                          {i18n.Item}
+                        </div>
+                      </li>{" "}
+                      <li className="widget-item">
+                        <div className="flex-item">
+                          <Checkbox />
+                          {i18n.Price}
+                        </div>
+                      </li>{" "}
+                      <li className="widget-item">
+                        <div className="flex-item">
+                          <Checkbox />
+                          {i18n.quantity}
+                        </div>
+                      </li>
+                      <li className="widget-item ">
+                        <div className="flex-item">
+                          <Checkbox />
+
+                          {i18n.Discount}
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div>
                   <div className="widget-title">
@@ -218,24 +269,23 @@ function Index(props) {
                   <ul>
                     <li style={{ display: "flex", alignItems: "center" }}>
                       {i18n.language}
-                      {" : "}
+                      {" :"}
                       <Dropdown
                         options={options}
                         className="drop-css"
                         onChange={(e) => toggleLanguage(e.value)}
-                        value={
-                          languageCode === "en" ? "English  " : "العربية  "
-                        }
+                        value={languageCode === "en" ? "English" : "العربية"}
                       />
-                    </li>{" "}
+                    </li>
                     <li className="flex-line">
-                      {i18n.mode + " :  "}
+                      {i18n.mode + " : "}
+
                       <Switch
                         defaultChecked={true}
                         size="small"
                         onChange={(e) => setMode(e)}
-                      />{" "}
-                    </li>{" "}
+                      />
+                    </li>
                   </ul>
                 </div>
               </div>{" "}

@@ -3,6 +3,8 @@ import { Input } from "antd";
 import Autocomplete from "react-autocomplete";
 import TextField from "@material-ui/core/TextField";
 import RecordTemplet from "./recordTemplet.js";
+import { Modal } from "react-responsive-modal";
+import SuggestionModal from "./suggestionModal";
 import { ItemDescription } from "semantic-ui-react";
 export default function AutoInput() {
   const [name, setName] = useState("");
@@ -66,14 +68,32 @@ export default function AutoInput() {
     setNote(item.note);
     setquantity(item.quantity);
   };
-
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(!modalIsOpen);
+  }
   const [value, setvalue] = useState("");
+  const [valueInput, setvalueInput] = useState("");
+  const onPick = (item) => {
+    setPrice(item.price);
+    setName(item.item);
+    setNote(item.note);
+    setquantity(item.quantity);
+    openModal();
+  };
   let darkMod =
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className={darkMod ? "isDark" : ""}>
       <RecordTemplet data={[{ item: "oo", price: "00" }]}>
         <div className={darkMod ? "input-row-dark" : "input-row"}>
+          <Input
+            className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
+            placeholder="discount"
+            value={note}
+            style={{ border: "none", width: "max-content" }}
+            onChange={(e) => handelInput("note", e.target.value)}
+          />{" "}
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
             placeholder="price"
@@ -90,30 +110,19 @@ export default function AutoInput() {
           />{" "}
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
-            placeholder="discount"
-            value={note}
+            placeholder="item"
+            defaultValue={valueInput}
+            value={name}
             style={{ border: "none", width: "max-content" }}
-            onChange={(e) => handelInput("note", e.target.value)}
+            onChange={(e) => {
+              setvalueInput(e.target.value);
+              openModal();
+            }}
           />{" "}
-          <div className="div-inside">
-            <Autocomplete
-              //   className={darkMod ? "input-rg-dark" : "input-rg"}
-              getItemValue={(item) => item.item}
-              items={itemsData}
-              renderItem={(item, isHighlighted) => (
-                <div
-                  style={{ background: isHighlighted ? "lightgray" : "white" }}
-                >
-                  {item.item}
-                </div>
-              )}
-              inputProps={{ placeholder: "item name" }}
-              value={value}
-              onChange={(e) => setvalue(e.target.value)}
-              onSelect={(val) => getValues(val)}
-            />
-          </div>
         </div>
+        <Modal open={modalIsOpen} onClose={openModal}>
+          <SuggestionModal onPick={onPick} value={valueInput} />
+        </Modal>
       </RecordTemplet>
     </div>
   );

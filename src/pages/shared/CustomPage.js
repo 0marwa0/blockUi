@@ -1,5 +1,6 @@
+import ClipLoader from "react-spinners/ClipLoader";
 import { useState, useRef } from "react";
-import { Col, Row, Table, Input } from "antd";
+import { Button, Popover, Col, Row, Table, Input } from "antd";
 import React, { useEffect } from "react";
 import { BiImport, BiExport } from "react-icons/bi";
 import LoadingBar from "react-top-loading-bar";
@@ -8,6 +9,7 @@ import { HiViewList } from "react-icons/hi";
 import { HiViewGrid } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
 import "./style/index.css";
+import "./style/SharedComponents.css";
 import Pagination from "./pagination";
 import { useHistory } from "react-router-dom";
 import { useLocale } from "react-easy-localization";
@@ -15,7 +17,19 @@ import { FiFilter } from "react-icons/fi";
 import { CustomButton } from "../shared/SharedComponents";
 import SideBar from "../Sidebar";
 import ListItem from "../Records/RecordItem";
-
+import Checkbox from "antd/lib/checkbox/Checkbox";
+const content = (
+  <div>
+    <div className="filter-item">
+      <Checkbox />
+      Name
+    </div>{" "}
+    <div className="filter-item">
+      <Checkbox />
+      Date
+    </div>
+  </div>
+);
 function CustomPage(props) {
   const ref = useRef(null);
   const { i18n, languageCode, changeLanguage } = useLocale();
@@ -171,14 +185,32 @@ function CustomPage(props) {
                     ) : props.pageTitle === "file Uploader" ? (
                       ""
                     ) : (
-                      <CustomButton
-                        lable={i18n.filter}
-                        filter
-                        loading={props.Loading}
-                        //fun={props.filter}i
+                      <Popover
+                        placement="bottom"
+                        title="filter by :"
+                        content={content}
+                        trigger="click"
                       >
-                        <FiFilter />
-                      </CustomButton>
+                        <button
+                          className="ButtonStyled"
+                          loading={props.Loading}
+                          //fun={props.filter}i
+                        >
+                          {" "}
+                          {props.Loading ? (
+                            <div style={{ marginTop: "5px" }}>
+                              <ClipLoader
+                                size={15}
+                                color="var(--darkGray)"
+                                timeout={3000} //3 secs
+                              />
+                            </div>
+                          ) : (
+                            <FiFilter />
+                          )}
+                          {i18n.filter}
+                        </button>
+                      </Popover>
                     )}
                   </div>
                   <div className="ButtonGroup">

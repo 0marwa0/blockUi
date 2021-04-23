@@ -2,9 +2,12 @@
 .mainWidget-dark {
   background-color: white;
   border-radius: 7px;
-  padding: 20px 25px;
+  padding: 20px 0px;
   height: 100%;
   border: 1px solid var(--lighterGray);
+}
+.paddingLeft {
+  padding: 35px 25px;
 }
 .mainWidget-dark {
   color: var(--darkGray);

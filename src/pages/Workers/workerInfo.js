@@ -8,6 +8,7 @@ import { CustomButton } from "../shared/SharedComponents";
 import LoadingBar from "react-top-loading-bar";
 import { Input, Table, Col, Row } from "antd";
 import "../../App.css";
+import Pagination from "../shared/pagination";
 import { TableLoading } from "../shared/Loading";
 import ListItem from "../Records/RecordItem";
 import { FiFilter } from "react-icons/fi";
@@ -97,6 +98,24 @@ function Index(props) {
   const themeToggler = () => {
     theme === "light" ? setMode("dark") : setMode("light");
   };
+  const [currentPage, setcurrentPage] = useState(1);
+  const [pagePerOnce, setpagePerOnce] = useState(10);
+  const [pageNumber, setpageNumber] = useState(0);
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setcurrentPage(currentPage - 1);
+    }
+  };
+  const totalPge = Math.ceil(Filterdata.length / pagePerOnce);
+
+  const nextPage = () => {
+    if (currentPage != totalPge) {
+      setcurrentPage(currentPage + 1);
+    }
+  };
+  const indexOfLastPage = currentPage * pagePerOnce;
+  const indexOfFirstPage = indexOfLastPage - pagePerOnce;
+  let Data = Filterdata.slice(indexOfFirstPage, indexOfLastPage);
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem("isLight");
@@ -186,7 +205,15 @@ function Index(props) {
                   />
                 ) : (
                   <ListItem data={Filterdata} />
-                )}
+                )}{" "}
+                <Pagination
+                  length={Data.length}
+                  currentPage={currentPage}
+                  prevPage={prevPage}
+                  totalPge={totalPge}
+                  nextPage={nextPage}
+                  lengthAll={WorkersData.length + 1}
+                />
               </div>
             </div>
           </Col>

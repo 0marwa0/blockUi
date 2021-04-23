@@ -1,8 +1,6 @@
 /**********************final step stylesl*****************************/
 .finalStep {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  padding: 40px 100px;
 }
 /**********************second step styles*****************************/
 .div-inside input {
@@ -48,7 +46,6 @@ button:focus {
   width: 100%;
   border-radius: 7px 7px 0px 0px;
   text-align: left;
-  padding-bottom: 5px;
   border: 1px solid #f0f0f0;
 }
 .record-items-dark {
@@ -98,7 +95,8 @@ button:focus {
 .input-row-dark {
   display: flex;
   width: 100%;
-  height: max-content;
+  height: auto;
+  background-color: white;
   flex-direction: row;
 }
 .input-row-dark {

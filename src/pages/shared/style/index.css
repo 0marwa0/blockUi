@@ -5,6 +5,15 @@
 .widget-space {
   height: 3%;
 }
+.flex-item {
+  display: flex;
+  gap: 5px;
+}
+.filter-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 /*shared button style*/
 .PageContent {
   display: flex;
@@ -40,6 +49,10 @@
   height: 30px;
   border-radius: 7px !important;
   width: 100% !important;
+}
+.input-rg,
+.input-rg-dark:focus {
+  border: 1px solid var(--textGray) !important;
 }
 .borderLess {
   border: none !important;
@@ -138,4 +151,7 @@
 }
 .isDark .ant-switch-small {
   background-color: var(--yellow) !important;
+}
+.react-responsive-modal-modal {
+  box-shadow: none !important;
 }

@@ -1,0 +1,13 @@
+.modal-holder,
+.modal-holder-dark {
+  background-color: white;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+}
+.modal-holder-dark {
+  background-color: rgb(73, 71, 71);
+  z-index: 99999999;
+}
