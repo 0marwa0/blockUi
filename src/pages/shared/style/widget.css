@@ -2,7 +2,7 @@
 .mainWidget-dark {
   background-color: white;
   border-radius: 7px;
-  padding: 20px 0px;
+  padding: 25px;
   height: 100%;
   border: 1px solid var(--lighterGray);
 }

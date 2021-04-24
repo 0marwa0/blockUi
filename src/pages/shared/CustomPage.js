@@ -1,6 +1,6 @@
 import ClipLoader from "react-spinners/ClipLoader";
 import { useState, useRef } from "react";
-import { Button, Popover, Col, Row, Table, Input } from "antd";
+import { Button, Popover, Col, Row, Table, Input, Radio } from "antd";
 import React, { useEffect } from "react";
 import { BiImport, BiExport } from "react-icons/bi";
 import LoadingBar from "react-top-loading-bar";
@@ -19,16 +19,20 @@ import SideBar from "../Sidebar";
 import ListItem from "../Records/RecordItem";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 const content = (
-  <div>
-    <div className="filter-item">
-      <Checkbox />
+  <Radio.Group style={{ display: "flex", flexDirection: "column" }}>
+    <Radio value={1} className="filter-item">
       Name
-    </div>{" "}
-    <div className="filter-item">
-      <Checkbox />
-      Date
-    </div>
-  </div>
+    </Radio>
+    <Radio value={2} className="filter-item">
+      Price
+    </Radio>
+    <Radio value={3} className="filter-item">
+      Quantity
+    </Radio>
+    <Radio value={4} className="filter-item">
+      Discount
+    </Radio>
+  </Radio.Group>
 );
 function CustomPage(props) {
   const ref = useRef(null);

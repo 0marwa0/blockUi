@@ -13,7 +13,7 @@ import "../shared/style/index.css";
 import { FiFilter } from "react-icons/fi";
 import SideBar from "../Sidebar";
 import LoadingBar from "react-top-loading-bar";
-import { Col, Row, Input, Switch, Button, Menu } from "antd";
+import { Radio, Col, Row, Input, Switch, Button, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { ImPrinter } from "react-icons/im";
 import { GiTimeBomb } from "react-icons/gi";
@@ -104,7 +104,13 @@ function Index(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <ScrollArea speed={0.8} smoothScrolling={true} horizontal={false}>
-      <div className="CustomPageWrapper setting-page">
+      <div
+        className={
+          darkMod
+            ? "CustomPageWrapper setting-page isDark"
+            : "CustomPageWrapper setting-page"
+        }
+      >
         <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
 
         <SideBar isDark={theme} />
@@ -140,7 +146,7 @@ function Index(props) {
                   style={{
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
-                    gap: "20px",
+                    gap: "40px",
                   }}
                 >
                   {" "}
@@ -188,34 +194,27 @@ function Index(props) {
                       {i18n.filterSettings}
                     </div>
 
-                    <ul>
-                      <li className="widget-item">
-                        <div className="flex-item">
-                          {" "}
-                          <Checkbox />
-                          {i18n.Item}
-                        </div>
-                      </li>{" "}
-                      <li className="widget-item">
-                        <div className="flex-item">
-                          <Checkbox />
-                          {i18n.Price}
-                        </div>
-                      </li>{" "}
-                      <li className="widget-item">
-                        <div className="flex-item">
-                          <Checkbox />
-                          {i18n.quantity}
-                        </div>
-                      </li>
-                      <li className="widget-item ">
-                        <div className="flex-item">
-                          <Checkbox />
-
-                          {i18n.Discount}
-                        </div>
-                      </li>
-                    </ul>
+                    <Radio.Group
+                      style={{
+                        marginTop: "13px",
+                        display: "flex",
+                        gap: "5px",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Radio value={1} className="flex-item">
+                        {i18n.Item}
+                      </Radio>
+                      <Radio value={2} className="flex-item">
+                        {i18n.Price}
+                      </Radio>
+                      <Radio value={3} className="flex-item">
+                        {i18n.quantity}
+                      </Radio>
+                      <Radio value={4} className="flex-item">
+                        {i18n.Discount}
+                      </Radio>
+                    </Radio.Group>
                   </div>
                 </div>
                 <div>

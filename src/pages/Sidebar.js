@@ -13,6 +13,9 @@ import { BiCalendarWeek, BiUser } from "react-icons/bi";
 import Notification from "./Notification";
 
 import { BiBox } from "react-icons/bi";
+
+let darkMod = window.localStorage.getItem("isLight") === "light" ? false : true;
+
 const NavItem = ({ slug, children, index, title }) => {
   const history = useHistory();
   const location = useLocation();
@@ -47,6 +50,7 @@ const NavItem = ({ slug, children, index, title }) => {
     slug = "Dashboard";
     dash = true;
   }
+
   const [isClicked, setIsClicked] = useState(false);
   const setClicked = () => {
     setIsClicked(!isClicked);
@@ -55,7 +59,9 @@ const NavItem = ({ slug, children, index, title }) => {
   return slug === "Notifications" ? (
     <div
       className={
-        !window.localStorage.getItem("isLight") ? "SideItem isDark" : "SideItem"
+        window.localStorage.getItem("isEnglish") == "true"
+          ? "SideItem"
+          : "SideItem-ar"
       }
       type={type}
       isSelected={isSelected}
@@ -68,11 +74,11 @@ const NavItem = ({ slug, children, index, title }) => {
     <Tooltip title={slug} placement="right">
       <Link to={url}>
         <div
-          className="SideItem"
-          style={{
-            borderLeft: location.pathname == url ? "1px solid var(--cyan)" : "",
-            //  ? "2px solid var(--yellow)"
-          }}
+          className={
+            window.localStorage.getItem("isEnglish") == "true"
+              ? "SideItem"
+              : "SideItem-ar"
+          }
           type={type}
           onClick={() => setClicked}
           isSelected={isSelected}
@@ -100,8 +106,6 @@ function SideBar(props) {
   let { id } = useParams();
   let title = props.title;
   let page = location.pathname;
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className={darkMod ? "isDark" : ""}>
       <div

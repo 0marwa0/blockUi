@@ -78,7 +78,7 @@ function Index(props) {
   let darkMod =
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
-    <div>
+    <div className={darkMod ? "modal-back-dark" : "modal-back"}>
       {" "}
       <div className={darkMod ? "isDark" : ""}>
         <div className={darkMod ? "record-items-dark" : "record-items"}>
@@ -91,54 +91,41 @@ function Index(props) {
                 discount: "0",
               })
             }
-            // tabIndex="10"
-            className={darkMod ? "record-dark" : "record"}
+            //tabIndex={0}
+            className={darkMod ? "record-tab-dark" : "record-tab"}
           >
-            <div className={darkMod ? "tag-dark  org" : "tag org"}>0</div>
-            <div className={darkMod ? "tag-dark green" : "tag green"}>0$</div>
-            <div>0</div>
+            {" "}
             <Input
               value={searchValue}
               onChange={(e) => onchangeValeu(e.target.value)}
               className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
-            />{" "}
-            <BiDotsVerticalRounded
-              style={{
-                fontSize: "20px",
-                cursor: "pointer",
-                color: "var(--lighterGray)",
-              }}
             />
+            <div className={darkMod ? "tag-dark green" : "tag green"}>
+              {0 + "$"}
+            </div>
+            <div>{"0"}</div>{" "}
+            <div className={darkMod ? "tag-dark  org" : "tag org"}>{"0"}</div>
           </div>
 
           {list.map((value, i) => (
             <div
               onKeyPress={(e) => handleKey(e, value)}
               tabIndex={0}
-              className={darkMod ? "record-dark" : "record"}
+              className={darkMod ? "record-tab-dark" : "record-tab"}
             >
-              {value.item}
-
-              <div className={darkMod ? "tag-dark  org" : "tag org"}>
-                {value.discount}
-                {i}
-              </div>
+              {" "}
+              <div>{value.item}</div>
               <div className={darkMod ? "tag-dark green" : "tag green"}>
                 {value.price + "$"}
               </div>
-              <div>{value.quantity}</div>
-              <div>{value.item}</div>
-              <BiDotsVerticalRounded
-                style={{
-                  fontSize: "20px",
-                  cursor: "pointer",
-                  color: "var(--lighterGray)",
-                }}
-              />
+              <div>{value.quantity}</div>{" "}
+              <div className={darkMod ? "tag-dark  org" : "tag org"}>
+                {value.discount}
+              </div>
             </div>
           ))}
         </div>
-        <div style={{ backgroundColor: !darkMod ? "white" : "black" }}>
+        <div>
           <Pagination
             length={Data.length}
             currentPage={currentPage}

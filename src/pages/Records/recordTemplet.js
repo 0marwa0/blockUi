@@ -58,14 +58,14 @@ function Index(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   const SortableItem = SortableElement(({ value }) => (
     <div tabIndex={0} className={darkMod ? "record-dark" : "record"}>
-      <div className={darkMod ? "tag-dark  org" : "tag org"}>
-        {value.discount}
-      </div>
+      <div>{value.item}</div>
       <div className={darkMod ? "tag-dark green" : "tag green"}>
         {value.price + "$"}
       </div>
       <div>{value.quantity}</div>
-      <div>{value.item}</div>
+      <div className={darkMod ? "tag-dark  org" : "tag org"}>
+        {value.discount}
+      </div>
       <BiDotsVerticalRounded
         style={{
           fontSize: "20px",
@@ -124,9 +124,9 @@ function Index(props) {
         <div className={darkMod ? "record-items-dark" : "record-items"}>
           <div className={darkMod ? "record-head-dark" : "record-head"}>
             <span className="flex-row">
-              Discount
-              <Icon />
+              Item <Icon />
             </span>
+
             <span className="flex-row">
               Price
               <Icon />
@@ -135,9 +135,9 @@ function Index(props) {
               Quantity <Icon />
             </span>
             <span className="flex-row">
-              Item <Icon />
+              Discount
+              <Icon />
             </span>
-
             <div></div>
           </div>
           <SortableList items={state} onSortEnd={onSortEnd} />

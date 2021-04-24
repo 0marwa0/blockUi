@@ -44,12 +44,14 @@ button:focus {
 .record-items,
 .record-items-dark {
   width: 100%;
-  border-radius: 7px 7px 0px 0px;
   text-align: left;
-  border: 1px solid #f0f0f0;
+  background-color: white;
+  border-radius: 16px 16px 0 0;
+  outline: none;
 }
 .record-items-dark {
-  border: 1px solid rgb(44, 43, 43);
+  background-color: var(--black);
+  border: 1px solid #353535;
 }
 .record-head,
 .record-head-dark {
@@ -57,6 +59,7 @@ button:focus {
   padding: 5px;
   display: grid;
   padding: 20px;
+  border-radius: 16px 16px 0 0;
   text-align: left;
   font-size: 15px;
   text-transform: capitalize;
@@ -117,6 +120,7 @@ button:focus {
   font-size: 10px;
   margin-top: 6px;
 }
+
 .record,
 .record-dark {
   width: 100%;
@@ -124,8 +128,42 @@ button:focus {
   padding: 5px 20px;
   border: 1px solid var(--lightGray);
   cursor: pointer;
+  gap: 10px;
   background-color: white;
   grid-template-columns: 1fr 1fr 1fr 1fr auto;
+}
+.record:focus,
+.record-dark:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 1px var(--cyan) inset;
+  background-color: rgba(1, 197, 197, 0.25);
+}
+
+.record-tab,
+.record-tab-dark {
+  width: 100%;
+  display: grid;
+  padding: 5px 20px;
+  border: 1px solid var(--lightGray);
+  cursor: pointer;
+  gap: 10px;
+  background-color: white;
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+}
+.record-tab-dark:first-child,
+.record-tab:first-child {
+  border-radius: 16px 16px 0 0;
+}
+.record-tab-dark {
+  color: gray;
+  background-color: var(--black);
+  border: 1px solid rgb(44, 43, 43);
+}
+.record-tab:focus,
+.record-tab-dark:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 1px var(--cyan) inset;
+  background-color: rgba(1, 197, 197, 0.25);
 }
 
 .react-responsive-modal-modal {

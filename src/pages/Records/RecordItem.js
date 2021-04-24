@@ -102,42 +102,7 @@ const Title = styled.div`
   margin-bottom: 7px;
   line-height: 1.3em;
 `;
-const Date = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  color: white;
-  font-size: 9px;
-`;
-const ListIcon = styled.div`
-  border: 1px solid white;
-  gap: 5px;
-  display: flex;
-  height: 26px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 7px;
-  margin-right: 13px;
-  cursor: pointer;
-  margin-top: 9px;
-  padding: 1px 10px;
-  color: white;
-`;
 
-const ListBottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-
-  margin-top: 140px;
-`;
-
-const BottomText = styled.div`
-  display: flex;
-  opacity: 1;
-
-  justify-content: space-between;
-`;
 const ListItem = (props) => {
   console.log(props.data, "article list");
   const [currentPage, setcurrentPage] = useState(1);

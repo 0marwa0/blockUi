@@ -89,11 +89,15 @@ export default function AutoInput() {
         <div className={darkMod ? "input-row-dark" : "input-row"}>
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
-            placeholder="discount"
-            value={note}
+            placeholder="item"
+            defaultValue={valueInput}
+            value={name}
             style={{ border: "none", width: "max-content" }}
-            onChange={(e) => handelInput("note", e.target.value)}
-          />{" "}
+            onChange={(e) => {
+              setvalueInput(e.target.value);
+              openModal();
+            }}
+          />
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
             placeholder="price"
@@ -110,17 +114,13 @@ export default function AutoInput() {
           />{" "}
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
-            placeholder="item"
-            defaultValue={valueInput}
-            value={name}
+            placeholder="discount"
+            value={note}
             style={{ border: "none", width: "max-content" }}
-            onChange={(e) => {
-              setvalueInput(e.target.value);
-              openModal();
-            }}
+            onChange={(e) => handelInput("note", e.target.value)}
           />{" "}
         </div>
-        <Modal open={modalIsOpen} onClose={openModal}>
+        <Modal open={modalIsOpen} onClose={openModal} showCloseIcon={false}>
           <SuggestionModal onPick={onPick} value={valueInput} />
         </Modal>
       </RecordTemplet>

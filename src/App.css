@@ -12,6 +12,28 @@ html {
 .ant-switch {
   background-color: var(--darkGray) !important;
 }
+/*********************Radio ant atyles**********************/
+.isDark .ant-radio-inner {
+  background-color: black !important;
+  border-color: rgb(70, 69, 69) !important;
+}
+.ant-radio-inner::after {
+  background-color: var(--yellow) !important;
+}
+.ant-radio-checked .ant-radio-inner {
+  border-color: var(--yellow) !important ;
+}
+
+.ant-radio-checked .ant-radio-inner:after {
+  background-color: var(--cyan) !important;
+}
+
+.ant-radio:hover .ant-radio-inner {
+  border-color: var(--yellow) !important;
+}
+.ant-radio-checked .ant-radio-inner:focus {
+  border-color: var(--yellow) !important;
+}
 
 .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
 .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,

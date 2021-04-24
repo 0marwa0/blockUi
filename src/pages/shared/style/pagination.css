@@ -6,12 +6,14 @@
   align-items: center;
   color: var(--darkGray);
   border: 1px solid var(--lighterGray);
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 16px 16px;
   border-top: none;
   width: 100%;
+  background-color: white;
 }
 .Pagination-dark {
   border-color: #353535;
+  background-color: black;
 }
 .PageText {
   color: var(--darkGray);
