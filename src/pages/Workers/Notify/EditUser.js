@@ -118,7 +118,6 @@ function Index(props) {
         }}
       >
         <PageWrapper>
-          {" "}
           <UserContext.Consumer>
             {({
               name,
@@ -214,7 +213,7 @@ function Index(props) {
                     defaultValue={address}
                     onChange={(e) => props.handleInput(e, "address")}
                   />
-                </InputLable>{" "}
+                </InputLable>
                 <InputLable>
                   Phone
                   <CustomInput

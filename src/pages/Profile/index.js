@@ -10,6 +10,8 @@ import { Mesg, SuccessMesg, FailedMesg } from "../../API/APIMessage";
 import { Input } from "antd";
 import pic from "../../public/images/b.jpg";
 import "../shared/style/index.css";
+
+import { useLocale } from "react-easy-localization";
 import { CustomButton } from "../shared/SharedComponents";
 function Index(props) {
   let user = props.admins.filter((i) => i.id === props.id);
@@ -25,17 +27,23 @@ function Index(props) {
   const [file, setfile] = useState("");
   const [Loading, setLoading] = useState("");
   const [ImageUrl, setImageUrl] = useState("");
+  const { i18n, languageCode, changeLanguage } = useLocale();
+
   useEffect(() => {
     // if (localStorage.getItem("station_token")) {
     // } else {
     //   props.history.push("/login");
     // }
-    if (localStorage.getItem("isLight") === "dark") {
+    if (localStorage.getItem("mode") === "dark") {
       document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
     }
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
+    }
   }, []);
+
   const Props = {
     multiple: false,
     action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
@@ -127,8 +135,7 @@ function Index(props) {
     //   );
   };
   let name = data.name;
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
     <div className="CustomPageWrapper">
       <SideBar />
@@ -141,14 +148,13 @@ function Index(props) {
             </div>
           </Link>
           <div className="PageTitle">
-            <div> My Profile</div>{" "}
+            <div> My Profile</div>
             <CustomButton main={true} onOpen={Save}>
               Save
             </CustomButton>
           </div>
         </div>
         <div className="ProfileContent">
-          {" "}
           <div
             style={{
               display: "flex",
@@ -214,7 +220,7 @@ function Index(props) {
               Delet Your Account?
               <BsExclamationCircle color="var(--lighterGray)" />
             </div>
-          </div>{" "}
+          </div>
         </div>
       </div>
     </div>

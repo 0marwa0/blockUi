@@ -77,7 +77,7 @@ export const ChoosePhotoWidget = (props) => {
         <div className="d-xl-flex align-items-center">
           <div className="user-avatar xl-avatar">
             <Image fluid rounded src={photo} />
-         </div>
+          </div>
           <div className="file-field">
             <div className="d-flex justify-content-xl-center ms-xl-3">
               <div className="d-flex">
@@ -111,9 +111,11 @@ export const CounterWidget = (props) => {
         <Row className="d-block d-xl-flex align-items-center">
           <Col
             xl={5}
-            className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
+            className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0"
+          >
             <div
-              className={`icon icon-shape icon-md icon-${iconColor} rounded me-4 me-sm-0`}>
+              className={`icon icon-shape icon-md icon-${iconColor} rounded me-4 me-sm-0`}
+            >
               <FontAwesomeIcon icon={icon} />
             </div>
             <div className="d-sm-none">
@@ -127,7 +129,7 @@ export const CounterWidget = (props) => {
               <h3 className="mb-1">{title}</h3>
             </div>
             <small>
-              {period}, <FontAwesomeIcon icon={faGlobeEurope} size="xs" />{" "}
+              {period}, <FontAwesomeIcon icon={faGlobeEurope} size="xs" />
               WorldWide
             </small>
             <div className="small mt-2">
@@ -137,7 +139,7 @@ export const CounterWidget = (props) => {
               />
               <span className={`${percentageColor} fw-bold`}>
                 {percentage}%
-              </span>{" "}
+              </span>
               Since last month
             </div>
           </Col>
@@ -158,7 +160,8 @@ export const CircleChartWidget = (props) => {
           <Col
             xs={12}
             xl={5}
-            className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
+            className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0"
+          >
             <CircleChart series={series} />
           </Col>
           <Col xs={12} xl={7} className="px-xl-0">
@@ -167,7 +170,8 @@ export const CircleChartWidget = (props) => {
             {data.map((d) => (
               <h6
                 key={`circle-element-${d.id}`}
-                className="fw-normal text-gray">
+                className="fw-normal text-gray"
+              >
                 <FontAwesomeIcon
                   icon={d.icon}
                   className={`icon icon-xs text-${d.color} w-20 me-1`}
@@ -208,7 +212,8 @@ export const BarChartWidget = (props) => {
           {data.map((d) => (
             <div
               key={`bar-element-${d.id}`}
-              className="d-flex align-items-center text-end mb-2">
+              className="d-flex align-items-center text-end mb-2"
+            >
               <span className={`shape-xs rounded-circle bg-${d.color} me-2`} />
               <small className="fw-normal">{d.label}</small>
             </div>
@@ -269,7 +274,7 @@ export const TeamMembersWidget = () => {
       </Card.Header>
       <Card.Body>
         <ListGroup className="list-group-flush list my--3">
-    {/*          {teamMembers.map((tm) => (
+          {/*          {teamMembers.map((tm) => (
             <TeamMember key={`team-member-${tm.id}`} {...tm} />
           ))}*/}
         </ListGroup>
@@ -357,7 +362,7 @@ export const RankingWidget = () => {
               <FontAwesomeIcon
                 icon={faGlobeEurope}
                 className="icon icon-xs me-3"
-              />{" "}
+              />
               Global Rank
             </h6>
           </div>
@@ -374,7 +379,7 @@ export const RankingWidget = () => {
               Country Rank
             </h6>
             <div className="small card-stats">
-              United States{" "}
+              United States
               <FontAwesomeIcon
                 icon={faAngleUp}
                 className="icon icon-xs text-success ms-2"

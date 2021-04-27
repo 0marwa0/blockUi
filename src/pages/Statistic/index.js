@@ -3,6 +3,8 @@ import React, { useRef, useState, useEffect } from "react";
 import SideBar from "../Sidebar";
 import { BiExport, BiDollar } from "react-icons/bi";
 import "./styles/index.css";
+import { useLocale } from "react-easy-localization";
+
 import moment from "moment";
 import ChartBar from "../Dashboard/chart/ChartBar";
 import LoadingBar from "react-top-loading-bar";
@@ -326,17 +328,20 @@ function Index(props) {
       </Menu.Item>
     </Menu>
   );
+  const { i18n, languageCode, changeLanguage } = useLocale();
 
   // let d = "2020-11-05T00:00:00.000Z";
   useEffect(() => {
-    if (localStorage.getItem("isLight") === "dark") {
+    if (localStorage.getItem("mode") === "dark") {
       document.body.style.background = "var(--black)";
     } else {
-      document.body.style.background = "lighterGray";
+      document.body.style.background = "var(--lightGray";
     }
-  }, []);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
+    }
+  });
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
     <div className="CustomPageWrapper">
       <GlobalStyle />
@@ -345,7 +350,7 @@ function Index(props) {
       <SideBar />
       <div className="PageContentFix">
         <PageHeader>
-          <div className="PageTitle"> Statices</div>
+          <div className="PageTitle"> {i18n.statistics}</div>
         </PageHeader>
         <Row>
           {/**<PageBtn>
@@ -408,11 +413,11 @@ function Index(props) {
 
           <Col style={{ height: "100%" }}>
             <div className="r-ctrl">
-              <Income />
+              <Income title={i18n.income} />
             </div>
             <div style={{ height: "3%" }}></div>
             <div className="s-ctrl">
-              <Expanse />
+              <Expanse title={i18n.expanse} />
             </div>
           </Col>
         </Row>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChartBar from "./chart/ChartBar";
 import "../shared/style/widget.css";
 import "../shared/style/Stock.css";
@@ -10,8 +10,17 @@ import { BiDollar } from "react-icons/bi";
 import { useLocale } from "react-easy-localization";
 function Index(props) {
   const { i18n, languageCode, changeLanguage } = useLocale();
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
+  useEffect(() => {
+    if (localStorage.getItem("mode") === "dark") {
+      document.body.style.background = "var(--black)";
+    } else {
+      document.body.style.background = "var(--lightGray";
+    }
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
+    }
+  });
   return (
     <div className={darkMod ? "Widget-dark" : "Widget"}>
       <div style={{ display: "flex", flexDirection: "row", gap: "40px" }}>
@@ -39,7 +48,7 @@ function Index(props) {
             <div className="GrayText"></div>
           </div>
           <div className="BoldText">555557</div>
-        </div>{" "}
+        </div>
         <div className="stock-item">
           <div
             className={`TotleReservationsIcon ${darkMod ? "darkIcon" : "blue"}`}
@@ -58,7 +67,6 @@ function Index(props) {
               darkMod ? "darkIcon" : "orange"
             }`}
           >
-            {" "}
             <MdShowChart color="var(--orange)" size={20} />
           </div>
           <div>

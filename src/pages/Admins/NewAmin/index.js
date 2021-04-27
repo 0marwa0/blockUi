@@ -73,9 +73,8 @@ function Index(props) {
             {/* <AiOutlineClose /> */}
           </Title>
           <InputLable>
-            {" "}
             <div style={{ fontSize: "17px" }}>Admin Info</div>
-          </InputLable>{" "}
+          </InputLable>
           <Space />
           <InputLable>
             Full Name
@@ -128,7 +127,6 @@ function Index(props) {
 
         <ModalFooter>
           <div style={{ float: "right" }}>
-            {" "}
             <CustomModleButton Main extra>
               Create
             </CustomModleButton>

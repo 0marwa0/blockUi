@@ -35,7 +35,6 @@ const PageWrapper = styled.div`
 function Index(props) {
   return (
     <div>
-      {" "}
       <ModleHeader>
         Send notification
         <Close onClick={props.Close} cursor="pointer" />
@@ -51,7 +50,6 @@ function Index(props) {
         <Space />
         <InputLable>
           <span>
-            {" "}
             Message <GiNorthStarShuriken color="red" size={8} />
           </span>
 
@@ -59,7 +57,7 @@ function Index(props) {
             rows={4}
             placeholder="Write notification message ..."
           />
-        </InputLable>{" "}
+        </InputLable>
         <Space />
         <InputLable>
           User filter
@@ -77,7 +75,7 @@ function Index(props) {
             </Button>
           </Dropdown>
         </InputLable>
-      </PageWrapper>{" "}
+      </PageWrapper>
       <ModleFooter>
         <CustomModleButton>Cancel</CustomModleButton>
         <CustomModleButton Main>Send</CustomModleButton>

@@ -47,21 +47,25 @@ function App(props) {
   const { i18n, languageCode, changeLanguage } = useLocale();
 
   useEffect(() => {
-    if (localStorage.getItem("isLight") === "dark") {
+    let mode = window.localStorage.getItem("mode");
+    let language = window.localStorage.getItem("language");
+    let english = language === "english" ? true : false;
+    let arabic = language === "arabic" ? true : false;
+    if (mode === "dark") {
       document.body.style.background = "var(--black)";
-    } else {
-      document.body.style.background = "var(--lightGray)";
+    } else if (mode === null) {
+      localStorage.setItem("mode", "light");
     }
-    if (localStorage.getItem("isEnglish")) {
-      if (localStorage.getItem("isEnglish") === "false") {
-        document.body.style.direction = "rtl";
-        changeLanguage("ar");
-      } else {
-        document.body.style.direction = "ltr";
-        changeLanguage("en");
-      }
+    if (arabic) {
+      changeLanguage("ar");
+      document.body.style.direction = "rtl";
+    } else if (english) {
+      changeLanguage("en");
+      document.body.style.direction = "ltr";
+    } else if (language === null) {
+      changeLanguage("en");
+      localStorage.setItem("language", "english");
     }
-
     // LoadData(
     //   "Admins",
     //   (err, data) => {
@@ -106,27 +110,27 @@ function App(props) {
           path="/workers"
           render={(props) => <Workers {...props} id={userId} />}
           exact
-        />{" "}
+        />
         <Route
           path="/statistics"
           render={(props) => <Statistic {...props} id={userId} />}
           exact
-        />{" "}
+        />
         <Route
           path="/settings"
           render={(props) => <Settings {...props} id={userId} />}
           exact
-        />{" "}
+        />
         <Route
           path="/login"
           render={(props) => <Login {...props} id={userId} />}
           exact
-        />{" "}
+        />
         <Route
           path="/workerProfile"
           render={(props) => <WorkerINFO {...props} id={userId} />}
           exact
-        />{" "}
+        />
         <Route
           path="/records"
           render={(props) => <Records {...props} id={userId} />}

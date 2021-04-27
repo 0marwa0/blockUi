@@ -15,7 +15,9 @@ import { BiDollar } from "react-icons/bi";
 import { Button, Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import "../shared/style/widget.css";
+import { BiBox } from "react-icons/bi";
 
+import { ImUsers } from "react-icons/im";
 import { useLocale } from "react-easy-localization";
 const menu2 = (
   <Menu>
@@ -47,17 +49,19 @@ function Index(props) {
     }
   };
   useEffect(() => {
-    if (localStorage.getItem("isLight") === "dark") {
+    if (localStorage.getItem("mode") === "dark") {
       document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "var(--lightGray";
+    }
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
     }
   });
 
   const { i18n, languageCode, changeLanguage } = useLocale();
   let statistics = props.statistics;
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
     <div className={darkMod ? "Widget-dark" : "Widget"}>
       <div className="ItemHeader">
@@ -70,7 +74,7 @@ function Index(props) {
             <DropIcon />
           </div>
         </Dropdown>
-      </div>{" "}
+      </div>
       <div>
         {props.Loading ? (
           [1, 2, 3, 4].map((i) => {
@@ -84,26 +88,24 @@ function Index(props) {
                   darkMod ? "darkIcon" : "blue"
                 }`}
               >
-                <GiElectric color="var(--blue)" size={15} />
+                <ImUsers color="var(--blue)" size={15} />
               </div>
               <div>
-                {i18n.numberofSoldRecord}
-                <div className="GrayText"></div>
+                workers <div className="GrayText"></div>
               </div>
               <div className="BoldText">8824</div>
             </div>
+
             <div className="ReservationItem">
               <div
                 className={`TotleReservationsIcon ${
                   darkMod ? "darkIcon" : "orange"
                 }`}
               >
-                {" "}
-                <MdShowChart color="var(--orange)" size={20} />
+                <BiBox color="var(--orange)" size={20} />
               </div>
               <div>
-                {i18n.total}
-                <div className="GrayText"></div>
+                records<div className="GrayText"></div>
               </div>
               <div className="BoldText">12,000,00</div>
             </div>
@@ -135,33 +137,6 @@ function Index(props) {
               </div>
               <div className="BoldText">5555</div>
             </div>
-            {/* <div className="ReservationItem">
-              <div
-                className={`TotleReservationsIcon ${
-                  darkMod ? "darkIcon" : "green"
-                }`}
-              >
-                <BiDollar color="var(--darkGreen)" size={17} />
-              </div>
-              <div>
-                Total Income in $<div className="GrayText"></div>
-              </div>
-              <div className="BoldText">88,000</div>
-            </div>
-           <div className="ReservationItem">
-              <div
-                className={`TotleReservationsIcon ${
-                  darkMod ? "darkIcon" : "blue"
-                }`}
-              >
-                <GiElectric color="var(--blue)" size={15} />
-              </div>
-              <div>
-                Total Income in QRD
-                <div className="GrayText"></div>
-              </div>
-              <div className="BoldText">555557</div>
-              </div>*/}
           </div>
         )}
       </div>

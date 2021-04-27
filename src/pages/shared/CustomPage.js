@@ -1,6 +1,7 @@
 import ClipLoader from "react-spinners/ClipLoader";
 import { useState, useRef } from "react";
-import { Button, Popover, Col, Row, Table, Input, Radio } from "antd";
+import { Button, Popover, Col, Row, Input, Radio, ConfigProvider } from "antd";
+import Table from "../shared/Table";
 import React, { useEffect } from "react";
 import { BiImport, BiExport } from "react-icons/bi";
 import LoadingBar from "react-top-loading-bar";
@@ -102,24 +103,28 @@ function CustomPage(props) {
       // document.body.style.background = "var(--black)";
     }
   }
-
   useEffect(() => {
-    if (localStorage.getItem("isLight") === "dark") {
+    if (localStorage.getItem("mode") === "dark") {
       document.body.style.background = "var(--black)";
     } else {
       document.body.style.background = "white";
     }
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
+    }
+  });
+  useEffect(() => {
     if (props.Loading) {
       ref.current.staticStart();
     } else {
       ref.current.complete();
     }
   }, []);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let ar = window.localStorage.getItem("language") == "arabic" ? true : false;
+
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
-    <div>
-      {" "}
+    <div className={darkMod ? "isDark" : ""}>
       <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
       <div className="CustomPageWrapper">
         <SideBar
@@ -142,7 +147,6 @@ function CustomPage(props) {
                 props.children
               ) : (
                 <>
-                  {" "}
                   <div className="ButtonGroup" space>
                     {props.pageTitle === "Records" ? (
                       <div
@@ -178,11 +182,11 @@ function CustomPage(props) {
                     ) : (
                       ""
                     )}
-                    <Input
+                    <input
                       loading={props.Loading}
                       onChange={(e) => props.HandleSearch(e)}
                       className={darkMod ? "input-rg-dark" : "input-rg"}
-                      placeholder="Search"
+                      placeholder={i18n.search}
                     />
                     {props.pageTitle === "resources" ? (
                       ""
@@ -197,10 +201,16 @@ function CustomPage(props) {
                       >
                         <button
                           className="ButtonStyled"
+                          style={{
+                            borderColor: darkMod ? "transparent" : "",
+                            color: darkMod ? "var(--darkGray)" : "",
+                            backgroundColor: darkMod ? "#353535" : "",
+                            cursor: props.Loading ? "wait" : "pointer",
+                            direction: ar ? "ltr" : "rtl",
+                          }}
                           loading={props.Loading}
                           //fun={props.filter}i
                         >
-                          {" "}
                           {props.Loading ? (
                             <div style={{ marginTop: "5px" }}>
                               <ClipLoader
@@ -235,7 +245,7 @@ function CustomPage(props) {
                     </CustomButton>
 
                     <CustomButton
-                      lable={`New ${
+                      lable={`${i18n.new} ${
                         pageTitleName.charAt(0).toUpperCase() +
                         pageTitleName.slice(1)
                       }`}
@@ -252,7 +262,7 @@ function CustomPage(props) {
                     </CustomButton>
                   </div>
                 </>
-              )}{" "}
+              )}
             </div>
           </Row>
 
@@ -264,30 +274,16 @@ function CustomPage(props) {
                 <div style={{ width: "100%" }}>
                   <div className={darkMod ? "isDark" : ""}>
                     <Table
-                      columns={columns}
-                      rowClassName="tableRow"
-                      onRow={() =>
-                        props.pageTitle === "workers"
-                          ? //   props.pageTitle==="Workers"
-                            {
-                              onClick: () => history.push("/workerprofile"),
-                            }
-                          : ""
-                      }
-                      pagination={false}
-                      dataSource={Data}
-                      locale={{
-                        emptyText: TableLoading(props.Loading, props.Item),
-                      }}
-                    />
-                    <Pagination
-                      length={Data.length}
-                      currentPage={currentPage}
-                      prevPage={prevPage}
-                      totalPge={totalPge}
-                      nextPage={nextPage}
-                      lengthAll={props.data.length}
-                    />
+                      data={[]}
+                      //onRow={() =>
+                      // props.pageTitle === "workers"
+                      //  ? //   props.pageTitle==="Workers"
+                      //   {
+                      //    onClick: () => history.push("/workerprofile"),
+                      // }
+                      // : ""
+                      // }
+                    ></Table>
                   </div>
                 </div>
               ) : showList ? (

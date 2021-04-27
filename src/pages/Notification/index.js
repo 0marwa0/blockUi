@@ -9,33 +9,8 @@ import "./styles/index.css";
 import ContentLoader from "react-content-loader";
 import { Mesg, FailedMesg } from "../../API/APIMessage";
 import { CustomButton } from "../shared/SharedComponents";
-const NotificationsHolder = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: var(--black);
-  height: 400px;
-  align-items: center;
-  width: 500px;
-  font-size: 14px;
-`;
 
-const NotifiItem = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 15px;
-  font-size: 12px;
-  padding: 20px 40px;
-  width: 100%;
-
-  align-items: center;
-  border-bottom: 1px solid var(--lighterGray);
-`;
-export const NotifiImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-`;
-export const Text = styled.span`
+const Text = styled.span`
   display: inline-block;
   width: 100%;
   color: var(--darkGray);
@@ -89,12 +64,17 @@ function Index(props) {
       // );
     }, 1200);
   }, []);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = localStorage.getItem("mode") === "dark" ? true : false;
   let notifications = notification ? notification : [];
   return (
-    <div className={darkMod ? "isDark" : ""}>
-      <div className={darkMod ? "notific-holer-dark" : "notific-holer"}>
+    <div className={localStorage.getItem("mode") === "dark" ? "isDark" : ""}>
+      <div
+        className={
+          localStorage.getItem("mode") === "dark"
+            ? "notific-holer-dark"
+            : "notific-holer"
+        }
+      >
         <Scrollbars style={{ width: "100%", height: "380px" }}>
           {Loading
             ? [1, 2].map((i) => {
@@ -155,7 +135,7 @@ function Index(props) {
                           .filter((i) => i.id === item.userId)
                           .map((i) => i.name)
                           .toString()}
-                      </span>{" "}
+                      </span>
                       {item.action}
                     </Text>
                     <span
@@ -177,7 +157,7 @@ function Index(props) {
                     </span>
                   </div>
                 );
-              })}{" "}
+              })}
         </Scrollbars>
       </div>
 

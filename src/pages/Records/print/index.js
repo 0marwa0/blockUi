@@ -89,7 +89,7 @@ function Index(props) {
   return (
     <div className={darkMod ? "record-items-dark" : "record-items"}>
       <div className={darkMod ? "print-page-dark" : "print-page"}>
-        <div>Print </div>{" "}
+        <div>Print </div>
         <div className={darkMod ? "record-head-dark" : "record-head"}>
           <span className="flex-row">
             Item

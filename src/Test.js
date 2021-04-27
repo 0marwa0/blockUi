@@ -390,7 +390,7 @@ const Index = (props) => {
                     <GrayText> Total Price</GrayText>
 
                     <div>
-                      {" "}
+                      
                       {Loading ? <TextLoadS /> : "$" + Data ? Data.price : ""}
                     </div>
                   </DetailItem>

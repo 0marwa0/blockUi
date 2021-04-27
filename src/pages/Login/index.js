@@ -184,7 +184,7 @@ export default function Index(props) {
             Turn your smartphone or tablet into powerful POS Manage sales
             inventory and employees with ease; engage custommers increase your
             revenue
-          </p>{" "}
+          </p>
         </div>
       </Slide>
     );
@@ -267,10 +267,10 @@ export default function Index(props) {
             </div>
             <u>Forgot Password?</u>
           </LoginInfo>
-        </LoginContent>{" "}
+        </LoginContent>
         <CopyRights>
           <span style={{ color: "var(--darkGray)", fontSize: "13px" }}>
-            A system by {"  "}
+            A system by
           </span>
           Solo Creative Studio
         </CopyRights>

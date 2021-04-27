@@ -2,8 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-
-  font-family: Px-Grotesk !important;
+  font-family: Px-Grotesk, "Tajawal" !important;
 }
 body,
 html {
@@ -34,10 +33,11 @@ html {
 .ant-radio-checked .ant-radio-inner:focus {
   border-color: var(--yellow) !important;
 }
+.ant-table-thead {
+  background-color: red !important;
+}
 
-.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
 .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
-.ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td,
 .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
   background: unset !important;
 }
@@ -717,22 +717,18 @@ a {
   border-radius: 7px !important;
   text-align: left !important;
 }
-
 .slick-dots li.slick-active button:before {
   color: var(--cyan) !important;
 }
-
+.ant-table {
+  border-radius: 16px !important;
+  border: 1px solid gray !important;
+}
 .ant-table-container {
-  border: 1px solid var(--lighterGray) !important;
-  border-radius: 10px 10px 0 0 !important;
+  border-radius: 16px 16px 0 0 !important;
   border-bottom: none !important;
 }
-th:first-child {
-  border-radius: 10px 0 0 0 !important;
-}
-th:last-child {
-  border-radius: 0 10px 0 0 !important;
-}
+
 .ant-tag {
   border: none !important;
   border-radius: 6px !important;
@@ -779,14 +775,26 @@ th:last-child {
   --lightOrange: #fff5e5;
 }
 @font-face {
-  font-family: "Px-Grotesk";
+  font-family: Px-Grotesk;
+  src: url("./public/fonts/Px-Grotesk-Light.ttf");
   src: url("./public/fonts/Px-Grotesk-Bold-Italic.ttf");
   src: url("./public/fonts/Px-Grotesk-Bold.ttf");
-  src: url("./public/fonts/Px-Grotesk-Light.ttf");
+
   src: url("./public/fonts/Px-Grotesk-Regular-Italic.ttf");
   src: url("./public/fonts/Px-Grotesk-Regular-Italic.ttf");
   src: url("./public/fonts/Px-Grotesk-Regular.ttf");
 }
+@font-face {
+  font-family: "Tajawal";
+  src: url("./public/fonts/Tajawal/Tajawal-Bold.ttf");
+  src: url("./public/fonts/Tajawal/Tajawal-Black.ttf");
+  src: url("./public/fonts/Tajawal/Tajawal-ExtraLight.ttf");
+  src: url("./public/fonts/Tajawal/Tajawal-Regular.ttf");
+  src: url("./public/fonts/Tajawal/Tajawal-Medium.ttf");
+  src: url("./public/fonts/Tajawal/Tajawal-Light.ttf");
+  src: url("./public/fonts/Tajawal/Tajawal-ExtraBold.ttf");
+}
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";

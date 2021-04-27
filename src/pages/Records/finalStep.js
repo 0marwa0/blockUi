@@ -11,7 +11,6 @@ function Index(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className="finalStep">
-      {" "}
       <div>Customer Information</div>
       <div
         style={{
@@ -26,37 +25,37 @@ function Index(props) {
         <div>
           <InputLable>
             Full Name
-            <Input
+            <input
               className={darkMod ? "input-rg-dark" : "input-rg"}
               //          onChange={(e) => props.handleInput(e, "name")}
               placeholder="Write  name"
             />
           </InputLable>
-        </div>{" "}
+        </div>
         <div>
           <InputLable>
             Address
-            <Input
+            <input
               placeholder="Write  Address"
               className={darkMod ? "input-rg-dark" : "input-rg"}
               //        onChange={(e) => props.handleInput(e, "email")}
             />
           </InputLable>
-        </div>{" "}
+        </div>
         <div>
           <InputLable>
             Phone
-            <Input
+            <input
               placeholder="Write  phone number"
               className={darkMod ? "input-rg-dark" : "input-rg"}
               //       onChange={(e) => props.handleInput(e, "phone")}
             />
-          </InputLable>{" "}
-        </div>{" "}
+          </InputLable>
+        </div>
         <div>
           <InputLable>
             Driver Nmae
-            <Input
+            <input
               placeholder="Write Driver name"
               className={darkMod ? "input-rg-dark" : "input-rg"}
               //       onChange={(e) => props.handleInput(e, "phone")}
@@ -66,7 +65,9 @@ function Index(props) {
         <div>
           <InputLable>
             Note
-            <TextArea
+            <textarea
+              rows={5}
+              cols={5}
               placeholder="Write  Note"
               className={darkMod ? "input-rg-dark" : "input-rg"}
               //       onChange={(e) => props.handleInput(e, "phone")}

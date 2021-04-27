@@ -1,8 +1,8 @@
 .setting-page li {
   margin: 10px;
 }
-.scroll {
-  color: red;
+.ant-radio-wrapper {
+  color: var(--darkGray) !important;
 }
 .Dropdown-control {
   border: none !important;
@@ -12,12 +12,22 @@
 }
 .Dropdown-menu {
   width: max-content !important;
-
+  border-radius: 8px !important;
   background-color: white !important;
 }
 .isDark .Dropdown-menu {
   color: var(--darkGray) !important;
+  border: 1px solid #353535 !important;
   background-color: black !important;
+}
+
+.isDark .Dropdown-option.is-selected {
+  background-color: #353535 !important;
+  color: var(--black) !important;
+}
+.isDark .Dropdown-option:hover {
+  color: var(--black) !important;
+  background-color: #353535 !important;
 }
 .ant-switch-checked {
   background-color: var(--yellow) !important;

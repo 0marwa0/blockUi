@@ -55,7 +55,7 @@ export const ReservationLoading = () => {
               active="active"
               style={{ width: "3vw", height: "3vw", borderRadius: "7px" }}
               shape="circle"
-            />{" "}
+            />
             <Skeleton.Input
               style={{ width: 70, height: 3 }}
               active="active"
@@ -82,7 +82,7 @@ export const BookItemLoading = () => {
             style={{ width: 70, height: 3 }}
             active="active"
             size="default"
-          />{" "}
+          />
         </div>
 
         <Skeleton.Input

@@ -91,7 +91,6 @@ function Index(props) {
 
   return (
     <div>
-      {" "}
       <ModleHeader>
         Send notification
         <Close onClick={props.onClose} cursor="pointer" />
@@ -105,7 +104,7 @@ function Index(props) {
             onChange={(e) => handleInput(e, "old")}
             placeholder="Write old password"
           />
-        </InputLable>{" "}
+        </InputLable>
         <Divider />
         <InputLable>
           <span>
@@ -117,7 +116,7 @@ function Index(props) {
             placeholder="Write nw password"
           />
         </InputLable>
-      </PageWrapper>{" "}
+      </PageWrapper>
       <ModleFooter>
         <CustomModleButton fun={props.Close}>Cancel</CustomModleButton>
         <CustomModleButton main fun={handleSubmit}>

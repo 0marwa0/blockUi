@@ -349,7 +349,6 @@ function Index(props) {
                         : ""
                     }
                   >
-                    {" "}
                     <spna>
                       {Data.status
                         ? Data.status.charAt(0).toUpperCase() +
@@ -471,7 +470,6 @@ function Index(props) {
                     <GrayText> Total Price</GrayText>
 
                     <div>
-                      {" "}
                       {Loading ? <TextLoadS /> : "$" + Data ? Data.price : ""}
                     </div>
                   </DetailItem>

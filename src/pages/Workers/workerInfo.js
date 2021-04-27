@@ -8,6 +8,8 @@ import { CustomButton } from "../shared/SharedComponents";
 import LoadingBar from "react-top-loading-bar";
 import { Input, Table, Col, Row } from "antd";
 import "../../App.css";
+
+import { useLocale } from "react-easy-localization";
 import Pagination from "../shared/pagination";
 import { TableLoading } from "../shared/Loading";
 import ListItem from "../Records/RecordItem";
@@ -80,8 +82,17 @@ function Index(props) {
     }, 1200);
   };
 
+  const { i18n, languageCode, changeLanguage } = useLocale();
   useEffect(() => {
     loadApiData();
+    if (localStorage.getItem("mode") === "dark") {
+      document.body.style.background = "var(--black)";
+    } else {
+      document.body.style.background = "var(--lightGray";
+    }
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
+    }
   }, []);
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -126,8 +137,8 @@ function Index(props) {
       document.body.style.background = "var(--lightGray";
     }
   }, [theme]);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let ar = window.localStorage.getItem("language") == "arabic" ? true : false;
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
     <div className="CustomPageWrapper setting-page">
       <LoadingBar color="var(--cyan)" ref={ref} shadow={true} />
@@ -191,7 +202,7 @@ function Index(props) {
                   >
                     <FiFilter />
                   </CustomButton>
-                </div>{" "}
+                </div>
                 <div style={{ height: "20px" }}></div>
                 {showTable ? (
                   <Table
@@ -205,7 +216,7 @@ function Index(props) {
                   />
                 ) : (
                   <ListItem data={Filterdata} />
-                )}{" "}
+                )}
                 <Pagination
                   length={Data.length}
                   currentPage={currentPage}
@@ -236,9 +247,9 @@ function Index(props) {
               <div className={darkMod ? "Widget-dark" : "Widget"}>
                 <div className="ItemHeader">
                   <span>Porgress</span>
-                </div>{" "}
+                </div>
                 <ChartBar />
-              </div>{" "}
+              </div>
             </div>
           </Col>
         </Row>

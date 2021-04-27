@@ -141,13 +141,11 @@ function Index(props) {
             emptyText: TableLoading(Loading, "Items"),
             //EmptyText(props.Loading, props.Item),
           }}
-        />{" "}
+        />
       </div>
       <div className="input-row">
         <div className="flex-row">
-          {" "}
           <div>
-            {" "}
             <Input
               className={darkMod ? "input-rg-dark" : "input-rg"}
               placeholder="item"
@@ -156,7 +154,6 @@ function Index(props) {
             />
           </div>
           <div>
-            {" "}
             <Input
               className={darkMod ? "input-rg-dark" : "input-rg"}
               placeholder="price"
@@ -170,7 +167,7 @@ function Index(props) {
               placeholder="quantity"
               style={{ border: "none", width: "max-content" }}
               onChange={(e) => handelInput("note", e.target.value)}
-            />{" "}
+            />
           </div>
           <div>
             <Input

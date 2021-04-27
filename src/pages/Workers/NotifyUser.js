@@ -112,7 +112,8 @@ function Index(props) {
         className="Modal"
         ref={(nods) => {
           node = nods;
-        }}>
+        }}
+      >
         <PageWrapper>
           <div>
             <ModleHeader>
@@ -137,7 +138,6 @@ function Index(props) {
             <Space />
             <InputLable>
               <span>
-                {" "}
                 Message <GiNorthStarShuriken color="red" size={8} />
               </span>
 
@@ -146,7 +146,7 @@ function Index(props) {
                 onChange={(e) => handleInput(e, "mesg")}
                 placeholder="Write notification message ..."
               />
-            </InputLable>{" "}
+            </InputLable>
             <Space />
             {!props.all ? (
               ""
@@ -157,14 +157,14 @@ function Index(props) {
                   <Option key="all">All users</Option>
                 </Select>
               </InputLable>
-            )}{" "}
+            )}
           </div>
           <ModleFooter>
             <CustomModleButton main fun={handleSubmit} loading={Loading}>
               Send
             </CustomModleButton>
           </ModleFooter>
-        </PageWrapper>{" "}
+        </PageWrapper>
       </div>
     </div>
   );

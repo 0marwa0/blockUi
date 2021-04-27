@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./shared/style/Sidebar.css";
-import styled from "styled-components";
-import { MdEventNote, MdAddShoppingCart } from "react-icons/md";
-import { BiBookAdd, BiLogIn } from "react-icons/bi";
+import { BiLogIn } from "react-icons/bi";
 import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlineDashboard, AiOutlineLineChart } from "react-icons/ai";
-import { Tooltip, Button, Popover } from "antd";
+import { Tooltip, Popover } from "antd";
 import { FiSettings } from "react-icons/fi";
-import { useLocation, useHistory, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { BiCalendarWeek, BiUser } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import Notification from "./Notification";
-
 import { BiBox } from "react-icons/bi";
 
-let darkMod = window.localStorage.getItem("isLight") === "light" ? false : true;
-
+let darkMod = window.localStorage.getItem("mode") == "dark" ? true : false;
 const NavItem = ({ slug, children, index, title }) => {
-  const history = useHistory();
   const location = useLocation();
+  let ar = window.localStorage.getItem("language") == "arabic" ? true : false;
   let url = `/` + slug;
   let type;
   let isSelected = false;
@@ -27,42 +23,21 @@ const NavItem = ({ slug, children, index, title }) => {
   } else {
     type = false;
   }
-
-  useEffect(() => {
-    // console.log(type, "type");
-  }, [window.localStorage.getItem("isLight")]);
   if (slug === location.pathname.substr(1)) {
     isSelected = true;
   }
-
-  if (
-    location.pathname.substr(1).slice(0, 14) === "bookingDetalis" &&
-    slug === "booking"
-  ) {
-    isSelected = true;
-  }
-  if (location.pathname.substr(1) === "createEvent" && slug === "events") {
-    isSelected = true;
-  }
-
   let dash = false;
   if (slug === "") {
     slug = "Dashboard";
     dash = true;
   }
-
   const [isClicked, setIsClicked] = useState(false);
   const setClicked = () => {
     setIsClicked(!isClicked);
   };
-  let text = slug.charAt(0).toUpperCase() + slug.slice(1);
   return slug === "Notifications" ? (
     <div
-      className={
-        window.localStorage.getItem("isEnglish") == "true"
-          ? "SideItem"
-          : "SideItem-ar"
-      }
+      className={ar ? "SideItem-ar" : "SideItem"}
       type={type}
       isSelected={isSelected}
       move={true}
@@ -74,11 +49,7 @@ const NavItem = ({ slug, children, index, title }) => {
     <Tooltip title={slug} placement="right">
       <Link to={url}>
         <div
-          className={
-            window.localStorage.getItem("isEnglish") == "true"
-              ? "SideItem"
-              : "SideItem-ar"
-          }
+          className={ar ? "SideItem-ar" : "SideItem"}
           type={type}
           onClick={() => setClicked}
           isSelected={isSelected}
@@ -89,43 +60,42 @@ const NavItem = ({ slug, children, index, title }) => {
     </Tooltip>
   );
 };
-const UserImage = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-`;
-
 function SideBar(props) {
-  let node;
   const [showNotification, setShow] = useState(false);
   const showPopup = (showNotification) => {
     setShow(showNotification);
   };
 
+  let ar = window.localStorage.getItem("language") == "arabic" ? true : false;
   const location = useLocation();
-  let { id } = useParams();
   let title = props.title;
   let page = location.pathname;
+  let darkMod = window.localStorage.getItem("mode") == "dark" ? true : false;
+
   return (
     <div className={darkMod ? "isDark" : ""}>
       <div
-        className={
-          window.localStorage.getItem("isLight") === "dark"
-            ? "SideWarpper-dark"
-            : "SideWarpper"
-        }
+        className={darkMod ? "SideWarpper-dark" : "SideWarpper"}
+        style={{
+          borderLeft: ar
+            ? `1px solid ${darkMod ? "#353535" : "transparent"}`
+            : "none",
+          borderRight: ar
+            ? "none"
+            : `1px solid ${darkMod ? "#353535" : "transparent"}`,
+        }}
       >
         <div className="SideList">
           <img className="Logo" src={require("../public/images/logo1.svg")} />
           <NavItem slug="" title={title}>
             <AiOutlineDashboard color={page === "/" ? "var(--cyan)" : ""} />
-          </NavItem>{" "}
+          </NavItem>
           <NavItem slug="Records" title={title}>
             <BiBox color={page === "/Records" ? "var(--cyan)" : ""} />
           </NavItem>
           <NavItem slug="Workers" title={title}>
             <HiOutlineUsers color={page === "/Workers" ? "var(--cyan)" : ""} />
-          </NavItem>{" "}
+          </NavItem>
           <NavItem slug="admins" title={title}>
             <BiUser color={page === "/admins" ? "var(--cyan)" : ""} />
           </NavItem>
@@ -151,7 +121,7 @@ function SideBar(props) {
                   <div
                     className={darkMod ? "NotifiHeader-dark" : "NotifiHeader"}
                   >
-                    Notifications{" "}
+                    Notifications
                     <u
                       style={{
                         fontSize: "14px",
@@ -180,7 +150,7 @@ function SideBar(props) {
               className="UserImage"
               src={require("../public/images/b.jpg")}
             />
-            <div className="Active"></div>{" "}
+            <div className="Active"></div>
           </NavItem>
         </div>
       </div>

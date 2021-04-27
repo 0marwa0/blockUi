@@ -79,7 +79,6 @@ function Index(props) {
     window.localStorage.getItem("isLight") === "light" ? false : true;
   return (
     <div className={darkMod ? "modal-back-dark" : "modal-back"}>
-      {" "}
       <div className={darkMod ? "isDark" : ""}>
         <div className={darkMod ? "record-items-dark" : "record-items"}>
           <div
@@ -94,7 +93,6 @@ function Index(props) {
             //tabIndex={0}
             className={darkMod ? "record-tab-dark" : "record-tab"}
           >
-            {" "}
             <Input
               value={searchValue}
               onChange={(e) => onchangeValeu(e.target.value)}
@@ -103,7 +101,7 @@ function Index(props) {
             <div className={darkMod ? "tag-dark green" : "tag green"}>
               {0 + "$"}
             </div>
-            <div>{"0"}</div>{" "}
+            <div>{"0"}</div>
             <div className={darkMod ? "tag-dark  org" : "tag org"}>{"0"}</div>
           </div>
 
@@ -113,12 +111,11 @@ function Index(props) {
               tabIndex={0}
               className={darkMod ? "record-tab-dark" : "record-tab"}
             >
-              {" "}
               <div>{value.item}</div>
               <div className={darkMod ? "tag-dark green" : "tag green"}>
                 {value.price + "$"}
               </div>
-              <div>{value.quantity}</div>{" "}
+              <div>{value.quantity}</div>
               <div className={darkMod ? "tag-dark  org" : "tag org"}>
                 {value.discount}
               </div>

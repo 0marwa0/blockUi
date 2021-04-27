@@ -111,14 +111,14 @@ export default function AutoInput() {
             value={quantity}
             style={{ border: "none", width: "max-content" }}
             onChange={(e) => handelInput("quantity", e.target.value)}
-          />{" "}
+          />
           <Input
             className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
             placeholder="discount"
             value={note}
             style={{ border: "none", width: "max-content" }}
             onChange={(e) => handelInput("note", e.target.value)}
-          />{" "}
+          />
         </div>
         <Modal open={modalIsOpen} onClose={openModal} showCloseIcon={false}>
           <SuggestionModal onPick={onPick} value={valueInput} />

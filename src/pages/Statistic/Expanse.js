@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import ChartBar from "../Dashboard/chart/ChartBar";
 import "../shared/style/widget.css";
-
+import { CustomButton } from "../shared/SharedComponents";
 function Index(props) {
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
     <div className={darkMod ? "Widget-dark" : "Widget"}>
       <div className="ItemHeader">
-        <span>Expanse</span>
-        <div className="NumBtn">50</div>
+        <span>{props.title}</span>
+        <CustomButton>50</CustomButton>
       </div>
       <ChartBar />
     </div>

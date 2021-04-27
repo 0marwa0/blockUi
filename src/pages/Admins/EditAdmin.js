@@ -201,9 +201,8 @@ function Index(props) {
                   {/* <AiOutlineClose /> */}
                 </Title>
                 <InputLable>
-                  {" "}
                   <div style={{ fontSize: "17px" }}>Admin Info</div>
-                </InputLable>{" "}
+                </InputLable>
                 <Space />
                 <div
                   style={{
@@ -302,8 +301,8 @@ function Index(props) {
                     )}
                     options={roles}
                   />
-                </InputLable>{" "}
-              </div>{" "}
+                </InputLable>
+              </div>
               <Space />
               <div
                 style={{
@@ -322,7 +321,7 @@ function Index(props) {
                     </CustomModleButton>
                   </div>
                 </ModalFooter>
-              </div>{" "}
+              </div>
             </SideModal>
           </div>
         )}

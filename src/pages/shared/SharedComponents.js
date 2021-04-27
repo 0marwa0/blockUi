@@ -18,8 +18,9 @@ export const CustomButton = ({
   loading,
   extra,
 }) => {
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let ar = window.localStorage.getItem("language") == "arabic" ? true : false;
+
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return loading ? (
     <button
       className={main ? "ButtonStyledMain" : "ButtonStyled"}
@@ -28,6 +29,7 @@ export const CustomButton = ({
         color: darkMod ? "var(--darkGray)" : "",
         backgroundColor: darkMod ? "#353535" : "",
         cursor: "wait",
+        direction: ar ? "ltr" : "rtl",
       }}
       disabled={true}
       loading={loading}
@@ -50,6 +52,7 @@ export const CustomButton = ({
         borderColor: darkMod ? "transparent" : "",
         color: darkMod ? "var(--darkGray)" : "",
         backgroundColor: darkMod ? "#353535" : "",
+        direction: ar ? "ltr" : "rtl",
       }}
       loading={loading}
       onClick={main ? onOpen : fun}

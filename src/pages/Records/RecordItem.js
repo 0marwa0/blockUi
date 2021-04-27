@@ -264,13 +264,13 @@ const ListItem = (props) => {
               <ul>
                 <li className="flex-line">
                   Residual : <span>{item.Residual}</span>
-                </li>{" "}
+                </li>
                 <li className="flex-line ">
                   Received : <span>{item.recive}</span>
                 </li>
                 <li className="flex-line active-li">
                   Discount:{item.discount}
-                </li>{" "}
+                </li>
                 <li className="flex-line active-li">
                   Phone :<span>{item.phone}</span>
                 </li>
@@ -278,7 +278,7 @@ const ListItem = (props) => {
               <ul>
                 <li className="flex-line">
                   Employe : <span> {item.emp}</span>
-                </li>{" "}
+                </li>
                 <li className="flex-line ">
                   Note <span>{item.note}</span>
                 </li>
@@ -296,7 +296,7 @@ const ListItem = (props) => {
                 // class="btn card_btn"
               >
                 <AiOutlineClose color="red" />
-              </button>{" "}
+              </button>
               <button
                 class={darkMod ? "btn-dark card_btn" : "btn card_btn"}
                 // class="btn card_btn"

@@ -3,7 +3,6 @@
   width: 87px;
   height: 100vh;
   display: flex;
-  padding-right: 4px;
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--yellow);
@@ -48,6 +47,7 @@
 }
 .SideItem-ar:hover {
   border-right: 3px solid var(--cyan);
+  color: var(--cyan);
 }
 .SideItem :hover {
   color: var(--cyan);

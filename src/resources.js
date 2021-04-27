@@ -19,10 +19,12 @@ export const resources = {
     enterCode: "Enter Code",
     mode: "Mode",
     filterSettings: "Filter Settings",
-    Item: "Item name",
-    Price: "Item price",
+    Item: "Item ",
+    Price: "Price",
     Discount: "Discount",
-    quantity: "quantity",
+    quantity: "Quantity",
+    search: "Search",
+    new: "New",
     //Dashboard
     dashbaordTitle: "Dashboard",
     mostActive: "Most Active Workers",
@@ -35,6 +37,7 @@ export const resources = {
     import: "Import",
     export: "Export",
     filter: "Filter",
+    worker: "worker",
     //Workers
     workerTitle: "Workers",
     //Admin
@@ -43,6 +46,10 @@ export const resources = {
     statistics: "Statistics",
     income: "Incom",
     expanse: "Expanse",
+    //pagination
+    viewSearch: "View search of",
+    from: "from",
+    searchResulit: "search we got",
   },
   ar: {
     //Settings
@@ -64,11 +71,12 @@ export const resources = {
     enterCode: "ادخل الرمز",
     mode: "المظهر",
     filterSettings: "اعدادات البحث",
-    Item: "اسم العنصر",
+    Item: " العنصر",
     Price: "السعر",
     Discount: "الخصم",
     quantity: "الكمية",
-
+    search: "بحث",
+    new: "جديد",
     //Dashboard
     dashbaordTitle: "لوحة التحكم",
     mostActive: "اكثر العمال نشاطأ",
@@ -81,6 +89,7 @@ export const resources = {
     import: "سحب",
     export: "استخراج",
     filter: "بحث",
+    worker: "worker",
     //Workers
     workerTitle: "العمال",
     //Admin
@@ -89,5 +98,9 @@ export const resources = {
     statistics: "الاحصائيات",
     income: "اجمالي الدخل",
     expanse: "اجمالي المصروفات",
+    //pagination
+    viewSearch: "عرض ",
+    from: "من",
+    searchResulit: "نتائج البحث",
   },
 };

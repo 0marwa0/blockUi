@@ -111,7 +111,7 @@ function Index(props) {
           emptyText: TableLoading(Loading, "Items"),
           //EmptyText(props.Loading, props.Item),
         }}
-      />{" "}
+      />
       <Pagination
         length={Data.length}
         currentPage={currentPage}
