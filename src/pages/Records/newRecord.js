@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, useRef } from "react";
+import React, { FC, useEffect, useState, useCallback, useRef } from "react";
 import styled from "styled-components";
 import FinalStep from "./finalStep";
 import { Button, DatePicker, Checkbox, Space, Input } from "antd";
@@ -6,38 +6,19 @@ import "./styles/index.css";
 import { CustomButton } from "../shared/SharedComponents";
 import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
 import { MultiStepForm, Step } from "react-multi-form";
+import { addData } from "../../API/index";
 import CustomPage from "../shared/CustomPage";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import FirstStep from "./firstStep";
+import { useLocale } from "react-easy-localization";
+import { FailedMesg, Mesg, SuccessMesg } from "../../API/APIMessage";
+import { LoadData } from "../../API/index";
+
 import ThirdStep from "./thirdStep";
 import SecondStep from "./secondStep";
 import { render } from "@testing-library/react";
 const { RangePicker } = DatePicker;
-export const TextNote = styled.div`
-  color: var(--darkGray);
-  font-size: 13px;
-`;
-const PageWrapper = styled.div`
-  width: max-content;
-
-  display: flex;
-  flex-direction: column;
-  height: 85%;
-  padding: 20px 40px;
-`;
-export const SideModal = styled.div`
-  width: max-content;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  width: 540px;
-  padding: 30px 40px;
-  margin-bottom: 20px;
-`;
-
 const Container = styled.div`
   width: 100%;
   margin: 40px;
@@ -45,77 +26,187 @@ const Container = styled.div`
     width: 300px;
   }
 `;
-const itemsData = [
-  { name: "Nonoxxx", price: "2000", note: "55" },
-  { name: "Nono", price: "2000", note: "55" },
-  { name: "marwa", price: "2000", note: "55" },
-];
-let node;
-export default class index extends React.Component {
-  state = {
-    active: 1,
+
+export default function Index(props) {
+  const [active, setactivenum] = useState(1);
+  const [loading, setLoading] = useState("");
+  const setActive = (num) => {
+    setactivenum(num);
   };
-  setActive = (num) => {
-    this.setState({ active: num });
+  const [store, setStore] = useState(props.itemsData);
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [driver, setDriver] = useState("");
+  const [note, setNote] = useState("");
+  const [item, setItem] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [recordItems, setRecordItems] = useState([]);
+  const handleInput = (key, e) => {
+    let value = e.target.value;
+    switch (key) {
+      case "item":
+        setItem(value);
+        break;
+      case "price":
+        setPrice(value);
+        break;
+      case "quantity":
+        setQuantity(value);
+        break;
+      case "discount":
+        setDiscount(value);
+        break;
+      case "name":
+        setName(value);
+        break;
+      case "address":
+        setAddress(value);
+        break;
+      case "phone":
+        setPhone(value);
+        break;
+      case "driver":
+        setDriver(value);
+        break;
+      case "note":
+        setNote(value);
+        break;
+
+      default:
+        break;
+    }
+  };
+  const handleSubmit = () => {
+    let data = {
+      items: recordItems,
+
+      customer: {
+        name: name,
+        telephone: phone,
+        address: address,
+      },
+
+      branch: true,
+      currency: "USD",
+      driver: driver,
+      description: note,
+      total: 8.0,
+      receive: 11.0,
+      rest: 9.0,
+      discount: discount,
+      creator: 1,
+    };
+
+    // onOpenModal(false);
+    console.log(data, "record sended");
+    setLoading(true);
+    addData(
+      "record",
+      data,
+      (mesg, Data) => {
+        SuccessMesg("Record Created Successfully !");
+        setLoading(false);
+      },
+      (err) => {
+        setLoading(false);
+
+        FailedMesg(err);
+      }
+    );
   };
 
-  render() {
-    return (
-      <CustomPage custom={true} pageTitle="New Record" data={[]}>
-        <Container>
-          <MultiStepForm activeStep={this.state.active}>
-            <Step label="Templet">
-              <FirstStep
-                data={[
-                  { name: "water", num: "55" },
-                  { name: "Sewers", num: "55" },
-                ]}
-                onrow={true}
-                next={() => this.setActive(this.state.active + 1)}
-              />
-            </Step>
-            <Step label="Choose Tamplet ">
-              <FirstStep
-                data={[
-                  { name: " 110mm Tube", num: "55" },
-                  { name: " 110mm Tube", num: "55" },
-                  { name: " 110mm Tube", num: "55" },
-                ]}
-                onrow={true}
-                next={() => this.setActive(this.state.active + 1)}
-              />
-            </Step>
-            <Step label="Build Record">
-              <SecondStep />
-            </Step>
-            <Step label="Submit">
-              <FinalStep />
-            </Step>
-          </MultiStepForm>
-          <div style={{ padding: "10px 0" }}>
-            {this.state.active !== 1 && (
-              <Button
-                style={{ backgroundColor: "var(--cyan)" }}
-                onClick={() => this.setActive(this.state.active - 1)}
-              >
-                Previous
-              </Button>
-            )}
-            {this.state.active !== 4 && (
-              <Button
-                style={{
-                  color: "var(--black)",
-                  backgroundColor: "var(--cyan)",
-                  float: "right",
-                }}
-                onClick={() => this.setActive(this.state.active + 1)}
-              >
-                Next
-              </Button>
-            )}
-          </div>
-        </Container>
-      </CustomPage>
-    );
-  }
+  const { i18n, languageCode, changeLanguage } = useLocale();
+  const addItem = () => {
+    console.log("befor", store);
+    if (true) {
+      console.log("after", store);
+      setStore([{ item: item, price: price }]);
+    }
+  };
+  let ar = window.localStorage.getItem("language") === "arabic" ? true : false;
+  const getItmeData = (items) => {
+    setRecordItems(items);
+  };
+  return (
+    <CustomPage custom={true} pageTitle={i18n.newRecord} data={[]}>
+      <Container>
+        <MultiStepForm activeStep={active}>
+          <Step label={i18n.template}>
+            <FirstStep
+              data={[
+                { name: "water", num: "55" },
+                { name: "Sewers", num: "55" },
+              ]}
+              onrow={true}
+              next={() => setActive(active + 1)}
+            />
+          </Step>
+          <Step label={i18n.chooseTemplate}>
+            <FirstStep
+              data={[
+                { name: " 110mm Tube", num: "55" },
+                { name: " 110mm Tube", num: "55" },
+                { name: " 110mm Tube", num: "55" },
+              ]}
+              onrow={true}
+              next={() => setActive(active + 1)}
+            />
+          </Step>
+          <Step label={i18n.buildRecord}>
+            <SecondStep
+              itemsData={store}
+              handleInput={handleInput}
+              addItem={addItem}
+              getItems={getItmeData}
+            />
+          </Step>
+          <Step label={i18n.submit}>
+            <FinalStep handleInput={handleInput} />
+          </Step>
+        </MultiStepForm>
+
+        <div style={{ padding: "10px 0" }}>
+          {active !== 1 && (
+            <Button
+              style={{
+                color: "var(--black)",
+                backgroundColor: "var(--cyan)",
+              }}
+              onClick={() => setActive(active - 1)}
+            >
+              {i18n.previous}
+            </Button>
+          )}
+          {active !== 4 && (
+            <Button
+              style={{
+                color: "var(--black)",
+                backgroundColor: "var(--cyan)",
+
+                float: ar ? "left" : "right",
+              }}
+              onClick={() => setActive(active + 1)}
+            >
+              {i18n.next}
+            </Button>
+          )}
+          {active === 4 ? (
+            <Button
+              style={{
+                color: "var(--black)",
+                backgroundColor: "var(--cyan)",
+                float: ar ? "left" : "right",
+              }}
+              onClick={handleSubmit}
+            >
+              finsh
+            </Button>
+          ) : null}
+        </div>
+      </Container>
+    </CustomPage>
+  );
 }

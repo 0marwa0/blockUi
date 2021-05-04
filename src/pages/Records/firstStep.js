@@ -7,9 +7,10 @@ import Pagination from "../shared/pagination";
 import { RiEdit2Fill } from "react-icons/ri";
 import pic from "../../public/images/0.png";
 import React, { useState } from "react";
+import Table from "../shared/Table";
 import "./styles/steps.css";
 import { Modal } from "react-responsive-modal";
-import { Table, Checkbox, Tag, Popover } from "antd";
+import { Checkbox, Tag, Popover } from "antd";
 const templet = [
   {
     id: "11",
@@ -90,35 +91,14 @@ function Index(props) {
   const indexOfLastPage = currentPage * pagePerOnce;
   const indexOfFirstPage = indexOfLastPage - pagePerOnce;
   let Data = props.data.slice(indexOfFirstPage, indexOfLastPage);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "dark" ? true : false;
   const [Loading, setLoading] = useState(false);
   return (
     <div className={darkMod ? "isDark" : ""}>
       <Table
-        columns={RecordsColumns}
-        rowClassName="tableRow"
-        pagination={false}
-        onRow={() =>
-          props.onrow
-            ? {
-                onClick: props.next,
-              }
-            : ""
-        }
-        dataSource={props.data}
-        locale={{
-          emptyText: TableLoading(Loading, "Items"),
-          //EmptyText(props.Loading, props.Item),
-        }}
-      />
-      <Pagination
-        length={Data.length}
-        currentPage={currentPage}
-        prevPage={prevPage}
-        totalPge={totalPge}
-        nextPage={nextPage}
-        lengthAll={props.data.length}
+        pageName="template"
+        headcss={darkMod ? "head-dark record" : "head record"}
+        data={[]}
       />
       <Modal
         open={modalIsOpen}

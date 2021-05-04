@@ -15,10 +15,12 @@ import styled from "styled-components";
 import { ReactComponent as DropIcon } from "../../../public/images/dropdown.svg";
 import { ReactComponent as Close } from "../../../public/images/close.svg";
 import { addData } from "../../../API";
+import { useLocale } from "react-easy-localization";
+
 import { AiFillCamera } from "react-icons/ai";
 import { GiNorthStarShuriken } from "react-icons/gi";
 import { AiOutlineClose } from "react-icons/ai";
-import { CustomModleButton } from "../../shared/SharedComponents";
+import { CustomModleButton, CustomButton } from "../../shared/SharedComponents";
 import { CustomInput, CustomInputArea } from "../../shared/SharedStyle";
 const { Option } = Select;
 
@@ -34,21 +36,12 @@ const optionData = (
   </Menu>
 );
 
-const PageWrapper = styled.div`
-  width: 470px;
-  padding: 20px 40px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  justify-content: space-between;
-`;
-
 function Index(props) {
   const [title, setTitle] = useState("");
   const [mesg, setMesg] = useState("");
   const [Loading, setLoading] = useState(false);
 
+  const { i18n, languageCode, changeLanguage } = useLocale();
   const handleInput = (e, key) => {
     let value = e.target.value;
     if (key === "title") {
@@ -159,8 +152,7 @@ function Index(props) {
     },
   };
   let node;
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "dark" ? true : false;
   return (
     <div className="Overlay" onClick={(e) => handleClose(e)}>
       <div
@@ -172,7 +164,7 @@ function Index(props) {
         <div className="SideModal">
           <div style={{ height: "150vh" }}>
             <div className="Title">
-              <div>Add new Worker</div>
+              <div>{i18n.addNewWorker}</div>
               <Close onClick={props.Close} cursor="pointer" />
             </div>
             <div
@@ -201,7 +193,7 @@ function Index(props) {
             </div>
             <div className="Space" /> <div />
             <InputLable>
-              Full Name
+              {i18n.fullName}
               <Input
                 className={darkMod ? "input-rg-dark" : "input-rg"}
                 onChange={(e) => props.handleInput(e, "name")}
@@ -210,16 +202,7 @@ function Index(props) {
             </InputLable>
             <div className="Space" /> <div />
             <InputLable>
-              Username
-              <Input
-                className={darkMod ? "input-rg-dark" : "input-rg"}
-                onChange={(e) => props.handleInput(e, "username")}
-                placeholder="Write admin username"
-              />
-            </InputLable>
-            <div className="Space" /> <div />
-            <InputLable>
-              Email
+              {i18n.email}
               <Input
                 placeholder="Write admin Email"
                 className={darkMod ? "input-rg-dark" : "input-rg"}
@@ -228,7 +211,7 @@ function Index(props) {
             </InputLable>
             <div className="Space" /> <div />
             <InputLable>
-              Phone
+              {i18n.phone}
               <Input
                 placeholder="Write admin phone number"
                 className={darkMod ? "input-rg-dark" : "input-rg"}
@@ -245,9 +228,9 @@ function Index(props) {
           >
             <div className="ModalFooter">
               <div style={{ float: "right" }}>
-                <CustomModleButton main extra fun={props.handleSubmit}>
-                  {props.type === "create" ? "Create" : "Save"}
-                </CustomModleButton>
+                <CustomButton main extra fun={props.handleSubmit}>
+                  {props.type === "create" ? "Create" : i18n.save}
+                </CustomButton>
               </div>
             </div>
           </div>

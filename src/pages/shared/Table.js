@@ -2,23 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../Records/styles/index.css";
 import "../Records/styles/steps.css";
 import { useLocale } from "react-easy-localization";
-
+import "./style/table.css";
 import Pagination from "../shared/pagination";
-import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc";
-export const Icon = () => {
-  return (
-    <div className="record-icon">
-      <div
-        style={{
-          position: "relative",
-        }}
-      >
-        <VscTriangleUp style={{ position: "absolute", top: "-8px" }} />
-      </div>
-      <VscTriangleDown />
-    </div>
-  );
-};
+import { CgArrowsV } from "react-icons/cg";
 
 function Index(props) {
   const [currentPage, setcurrentPage] = useState(1);
@@ -42,38 +28,64 @@ function Index(props) {
   const indexOfFirstPage = indexOfLastPage - pagePerOnce;
   let Data = props.data.slice(indexOfFirstPage, indexOfLastPage);
   let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
-  const RecordHead = () => {
-    return (
-      <div className={darkMod ? "record-head-dark" : "record-head"}>
-        <span className="flex-row">
-          {i18n.Item} <Icon />
-        </span>
+  const tableheads = [
+    {
+      name: "Records",
+      column: [
+        i18n.customer,
+        i18n.received,
+        i18n.description,
+        i18n.Discount,
+        i18n.residual,
+        i18n.driverName,
+        i18n.editDate,
+        i18n.createDate,
+      ],
+    },
+    {
+      name: "RecordItem",
+      column: [i18n.Item, i18n.Price, i18n.quantity, i18n.Discount],
+    },
 
-        <span className="flex-row">
-          {i18n.Price}
-          <Icon />
-        </span>
-        <span className="flex-row">
-          {i18n.quantity} <Icon />
-        </span>
-        <span className="flex-row">
-          {i18n.Discount}
-          <Icon />
-        </span>
-        <span className="flex-row">
-          {i18n.worker}
-          <Icon />
-        </span>
-        <div></div>
-      </div>
-    );
-  };
-  useEffect(() => {}, []);
+    {
+      name: "workers",
+      column: [i18n.name, i18n.email, i18n.phone, i18n.state],
+    },
+    {
+      name: "admins",
+      column: [i18n.name, i18n.email, i18n.phone, i18n.state],
+    },
+    {
+      name: "template",
+      column: [
+        i18n.templateName,
+        i18n.numberOfItems,
+        i18n.editDate,
+        i18n.createdBy,
+      ],
+    },
+  ];
+
+  useEffect(() => {});
+
   return (
     <div>
       <div className={darkMod ? "isDark" : ""}>
         <div className={darkMod ? "record-items-dark" : "record-items"}>
-          <RecordHead />
+          {tableheads.map((item) =>
+            item.name === props.pageName ? (
+              <div className={props.headcss}>
+                {item.column.map((i) => (
+                  <span className="flex-row">
+                    {i} <CgArrowsV />
+                  </span>
+                ))}
+
+                <div></div>
+              </div>
+            ) : null
+          )}
+
           {props.children}
         </div>
       </div>

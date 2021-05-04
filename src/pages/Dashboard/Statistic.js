@@ -63,7 +63,10 @@ function Index(props) {
   let statistics = props.statistics;
   let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
   return (
-    <div className={darkMod ? "Widget-dark" : "Widget"}>
+    <div
+      className={darkMod ? "Widget-dark s-ctrl" : "Widget s-ctrl"}
+      style={{ height: "52%" }}
+    >
       <div className="ItemHeader">
         <span style={{ fontWeight: "bold", fontSize: "1.2vw" }}>
           {i18n.statistics}

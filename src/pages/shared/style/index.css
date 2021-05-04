@@ -8,13 +8,14 @@
 .ant-popover-placement-bottomRight > .ant-popover-content > .ant-popover-arrow {
   display: none !important;
 }
+.ant-popover-placement-left > .ant-popover-content > .ant-popover-arrow,
+.ant-popover-placement-leftTop > .ant-popover-content > .ant-popover-arrow,
+.ant-popover-placement-leftBottom > .ant-popover-content > .ant-popover-arrow {
+  display: none !important;
+}
+
 .ant-popover-title {
   color: var(--darkGray) !important;
-}
-.ant-popover-inner {
-  border: 1px solid #353535 !important;
-
-  background-color: var(--black) !important;
 }
 
 .widget-space {

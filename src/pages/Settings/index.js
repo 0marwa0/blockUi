@@ -282,7 +282,7 @@ function Index(props) {
             </Col>
           </Row>
         </div>
-        <Modal open={modalIsOpen} onClose={openModal}>
+        <Modal open={modalIsOpen} onClose={openModal} showCloseIcon={false}>
           <NewSu />
         </Modal>
       </div>

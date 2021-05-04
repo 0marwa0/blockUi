@@ -2,29 +2,39 @@
 
 //import { Host } from "./Config";
 
-let Host = "https://station-test-api.herokuapp.com/dash/v1/";
+let Host = "http://127.0.0.1:8000/api/";
 // import axios from "axios";
 //let Host = `https://station-test-api.herokuapp.com/dash/v1/`;
 
 export const LoadData = (query, onSuccess, onFailure) => {
   // let data ;spaces
-  fetch(`${Host}${query}`, {
-    headers: {
-      token: localStorage.getItem("station_token"),
-    },
-  })
+  var myHeaders = new Headers();
+  myHeaders.append(
+    "Authorization",
+    "token 6b86abf088ef18f6c293bda66151d5ae3eb278d8"
+  );
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({});
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  fetch(`http://127.0.0.1:8000/api/${query}/`, requestOptions)
     .then((resp) => resp.json())
     .then((jsonData) => {
-      onSuccess(jsonData.errMsg, jsonData);
+      onSuccess(jsonData);
     })
     .catch((err) => {
-      onFailure(err.message);
+      onFailure(err);
     });
 };
 export const LoadDataByID = (query, onSuccess, onFailure) => {
-  fetch(`${Host}${query}`, {
+  fetch(`https://127.0.0.1:8000/api/${query}/`, {
     headers: {
-      token: localStorage.getItem("station_token"),
+      token: "6b86abf088ef18f6c293bda66151d5ae3eb278d8",
     },
   })
     .then((resp) => resp.json())
@@ -63,28 +73,23 @@ export const LoadDataByID = (query, onSuccess, onFailure) => {
 // };
 export const Login = (data, onSuccess, onFailure) => {
   let myHeaders = new Headers();
-  let raw = JSON.stringify(data);
+  let raw = data;
   // console.log(raw, "login data");
-  myHeaders.append("Content-Type", "application/json");
   let requestOptions = {
     method: "POST",
-    headers: myHeaders,
 
     body: raw,
     redirect: "follow",
   };
-  fetch(`${Host}/login`, requestOptions)
-    .then((response) => response.json())
+  fetch(`http://127.0.0.1:8000/api/token/`, requestOptions)
+    .then((response) => response.text())
+    .then((res) => JSON.parse(res))
     .then((result) => {
-      localStorage.setItem("station_token", result.token);
-      localStorage.setItem("Station_id", result.user.id);
-
-      onSuccess(result.status, result.errMsg, result);
-      //console.log(result, "login success");
+      localStorage.setItem("block_token", result.token);
+      onSuccess(result);
     })
 
     .catch((error) => {
-      //console.log(error.message, "login failed");
       onFailure(error.message);
     });
 };
@@ -92,16 +97,20 @@ export const Login = (data, onSuccess, onFailure) => {
 // Post request
 
 export const addData = (query, data, onSuccess, onFailure) => {
+  var myHeaders = new Headers();
+
+  myHeaders.append(
+    "Authorization",
+    "token 6b86abf088ef18f6c293bda66151d5ae3eb278d8"
+  );
+  myHeaders.append("Content-Type", "application/json");
   let options = {
     method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      token: localStorage.getItem("station_token"),
-    },
+    headers: myHeaders,
     body: JSON.stringify(data),
   };
 
-  fetch(`${Host}${query}`, options)
+  fetch(`${Host}${query}/`, options)
     .then((resp) => resp.json())
     .then((jsonData) => {
       console.log(jsonData.errMsg, jsonData, "on Success");

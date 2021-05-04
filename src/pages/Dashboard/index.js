@@ -41,6 +41,8 @@ function Index(props) {
       changeLanguage("ar");
     }
   }, [localStorage.getItem("Mode")]);
+
+  let darkMod = localStorage.getItem("mode") === "dark" ? true : false;
   const { i18n, languageCode, changeLanguage } = useLocale();
   return (
     <div className="CustomPageWrapper">
@@ -74,26 +76,21 @@ function Index(props) {
             gridTemplateColumns: "auto 23vw",
           }}
         >
-          <Col
-            style={{
-              minHeight: "0px",
-              minWidth: "0px",
-              height: "auto",
-            }}
-          >
+          <Col>
             <ChartLine />
             <Stock />
             {/*<Clander></Clander>*/}
           </Col>
 
           <Col style={{ height: "100%" }}>
-            <div className="r-ctrl">
+            <div
+              className="r-ctrl"
+              style={{ height: "40%", marginBottom: "8%" }}
+            >
               <Reservation Reservations={Reservations} Loading={Loading} />
             </div>
-            <div style={{ height: "3%" }}></div>
-            <div className="s-ctrl">
-              <Statistic Loading={Loading} />
-            </div>
+
+            <Statistic Loading={Loading} />
           </Col>
         </Row>
       </div>

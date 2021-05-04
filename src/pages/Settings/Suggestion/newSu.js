@@ -6,7 +6,8 @@ import { CgClose } from "react-icons/cg";
 import { RiEdit2Fill } from "react-icons/ri";
 import React, { useState } from "react";
 import "../styles/index.css";
-import { Table, Checkbox, Tag, Input, Popover } from "antd";
+import Table from "../../shared/Table";
+import { Checkbox, Tag, Input, Popover } from "antd";
 function Index(props) {
   const templet = [
     { id: "11", tempName: "water", row: [{ name: "test", price: "55$" }] },
@@ -126,69 +127,52 @@ function Index(props) {
     { item: " 110mm Tube", price: [1000], quantity: "0", discount: ["5%"] },
     { item: " 110mm Tube", price: [20], quantity: "0", discount: ["5%"] },
   ];
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "dark" ? true : false;
   const [Loading, setLoading] = useState(false);
   return (
-    <div className={darkMod ? "templetPopup-dark" : "templetPopup"}>
-      <div className={darkMod ? "isDark" : ""}>
-        <Table
-          columns={RecordsColumns}
-          rowClassName="tableRow"
-          pagination={false}
-          dataSource={RecordsData}
-          locale={{
-            emptyText: TableLoading(Loading, "Items"),
-            //EmptyText(props.Loading, props.Item),
-          }}
-        />
-      </div>
-
-      <div className={darkMod ? "input-row-dark" : "input-row"}>
-        <div className="flex-row">
-          <div>
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="item"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("name", e.target.value)}
-            />
-          </div>
-          <div>
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="price"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("price", e.target.value)}
-            />
-          </div>
-          <div>
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="quantity"
-              style={{ border: "none", width: "max-content" }}
-              onChange={(e) => handelInput("note", e.target.value)}
-            />
-          </div>
-          <div>
-            <Input
-              className={darkMod ? "input-rg-dark" : "input-rg"}
-              placeholder="discount"
-              style={{ border: "none", width: "100%" }}
-              onChange={(e) => handelInput("note", e.target.value)}
-            />
-          </div>
+    <div className={darkMod ? "isDark" : ""}>
+      <Table
+        pageName="Records"
+        data={[]}
+        columns={RecordsColumns}
+        rowClassName="tableRow"
+        pagination={false}
+        dataSource={RecordsData}
+        locale={{
+          emptyText: TableLoading(Loading, "Items"),
+          //EmptyText(props.Loading, props.Item),
+        }}
+      >
+        <div className={darkMod ? "input-row-dark" : "input-row"}>
+          <Input
+            className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
+            placeholder="item"
+            //defaultValue={valueInput}
+            style={{ border: "none", width: "max-content" }}
+          />
+          <Input
+            className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
+            placeholder="price"
+            //value={price}
+            style={{ border: "none", width: "max-content " }}
+            //onChange={(e) => handelInput("price", e.target.value)}
+          />
+          <Input
+            className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
+            placeholder="quantity"
+            //value={quantity}
+            style={{ border: "none", width: "max-content" }}
+            //onChange={(e) => handelInput("quantity", e.target.value)}
+          />
+          <Input
+            className={darkMod ? "input-rg-dark" : "input-rg borderLess"}
+            placeholder="discount"
+            //value={note}
+            style={{ border: "none", width: "max-content" }}
+            //onChange={(e) => handelInput("note", e.target.value)}
+          />
         </div>
-        <div>
-          <CustomButton
-            main
-            lable={<FaPlus color="var(--yellow)" />}
-            //   pageTitle={pageTitle}
-            loading={props.Loading}
-            //  onOpen={() => props.onOpenModal(true)}
-          ></CustomButton>
-        </div>
-      </div>
+      </Table>
     </div>
   );
 }

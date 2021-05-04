@@ -3,7 +3,7 @@ import "./shared/style/Sidebar.css";
 import { BiLogIn } from "react-icons/bi";
 import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlineDashboard, AiOutlineLineChart } from "react-icons/ai";
-import { Tooltip, Popover } from "antd";
+import { Col, Tooltip, Popover } from "antd";
 import { FiSettings } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -74,7 +74,7 @@ function SideBar(props) {
 
   return (
     <div className={darkMod ? "isDark" : ""}>
-      <div
+      <Col
         className={darkMod ? "SideWarpper-dark" : "SideWarpper"}
         style={{
           borderLeft: ar
@@ -112,9 +112,9 @@ function SideBar(props) {
           <NavItem slug="Notifications" title={title}>
             <div>
               <Popover
+                className={darkMod ? "isDark" : ""}
                 overlayInnerStyle={{
-                  backgroundColor: darkMod ? "rgb(19, 18, 18)" : "",
-                  border: darkMod ? "1px solid rgb(19, 18, 18)" : "",
+                  backgroundColor: darkMod ? "rgb(19, 18, 18)" : "white",
                 }}
                 content={<Notification />}
                 title={
@@ -153,7 +153,7 @@ function SideBar(props) {
             <div className="Active"></div>
           </NavItem>
         </div>
-      </div>
+      </Col>
     </div>
   );
 }

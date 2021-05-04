@@ -1,3 +1,5 @@
+import { useLocale } from "react-easy-localization";
+
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import { Input, Button, Checkbox } from "antd";
@@ -18,21 +20,7 @@ const PageWrapper = styled.div`
 
   width: 100%;
 `;
-const LoginForm = styled.div`
-  width: 35%;
 
-  position: relative;
-
-  @media (max-width: 900px) {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 99999;
-    background-color: white;
-  }
-`;
 const LoginContent = styled.div`
   position: absolute;
   left: 50%;
@@ -46,26 +34,12 @@ const Logo = styled.div`
   width: 100%;
   text-align: center;
 `;
-const ShortCat = styled.div`
-  background-color: var(--lightGray);
 
-  width: 65%;
-
-  color: var(--darkGray);
-`;
 const BoldText = styled.h3`
   font-weight: 700;
   color: var(--black);
 `;
-const CopyRights = styled.div`
-  font-size: 16px;
-  color: var(--cyan);
-  position: absolute;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-  bottom: 0;
-`;
+
 const LoginInfo = styled.div`
   display: flex;
   font-size: 15px;
@@ -130,25 +104,18 @@ export default function Index(props) {
   const history = useHistory();
 
   const handleSubmit = () => {
-    let data = {
-      username: username,
-      password: Password,
-    };
+    let formdata = new FormData();
+    formdata.append("username", username);
+    formdata.append("password", Password);
 
     if (username != 0 && Password != 0) {
       setLoading(true);
       Login(
-        data,
-        (status, err) => {
-          // console.log(status, "statuslogoin");
-          if (status) {
-            SuccessMesg("Login Successfully");
-            props.history.push("/");
-            setLoading(false);
-          } else {
-            FailedMesg(err);
-            setLoading(false);
-          }
+        formdata,
+        (status) => {
+          SuccessMesg("Login Successfully");
+          props.history.push("/");
+          setLoading(false);
         },
         (err) => {
           FailedMesg(err);
@@ -162,6 +129,18 @@ export default function Index(props) {
       FailedMesg("Empty filed", "you should enter your username and passwrod");
     }
   };
+
+  const { i18n, languageCode, changeLanguage } = useLocale();
+  useEffect(() => {
+    if (localStorage.getItem("mode") === "dark") {
+      document.body.style.background = "var(--black)";
+    } else {
+      document.body.style.background = "white";
+    }
+    if (window.localStorage.getItem("language") === "arabic") {
+      changeLanguage("ar");
+    }
+  }, [localStorage.getItem("Mode")]);
   const settings = {
     dots: true,
     infinite: true,
@@ -189,103 +168,89 @@ export default function Index(props) {
       </Slide>
     );
   };
+  let darkMod = window.localStorage.getItem("mode") === "dark" ? true : false;
+
   return (
     <PageWrapper>
-      <LoginForm>
-        <LoginContent>
-          <Logo>
-            <img src={Icon} width={200} />
-          </Logo>
-          <Space />
-          <div>
-            <Label> User Name</Label>
+      <LoginContent>
+        <Logo>
+          <img src={Icon} width={200} />
+        </Logo>
+        <Space />
+        <div>
+          <Label> {i18n.username}</Label>
 
-            <Input
-              placeholder="Enter you user name"
-              onChange={(e) => handelInput(e, "name")}
-              style={{
-                height: "60px",
-                borderRadius: "6px",
-                marginTop: "5px",
-                padding: "20px",
-                border: nameErr ? "1px solid red" : "",
-              }}
-            />
-            {nameErr ? (
-              <span className="errorText">empty user name</span>
-            ) : null}
+          <input
+            placeholder="Enter you user name"
+            className={darkMod ? "input-rg-dark" : "input-rg"}
+            onChange={(e) => handelInput(e, "name")}
+            style={{
+              height: "60px",
+              borderRadius: "6px",
+              marginTop: "5px",
+              padding: "20px",
+              border: nameErr ? "1px solid red" : "",
+            }}
+          />
+          {nameErr ? (
+            <span className="errorText">{i18n.emptyFeild}</span>
+          ) : null}
+        </div>
+
+        <Space />
+        <div>
+          <Label>{i18n.password}</Label>
+
+          <input
+            placeholder="Enter you passwrd"
+            onChange={(e) => handelInput(e, "password")}
+            className={darkMod ? "input-rg-dark" : "input-rg"}
+            style={{
+              height: "60px",
+              borderRadius: "6px",
+              marginTop: "5px",
+              padding: "20px",
+              border: PasswordErr ? "1px solid red" : "",
+            }}
+          />
+          {PasswordErr ? (
+            <span className="errorText">{i18n.emptyFeild}</span>
+          ) : null}
+        </div>
+        <Space />
+        <div>
+          {/* <Link to="/Dashboard"> */}
+          <Button
+            onClick={handleSubmit}
+            loading={Loading}
+            disabled={Loading ? true : false}
+            style={{
+              backgroundColor: "var(--cyan)",
+              borderRadius: "5px",
+              border: "none",
+              display: "flex",
+              gap: "5px",
+
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "18px",
+              height: "60px",
+            }}
+          >
+            {i18n.login}
+          </Button>
+          {/* </Link> */}
+        </div>
+        <Space />
+        <LoginInfo>
+          <div style={{ color: "var(--darkGray)" }}>
+            <Checkbox />
+            {"  " + i18n.rememberme}
           </div>
-
-          <Space />
-          <div>
-            <Label>Password</Label>
-
-            <Input.Password
-              placeholder="Enter you passwrd"
-              onChange={(e) => handelInput(e, "password")}
-              style={{
-                height: "60px",
-                borderRadius: "6px",
-                marginTop: "5px",
-                padding: "20px",
-                border: PasswordErr ? "1px solid red" : "",
-              }}
-            />
-            {PasswordErr ? (
-              <span className="errorText">empty email</span>
-            ) : null}
-          </div>
-          <Space />
-          <div>
-            {/* <Link to="/Dashboard"> */}
-            <Button
-              onClick={handleSubmit}
-              loading={Loading}
-              disabled={Loading ? true : false}
-              style={{
-                backgroundColor: "var(--cyan)",
-                borderRadius: "5px",
-                border: "none",
-                display: "flex",
-                gap: "5px",
-
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "18px",
-                height: "60px",
-              }}
-            >
-              Login
-            </Button>
-            {/* </Link> */}
-          </div>
-          <Space />
-          <LoginInfo>
-            <div>
-              <Checkbox /> Remember me
-            </div>
-            <u>Forgot Password?</u>
-          </LoginInfo>
-        </LoginContent>
-        <CopyRights>
-          <span style={{ color: "var(--darkGray)", fontSize: "13px" }}>
-            A system by
-          </span>
-          Solo Creative Studio
-        </CopyRights>
-      </LoginForm>
-      <ShortCat>
-        <Slider
-          arrows={false}
-          // ref={(slider) => (this.slider = slider)}
-          {...settings}
-        >
-          <SlideItem />
-          <SlideItem />
-          <SlideItem />
-        </Slider>
-      </ShortCat>
+          <u>{i18n.forgotpassword}</u>
+        </LoginInfo>
+      </LoginContent>
     </PageWrapper>
   );
 }

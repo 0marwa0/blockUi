@@ -1,5 +1,4 @@
 .chartLine-ovrlaly {
-  height: max-content;
   width: max-content;
 }
 
@@ -7,7 +6,6 @@
   height: max-content;
   border: 1px solid transparent;
   border-radius: 7px;
-  height: 400px;
   padding: 20px;
   margin-bottom: 10px;
   background-color: rgba(82, 185, 185, 0.281);

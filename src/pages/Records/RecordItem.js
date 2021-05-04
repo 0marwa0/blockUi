@@ -1,5 +1,7 @@
 // List item Page //
-
+import { useLocale } from "react-easy-localization";
+import { FiPhoneCall } from "react-icons/fi";
+import { ImLocation } from "react-icons/im";
 import React from "react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import "./styles/ListItem.css";
@@ -9,6 +11,7 @@ import { BsTrashFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { FaCalendarAlt } from "react-icons/fa";
 import { useState } from "react";
+import Moment from "react-moment";
 import { Popconfirm } from "antd";
 import { FaShoppingCart, FaEdit } from "react-icons/fa";
 import { BsBarChartFill } from "react-icons/bs";
@@ -24,90 +27,12 @@ import { ReactComponent as TrashICon } from "../../public/images/solid trash-alt
 import { LoadData, addData, addFile } from "../../API";
 import { SuccessMesg, FailedMesg, Mesg } from "../../API/APIMessage";
 
-const ListItemWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-
-  gap: 15px;
-`;
-
-const ItemActions = styled.span`
-  display: flex;
-  padding: 5px 0;
-  padding-left: 13px;
-  justify-content: space-between;
-  flex-direction: row;
-  font-size: 13px;
-  visibility: hidden;
-`;
-const Item = styled.img`
-  width: 100%;
-  height: 100%;
-
-  border-radius: 7px;
-`;
-
-const ItemOverlay = styled.div`
-  border-radius: 7px;
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.8)
-  );
-  -webkit-transition: background 1s ease-out;
-  -moz-transition: background 1s ease-out;
-  -o-transition: background 1s ease-out;
-  transition: background 1s ease-out;
-
-  background-size: 1px 500px;
-  border-radius: 10px;
-
-  width: 100%;
-  height: 100%;
-`;
-
-const ItemHolder = styled.div`
-  width: 100%;
-  height: 280px;
-  position: relative;
-
-  &:hover ${ItemActions} {
-    visibility: visible;
-  }
-
-  &:hover ${ItemOverlay} {
-    background-position: 100% 100%;
-  }
-`;
-
-const ListImg = styled.img`
-  with: 20px;
-  height: 20px;
-  border-radius: 50%;
-`;
-const Title = styled.div`
-  color: white;
-  font-size: 0.9vw;
-  font-weight: bold;
-  width: 80%;
-  height: 33px;
-  overflow: hidden;
-  margin-bottom: 7px;
-  line-height: 1.3em;
-`;
-
 const ListItem = (props) => {
   console.log(props.data, "article list");
   const [currentPage, setcurrentPage] = useState(1);
   const [pagePerOnce, setpagePerOnce] = useState(6);
 
+  const { i18n, languageCode, changeLanguage } = useLocale();
   const prevPage = () => {
     if (currentPage > 1) {
       setcurrentPage(currentPage - 1);
@@ -242,54 +167,66 @@ const ListItem = (props) => {
       Price: "9999",
     },
   ];
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "dark" ? true : false;
   return (
     <div className="List-holder">
-      {items.map((item) => (
+      {props.data.map((item) => (
         <div class={darkMod ? "card-dark" : "card"}>
           <div class={darkMod ? "card_content-dark" : "card_content"}>
             <div className={darkMod ? "card-user-dark" : "card-user"}>
               <img src={require("" + "../../public/images/0.png")} />
               <span>name</span>
               <span>
-                <MdCreateNewFolder color="var(--yellow)" /> :2/5/2021
+                <MdCreateNewFolder color="var(--yellow)" /> :
+                <Moment data={item.date} format="dd/MM/yy" />{" "}
               </span>
               <span>
-                <FaEdit color="var(--yellow)" /> :2/5/2021
+                <FaEdit color="var(--yellow)" /> :
+                <Moment data={item.modified} format="dd/MM/yy" />
               </span>
             </div>
-            <div className="List-owner"> record owner</div>
-            <p class={darkMod ? "card_text-dark" : "card_text"}>
+            <div className="List-owner"> {item.customer.name}</div>
+            <div class={darkMod ? "card_text-dark" : "card_text"}>
               <ul>
                 <li className="flex-line">
-                  Residual : <span>{item.Residual}</span>
+                  {i18n.residual} : <span>{item.rest}</span>
                 </li>
                 <li className="flex-line ">
-                  Received : <span>{item.recive}</span>
+                  {i18n.received}: <span>{item.receive}</span>
                 </li>
                 <li className="flex-line active-li">
-                  Discount:{item.discount}
-                </li>
-                <li className="flex-line active-li">
-                  Phone :<span>{item.phone}</span>
+                  {i18n.discount}:{item.discount}
                 </li>
               </ul>
               <ul>
                 <li className="flex-line">
-                  Employe : <span> {item.emp}</span>
+                  {i18n.creater}: <span> {item.creator}</span>
                 </li>
                 <li className="flex-line ">
-                  Note <span>{item.note}</span>
+                  {i18n.driverName} :<span>{item.driver}</span>
                 </li>
                 <li className="flex-line active-li">
-                  Price :<span>{item.Price}</span>
-                </li>
-                <li className="flex-line active-li">
-                  Address : <span>{item.Address}</span>
+                  {i18n.Price} :<span>{item.price}</span>
                 </li>
               </ul>
-            </p>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "0 20px",
+                marginBottom: "5px",
+              }}
+            >
+              <li className="flex-line active-li">
+                <FiPhoneCall color="var(--yellow)" /> :
+                <span>{item.customer.telephone}</span>
+              </li>
+              <li className="flex-line active-li">
+                <ImLocation color="var(--yellow)" />:{" "}
+                <span>{item.customer.address}</span>
+              </li>
+            </div>
             <div className="flex-line" style={{ justifyContent: "center" }}>
               <button
                 class={darkMod ? "btn-dark card_btn" : "btn card_btn"}

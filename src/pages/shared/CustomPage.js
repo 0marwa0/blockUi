@@ -195,6 +195,9 @@ function CustomPage(props) {
                     ) : (
                       <Popover
                         placement="bottom"
+                        overlayInnerStyle={{
+                          backgroundColor: darkMod ? "#353535" : "white",
+                        }}
                         title="filter by :"
                         content={content}
                         trigger="click"
@@ -275,15 +278,12 @@ function CustomPage(props) {
                   <div className={darkMod ? "isDark" : ""}>
                     <Table
                       data={[]}
-                      //onRow={() =>
-                      // props.pageTitle === "workers"
-                      //  ? //   props.pageTitle==="Workers"
-                      //   {
-                      //    onClick: () => history.push("/workerprofile"),
-                      // }
-                      // : ""
-                      // }
-                    ></Table>
+                      headcss={props.headcss}
+                      onRow={() => history.push("/workerprofile")}
+                      pageName={pageTitle}
+                    >
+                      {props.children}
+                    </Table>
                   </div>
                 </div>
               ) : showList ? (

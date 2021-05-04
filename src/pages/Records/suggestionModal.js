@@ -75,8 +75,7 @@ function Index(props) {
   const indexOfLastPage = currentPage * pagePerOnce;
   const indexOfFirstPage = indexOfLastPage - pagePerOnce;
   let Data = list.slice(indexOfFirstPage, indexOfLastPage);
-  let darkMod =
-    window.localStorage.getItem("isLight") === "light" ? false : true;
+  let darkMod = window.localStorage.getItem("mode") === "dark" ? true : false;
   return (
     <div className={darkMod ? "modal-back-dark" : "modal-back"}>
       <div className={darkMod ? "isDark" : ""}>
@@ -91,7 +90,11 @@ function Index(props) {
               })
             }
             //tabIndex={0}
-            className={darkMod ? "record-tab-dark" : "record-tab"}
+            className={
+              darkMod
+                ? "record-tab-dark recordItemCss"
+                : "record-tab recordItemCss"
+            }
           >
             <Input
               value={searchValue}
@@ -109,7 +112,12 @@ function Index(props) {
             <div
               onKeyPress={(e) => handleKey(e, value)}
               tabIndex={0}
-              className={darkMod ? "record-tab-dark" : "record-tab"}
+              style={{ padding: "8px" }}
+              className={
+                darkMod
+                  ? "record-tab-dark recordItemCss"
+                  : "record-tab recordItemCss"
+              }
             >
               <div>{value.item}</div>
               <div className={darkMod ? "tag-dark green" : "tag green"}>

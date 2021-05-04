@@ -1,274 +1,43 @@
 import React, { useEffect, useState } from "react";
 import CustomPage from "../shared/CustomPage";
 import { BookingColumns } from "./Config";
-import { BookingData } from "../../fakeData/index";
 import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
-import Exportpage from "./newRecord";
+import Moment from "react-moment";
 //import { Print } from "@syncfusion/ej2-schedule";
 import Print from "./print";
-
+import { FailedMesg, Mesg } from "../../API/APIMessage";
+import { LoadData } from "../../API/index";
 import { useLocale } from "react-easy-localization";
 export const Values = React.createContext();
 function Records(props) {
   const { i18n, languageCode, changeLanguage } = useLocale();
-  const [open, setOpen] = useState(false);
   const [Loading, setLoading] = useState(false);
-  const [Book, setBook] = useState([]);
-  const [DateValues, setDateValues] = useState([]);
-  const [showexport, setshowexport] = useState("");
-  const onOpenExport = (value) => {
-    setshowexport(value);
-  };
-  const onOpenModal = (open) => {
-    setOpen(open);
-    clearState();
-  };
-  const loadBook = () => {
+  const [records, setRecord] = useState([]);
+  const loadRecord = () => {
     setLoading(true);
 
-    // LoadData(
-    //   "books",
-    //   (mesg, data) => {
-    // if (mesg) {
-    //   Mesg(mesg);
-    // }
-
-    // console.log(data.data.rows);
-    setTimeout(() => {
-      setLoading(false);
-      let BookData = [];
-      BookingData.map((item) => {
-        BookData.push({
-          Status: item.Status,
-          Title: item.Title,
-          print: { print: onOpenModal },
-          StartingDate: "",
-          // item.bookDates
-
-          // .filter((i, index) => index === 0)
-          // .map((i) => DateName(i.start)),
-          EndingDate: "",
-          // tem.bookDates
-          //  .filter((i, index) => index === 0)
-          // .map((i) => DateName(i.end)),
-          Space: item.Space,
-          CreationDate: item.CreationDate,
-          BookedBy: item.BookedBy,
-        });
-      });
-      setBook(BookData);
-      setFilterdData(BookData);
-    }, 1200);
-
-    // let sorted = BookingData.sort(sortFunction);
-    // },
-    // (err) => {
-    //   setLoading(false);
-
-    //   FailedMesg(err, "Something worng happend !");
-    // }
-    //    );
-  };
-
-  const handleInput = (e, key) => {
-    let value = e.target.value;
-    switch (key) {
-      case "title":
-        settitle(value);
-        break;
-      case "price":
-        setprice(value);
-        break;
-      case "received":
-        setrecived(value);
-        break;
-      case "organizer":
-        setorganizer(value);
-        break;
-
-      case "comment":
-        setcomment(value);
-        break;
-
-      default:
-        break;
-    }
-  };
-  const handleselect = (e, key, daysValues) => {
-    // console.log("select is passed alredy");
-    let value = e;
-    switch (key) {
-      case "typeId":
-        settypeId(value);
-        break;
-      case "spaceId":
-        setspaceId(value);
-        break;
-      case "designId":
-        setdesignId(value);
-        break;
-      case "coffeebreakId":
-        setcoffeebreakId(value);
-        break;
-      case "lunchId":
-        setlunchId(value);
-        break;
-      case "people":
-        setpeople(value);
-        break;
-
-      case "days":
-        setDateValues(daysValues);
-
-        setdays(value);
-        break;
-      case "name":
-        setname(value);
-        break;
-      case "phone":
-        setphone(value);
-        break;
-      case "email":
-        setemail(value);
-        break;
-      case "gender":
-        setgender(value);
-        break;
-      case "birthday":
-        setbirthday(value);
-        break;
-      case "address":
-        setaddress(value);
-        break;
-      default:
-        break;
-    }
-  };
-  const clearState = () => {
-    settitle("");
-    setorganizer("");
-    setpeople();
-    setcomment("");
-    settypeId();
-    setspaceId();
-    setdesignId();
-    setcoffeebreakId();
-    setlunchId();
-    setprice("");
-    setrecived("");
-    setdays([]);
-  };
-  const [name, setname] = useState("");
-  const [phone, setphone] = useState();
-  const [email, setemail] = useState();
-  const [birthday, setbirthday] = useState("");
-  const [gender, setgender] = useState("");
-  const [address, setaddress] = useState("");
-  const [title, settitle] = useState("");
-  const [price, setprice] = useState();
-  const [received, setrecived] = useState();
-  const [organizer, setorganizer] = useState("");
-  const [people, setpeople] = useState();
-  const [comment, setcomment] = useState("");
-  const [typeId, settypeId] = useState();
-  const [spaceId, setspaceId] = useState();
-  const [designId, setdesignId] = useState(0);
-  const [coffeebreakId, setcoffeebreakId] = useState(0);
-  const [lunchId, setlunchId] = useState();
-  const [days, setdays] = useState([]);
-  const handleSubmit = () => {
-    let data = {
-      title: title,
-      organizer: organizer,
-      people: people,
-      comment: comment,
-      days: days,
-      spaceId: spaceId,
-      typeId: typeId,
-      designId: designId,
-      coffeebreakId: coffeebreakId,
-      lunchId: lunchId,
-      price: price,
-      received: received,
-      user: {
-        name: name,
-        phone: phone,
-        password: "1234",
-        sex: gender,
-        birthday: birthday,
-        address: address,
-        education: "",
-        jobTitle: "",
-        email: email,
-        lang: "ar",
-        image: "",
+    LoadData(
+      "record",
+      (data) => {
+        setLoading(false);
+        setRecord(data);
       },
-    };
+      (err) => {
+        setLoading(false);
 
-    // onOpenModal(false);
-    console.log(data, "book data sended");
-    onOpenModal(false);
-    setLoading(true);
-    // addData(
-    //   "book/add",
-    //   data,
-    //   (mesg, Data) => {
-    //     if (mesg) {
-    //       Mesg(mesg);
-    //       setLoading(false);
-    //       loadBook();
-    //     } else {
-
-    setTimeout(() => {
-      setLoading(false);
-
-      //d      SuccessMesg("Booking Created Successfully !");
-    }, 1200);
-    // setLoading(false);
-    // onOpenModal(false);
-    // loadBook();
-    // }
-    //   },
-    //   (err) => {
-    //     onOpenModal(false);
-    //     setLoading(false);
-
-    //     FailedMesg(err);
-    //   }
-    // );
+        FailedMesg(err, "Something worng happend !");
+      }
+    );
   };
+
   useEffect(() => {
-    loadBook();
+    loadRecord();
     // if (localStorage.getItem("station_token")) {
     // } else {
     //   props.history.push("/login");
     // }
   }, []);
-  const [FilterdData, setFilterdData] = useState([]);
-
-  function sortFunction(a, b) {
-    var dateA = new Date(a.createdAt).getTime();
-    var dateB = new Date(b.createdAt).getTime();
-    return dateA > dateB ? -1 : 1;
-  }
-
-  const [searchText, setsearchText] = useState("");
-  const HandleSearch = (e) => {
-    let value = e.target.value;
-    setsearchText(value);
-    if (value) {
-      setFilterdData(Book);
-    }
-  };
-  const Filter = () => {
-    let newData = Book.filter((item) =>
-      item.Title.title.toLowerCase().includes(searchText.toLowerCase())
-    );
-
-    newData.sort(sortFunction);
-    setFilterdData(newData);
-  };
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
 
   return (
     <div>
@@ -276,44 +45,43 @@ function Records(props) {
         pageTitle="Records"
         Title={i18n.recordTitle}
         columns={BookingColumns}
-        data={FilterdData}
+        data={records}
         Item="event"
-        HandleSearch={HandleSearch}
-        filter={Filter}
-        export={() => onOpenExport(true)}
+        headcss={darkMod ? "head-dark record-head" : "head record-head"}
+        //export={() => onOpenExport(true)}
         onOpenModal={() => props.history.push("newrecord")}
         Loading={Loading}
-      />
-      <Values.Provider
-        value={{
-          title: title,
-          organizer,
-          people,
-          comment,
-          spaceId,
-          coffeebreakId,
-          lunchId,
-          designId,
-          typeId,
-          price,
-          received,
-          days,
-          DateValues,
-        }}
       >
-        <Modal
-          closeOnOverlayClick={true}
-          open={open}
-          onClose={() => onOpenModal(false)}
-          center
-          showCloseIcon={false}
-          classNames={{ modal: "customModal" }}
-        >
-          <Print />
-        </Modal>
-      </Values.Provider>
-
-      {showexport ? <Exportpage fun={() => onOpenExport(false)} /> : null}
+        {records.map((value) => (
+          <div
+            className={
+              darkMod ? "record-tab-dark recordcss" : "record-tab recordcss"
+            }
+          >
+            <div className="flex-row">{value.customer.name}</div>
+            <div className="flex-row">
+              <div className={darkMod ? "tag-dark green" : "tag green"}>
+                {value.price + "$"}
+              </div>
+            </div>
+            <div className="flex-row">{value.description}</div>
+            <div className="flex-row">
+              {" "}
+              <div className={darkMod ? "tag-dark  org" : "tag org"}>
+                {value.discount + "%"}
+              </div>
+            </div>
+            <div className="flex-row">{value.rest}</div>
+            <div className="flex-row">{value.driver}</div>
+            <div className="flex-row">
+              <Moment format="mm/dd">{value.modified}</Moment>
+            </div>
+            <div className="flex-row">
+              <Moment format="mm/dd">{value.date}</Moment>
+            </div>
+          </div>
+        ))}
+      </CustomPage>
     </div>
   );
 }

@@ -75,90 +75,74 @@ function Index(props) {
             : "notific-holer"
         }
       >
-        <Scrollbars style={{ width: "100%", height: "380px" }}>
-          {Loading
-            ? [1, 2].map((i) => {
-                return (
-                  <div
+        {Loading
+          ? [1, 2].map((i) => {
+              return (
+                <div
+                  style={{
+                    width: "420px",
+                    height: "85px",
+                    padding: "10px 0",
+                    borderBottom: "1px solid var(--lighterGray)",
+                  }}
+                >
+                  <ContentLoader
+                    speed={2}
+                    width={400}
+                    height={160}
+                    viewBox="0 0 600 160"
+                    backgroundColor="#f3f3f3"
+                    foregroundColor="#ecebeb"
+                    {...props}
+                  >
+                    <rect x="90" y="26" rx="3" ry="3" width="160" height="4" />
+
+                    <rect x="580" y="26" rx="3" ry="3" width="25" height="4" />
+                    <circle cx="565" cy="27" r="3" />
+                    <circle cx="47" cy="30" r="27" />
+                  </ContentLoader>
+                </div>
+              );
+            })
+          : notifications.map((item, i) => {
+              return (
+                <div
+                  className={darkMod ? "NotifiItem-dark" : "NotifiItem"}
+                  key={i}
+                >
+                  <img
+                    className="NotifiImage"
+                    src={require("../../public/images/6.png")}
+                  />
+                  <Text>
+                    <span style={{ color: "var(--black)" }}>
+                      {users
+                        .filter((i) => i.id === item.userId)
+                        .map((i) => i.name)
+                        .toString()}
+                    </span>
+                    {item.action}
+                  </Text>
+                  <span
                     style={{
-                      width: "420px",
-                      height: "85px",
-                      padding: "10px 0",
-                      borderBottom: "1px solid var(--lighterGray)",
+                      display: "flex",
+
+                      justifyContent: "center",
                     }}
                   >
-                    <ContentLoader
-                      speed={2}
-                      width={400}
-                      height={160}
-                      viewBox="0 0 600 160"
-                      backgroundColor="#f3f3f3"
-                      foregroundColor="#ecebeb"
-                      {...props}
-                    >
-                      <rect
-                        x="90"
-                        y="26"
-                        rx="3"
-                        ry="3"
-                        width="160"
-                        height="4"
-                      />
-
-                      <rect
-                        x="580"
-                        y="26"
-                        rx="3"
-                        ry="3"
-                        width="25"
-                        height="4"
-                      />
-                      <circle cx="565" cy="27" r="3" />
-                      <circle cx="47" cy="30" r="27" />
-                    </ContentLoader>
-                  </div>
-                );
-              })
-            : notifications.map((item, i) => {
-                return (
-                  <div
-                    className={darkMod ? "NotifiItem-dark" : "NotifiItem"}
-                    key={i}
-                  >
-                    <img
-                      className="NotifiImage"
-                      src={require("../../public/images/6.png")}
+                    <BsDot
+                      color="var(--cyan)"
+                      size={30}
+                      style={{ marginTop: "-5px" }}
                     />
-                    <Text>
-                      <span style={{ color: "var(--black)" }}>
-                        {users
-                          .filter((i) => i.id === item.userId)
-                          .map((i) => i.name)
-                          .toString()}
-                      </span>
-                      {item.action}
-                    </Text>
-                    <span
-                      style={{
-                        display: "flex",
-
-                        justifyContent: "center",
-                      }}
-                    >
-                      <BsDot
-                        color="var(--cyan)"
-                        size={30}
-                        style={{ marginTop: "-5px" }}
-                      />
-                      <div style={{ textAlign: "center" }}>
-                        {/* <TimeAgo date={item.createdAt} /> */}
-                        {item.time}
-                      </div>
-                    </span>
-                  </div>
-                );
-              })}
-        </Scrollbars>
+                    <div style={{ textAlign: "center" }}>
+                      {/* <TimeAgo date={item.createdAt} /> */}
+                      {item.time}
+                    </div>
+                  </span>
+                </div>
+              );
+            })}
       </div>
 
       <div

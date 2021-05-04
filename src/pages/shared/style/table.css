@@ -1,0 +1,88 @@
+.record-items,
+.record-items-dark {
+  width: 100%;
+  text-align: left;
+  background-color: white;
+  border-radius: 16px 16px 0 0;
+  outline: none;
+}
+.record-items-dark {
+  background-color: var(--black);
+  border: 1px solid #353535;
+}
+.record {
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+}
+.head,
+.head-dark {
+  width: 100%;
+  padding: 5px;
+  display: grid;
+  padding: 20px;
+  border: none;
+  border-radius: 16px 16px 0 0;
+  text-align: left;
+  font-size: 15px;
+  text-transform: capitalize;
+  background-color: var(--lightGray);
+}
+
+.record-head {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
+}
+.head-dark {
+  color: var(--darkGray);
+  background-color: rgb(44, 43, 43) !important;
+}
+.tag,
+.tag-dark {
+  width: max-content;
+  padding: 0.5px 2px;
+  border-radius: 5px;
+}
+.tag-dark {
+  background-color: #353535 !important;
+  color: var(--ligherGray) !important;
+}
+.green {
+  background-color: var(--LightGreen);
+  color: rgb(26, 150, 26);
+}
+.org {
+  background-color: var(--lightOrange);
+  color: var(--orange);
+}
+
+.record-tab,
+.record-tab-dark {
+  width: 100%;
+  display: grid;
+  padding: 10px 0;
+  border: 1px solid var(--lightGray);
+  cursor: pointer;
+  gap: 30px;
+  align-items: center;
+  background-color: white;
+}
+
+.recordcss {
+  grid-template-columns: repeat(8, 1fr);
+}
+.recordItemCss {
+  grid-template-columns: repeat(4, 1fr);
+}
+.record-tab-dark:first-child,
+.record-tab:first-child {
+  border-radius: 16px 16px 0 0;
+}
+.record-tab-dark {
+  color: gray;
+  background-color: var(--black);
+  border: 1px solid rgb(44, 43, 43);
+}
+.record-tab:focus,
+.record-tab-dark:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 1px var(--cyan) inset;
+  background-color: rgba(1, 197, 197, 0.25);
+}
