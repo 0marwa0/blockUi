@@ -65,23 +65,28 @@ function Index(props) {
       ],
     },
   ];
+  let [rows, setRows] = useState(tableheads)
+  useEffect(() => {
+    // let data = tableheads.map(i => i.column.pop())
 
-  useEffect(() => {});
+  }, []);
 
   return (
     <div>
       <div className={darkMod ? "isDark" : ""}>
+
         <div className={darkMod ? "record-items-dark" : "record-items"}>
-          {tableheads.map((item) =>
+          {rows.map((item) =>
+
             item.name === props.pageName ? (
               <div className={props.headcss}>
                 {item.column.map((i) => (
-                  <span className="flex-row">
-                    {i} <CgArrowsV />
-                  </span>
+
+                  <div className="flex-row">
+                    {i} <CgArrowsV color="var(--lighterGray)" cursor="pointer" />
+                  </div>
                 ))}
 
-                <div></div>
               </div>
             ) : null
           )}

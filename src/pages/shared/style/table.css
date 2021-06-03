@@ -16,19 +16,19 @@
 .head,
 .head-dark {
   width: 100%;
-  padding: 5px;
-  display: grid;
-  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
   border: none;
   border-radius: 16px 16px 0 0;
-  text-align: left;
   font-size: 15px;
   text-transform: capitalize;
-  background-color: var(--lightGray);
+ background-color: var(--lightGray);
 }
 
 .record-head {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
+}
+.users-head {
 }
 .head-dark {
   color: var(--darkGray);
@@ -56,17 +56,21 @@
 .record-tab,
 .record-tab-dark {
   width: 100%;
-  display: grid;
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+  
+  padding: 10px;
   border: 1px solid var(--lightGray);
   cursor: pointer;
-  gap: 30px;
   align-items: center;
   background-color: white;
 }
 
 .recordcss {
-  grid-template-columns: repeat(8, 1fr);
+ /* grid-template-columns: repeat(8, 1fr);*/
+}
+.userscss {
+  /*grid-template-columns: repeat(4, 1fr);*/
 }
 .recordItemCss {
   grid-template-columns: repeat(4, 1fr);

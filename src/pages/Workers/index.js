@@ -12,15 +12,16 @@ import { Mesg, FailedMesg, SuccessMesg } from "../../API/APIMessage";
 import { LoadData, addData } from "../../API";
 import Progress from "react-progress-2";
 import { Drawer } from "antd";
+import Moment from "react-moment";
+import { fakeData } from "../api/fake"
 
 import EditUser from "./Notify/EditUser";
 export const UserContext = createContext();
-
 function Workers(props) {
   const [open, setOpen] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [users, setusers] = useState([]);
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState(fakeData);
   const [name, setname] = useState("");
   const [phone, setphone] = useState("");
   const [email, setemail] = useState("");
@@ -198,7 +199,8 @@ function Workers(props) {
           Status: user.active ? ["Enabled"] : ["Disabled"],
         });
       });
-      setdata(Users);
+      setdata(fakeData);
+      console.log(Users, "in load costumer")
       setFilterdata(Users);
     }, 1200);
 
@@ -236,6 +238,8 @@ function Workers(props) {
 
     setFilterdata(newData);
   };
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
+
   return (
     <div>
       {/* <button onClick={() => notify(55, true)}>open</button> */}
@@ -247,51 +251,31 @@ function Workers(props) {
         HandleSearch={HandleSearch}
         filter={Filter}
         onOpenModal={onOpenModal}
+        headcss={darkMod ? "head-dark users-head" : "head users-head"}
         Loading={Loading}
         Item="workers"
         onRow={() => props.history.push("/workerProfile")}
-      />
-      {/* <Modal
-        closeOnOverlayClick={false}
-        open={open}
-        onClose={() => onOpenModal(false)}
-        center
-        showCloseIcon={false}
-        classNames={{
-          modal: "customModal",
-        }}> */}
+      >
+        {data.map((value) => (
+          <div
+            className={
+              darkMod ? "record-tab-dark userscss" : "record-tab userscss"
+            }
+          >
+            <div className="flex-row">{value.FullName}</div>
+            <div className="flex-row">{value.Email}</div>
+            <div className="flex-row">{value.PhoneNumber}</div>
+            <div className={darkMod ? `tag-dark green` : "tag green"}>
+              {value.status}
+            </div>
 
+          </div>
+        ))}
+      </CustomPage>
       {open ? (
         <Notify Close={() => onOpenModal(false)} id={props.id} all={true} />
       ) : null}
-      {showEdit ? (
-        <UserContext.Provider
-          value={{
-            name: info ? info.name : "",
-            email: info ? info.email : "",
-            phone: info ? info.phone : "",
-            address: info ? info.address : "",
-            jobTitle: info ? info.jobTitle : "",
-            education: info ? info.education : "",
-            gender: info ? info.sex : "",
-            image: info ? info.image : "",
-            birthday: info ? info.birthday : "",
-            education: info ? info.education : "",
-          }}
-        >
-          <EditUser
-            Close={() => edit(null, false, null)}
-            id={props.id}
-            recevierId={Id}
-            handleInput={handleInput}
-            setFile={setFile}
-            all={false}
-            loading={Loading}
-            fun={() => edit(null, false, null)}
-            handleSubmit={handleSubmit}
-          />
-        </UserContext.Provider>
-      ) : null}
+
       {notifyUesr ? (
         <NotifyUser
           Close={() => notify(null, false, null)}

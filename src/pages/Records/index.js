@@ -12,7 +12,24 @@ export const Values = React.createContext();
 function Records(props) {
   const { i18n, languageCode, changeLanguage } = useLocale();
   const [Loading, setLoading] = useState(false);
-  const [records, setRecord] = useState([]);
+  const [records, setRecord] = useState([
+    {
+
+      modified: "2021/02/02",
+      customer: { name: "Ahmed" },
+      description: "no thing",
+      rest: "200$",
+      price: "500$",
+      date: "2021/05/02", driver: "Ali",
+    },
+    {
+      modified: "2021/02/02",
+      customer: { name: "Ahmed" },
+      description: "no thing",
+      rest: "200$",
+      price: "500$",
+      date: "2021/05/02", driver: "Ali",
+    }]);
   const loadRecord = () => {
     setLoading(true);
 
@@ -54,9 +71,7 @@ function Records(props) {
       >
         {records.map((value) => (
           <div
-            className={
-              darkMod ? "record-tab-dark recordcss" : "record-tab recordcss"
-            }
+            className={darkMod ? "record-tab-dark recordcss" : "record-tab recordcss"}
           >
             <div className="flex-row">{value.customer.name}</div>
             <div className="flex-row">

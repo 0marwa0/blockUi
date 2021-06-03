@@ -14,13 +14,15 @@ import Admin from "./Admin/index.js";
 import { Drawer } from "antd";
 import { LoadData, addData, editData, addFile } from "../../API";
 import EditAdmin from "./EditAdmin";
+import { fakeData } from "../api/fake"
+
 export const Values = React.createContext();
 
 function Admins(props) {
   const [open, setOpen] = useState(false);
   const [Loading, setLoading] = useState(false);
   const [Admins, setAdmins] = useState([]);
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState(fakeData);
   const [openPass, setopenPass] = useState(false);
   const [openEdit, setopenEdit] = useState(false);
   const [Filterdata, setFilterdata] = useState([]);
@@ -98,27 +100,13 @@ function Admins(props) {
           Username: admin.name,
           phone: admin.phone,
           email: admin.Username,
-          Type:
-            admin.type === 3
-              ? ["Book Admin"]
-              : admin.type === 2
-              ? ["Book Admin"]
-              : ["Admin"],
-          Branch: admin.gov,
-          Status: admin.active ? ["Enabled"] : ["Disabled"],
-          // pass: {
-          //   onOpen: () => onOpenModalPass(admin.id, true),
-          //   openPass: openPass,
-          //   onClose: onOpenModalPass(null, false),
-          // },
-          // edit: {
-          //   onOpen: () => onOpenModalEdit(admin.id, admin),
-          // },
+
+
         });
       });
       //setEdited(data.data);
 
-      setdata(Admins);
+      setdata(fakeData);
       setFilterdata(Admins);
     }, 1200);
     //       }
@@ -309,6 +297,8 @@ function Admins(props) {
 
   let admins = admin.filter((item) => item.id === id);
   // console.log(info, "sended");
+  let darkMod = window.localStorage.getItem("mode") === "light" ? false : true;
+
   return (
     <div>
       <CustomPage
@@ -322,17 +312,23 @@ function Admins(props) {
         Item="Admin"
         onOpenModal={() => onOpenModal(true)}
         Loading={Loading}
+        headcss={darkMod ? "head-dark users-head" : "head users-head"}
         length={Admins.length}
-      />
-      {/* <Drawer
-        placement="right"
-        closable={false}
-        title={false}
-        onClose={onCloseModal}
-        width={570}
-        maskClosable={open}
-        visible={open}
-        key="right"> */}
+      > {data.map((value) => (
+        <div
+          className={
+            darkMod ? "record-tab-dark userscss" : "record-tab userscss"
+          }
+        >
+          <div className="flex-row">{value.FullName}</div>
+          <div className="flex-row">{value.Email}</div>
+          <div className="flex-row">{value.PhoneNumber}</div>
+          <div className={darkMod ? `tag-dark green` : "tag green"}>
+            {value.status}
+          </div>
+        </div>
+      ))}
+      </CustomPage>
       {open ? (
         <Admin
           fun={onCloseModal}
@@ -344,49 +340,17 @@ function Admins(props) {
           handleInput={handleInput}
         />
       ) : null}
-      {/* </Drawer> */}
-      <Values.Provider
-        value={{
-          name: info ? info.name : "",
-          username: info ? info.username : "",
-          phone: info ? info.phone : "",
-          email: info ? info.email : "",
-          type: info ? info.type : "",
-          branch: info ? info.gov : "",
-          image: info ? info.image : "",
-        }}
-      >
-        {openEdit ? (
-          <EditAdmin
-            fun={onCloseModalEdit}
-            type="edit"
-            id={id}
-            getAdmins={getAdmins}
-            handleSelect={handleSelect}
-            admins={info}
-            handleRole={handleRole}
-            handleSubmit={handleEdit}
-            handleInput={handleInput}
-          />
-        ) : null}
-      </Values.Provider>
-      <Modal
-        closeOnOverlayClick={false}
-        open={openPass}
-        onClose={() => onOpenModalPass(null, false)}
-        center
-        showCloseIcon={false}
-        classNames={{
-          modal: "customModal",
-        }}
-      >
-        <PasswordRest
-          id={id}
-          onClose={() => onOpenModalPass(null, false)}
-          data={admin}
-        />
-      </Modal>
-      ,{showSttings ? <div>delete dectiveate</div> : ""}
+      {data.map((value) => (
+        <div
+          className={
+            darkMod ? "record-tab-dark userscss" : "record-tab userscss"
+          }
+        >
+          <div className="flex-row">{value.FullName}</div>
+          <div className="flex-row">{value.Email}</div>
+          <div className="flex-row">{value.PhoneNumber}</div>
+        </div>
+      ))}
     </div>
   );
 }
