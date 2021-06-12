@@ -13,6 +13,7 @@
 .dark-clander .fc-scrollgrid table {
   background-color: var(--black) !important;
 }
+
 .dark-clander .fc-prev-button,
 .dark-clander .fc-next-button {
   color: var(--darkGray) !important;
