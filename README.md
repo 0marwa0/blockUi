@@ -20,3 +20,4 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 [Live link](https://blocksui.netlify.app/#/)
+[<img src="./Block.png"/>]((https://blocksui.netlify.app/#/)
