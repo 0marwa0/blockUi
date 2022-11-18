@@ -46,6 +46,8 @@ You will also see any lint errors in the console.
 [Live link](https://blocksui.netlify.app/#/)
 ## Screenshots
 
+[<img src="./Block-dark.png"/>](https://blocksui.netlify.app/#/)
+
 [<img src="./Block.png"/>](https://blocksui.netlify.app/#/)
 
  
