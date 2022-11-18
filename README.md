@@ -23,12 +23,11 @@ a web-based application specifically (desktop screen only), with multi customize
 - Dark and light mode
 
 ## Usage
-You can use this website to generate readme files in markdown language without actually writing in markdown ;).
 
-## Code Examples
 To run this project in your device, download the repository and open terminal in your editor and run command…
-npm start
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - npm install
+  - npm start
+  - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Or you can directly visit this link [https://blocksui.netlify.app/#/](https://blocksui.netlify.app/#/)
 
