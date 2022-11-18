@@ -3,7 +3,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## blockUi
-a web-based application specifically for desktop screen dashboard Environment: [Reactjs,Antd design] Design and implement customized pages
+a web-based application specifically (desktop screen only), with multi customized pages
+
+
+
 
 
 ## Technologies Used
@@ -12,7 +15,7 @@ a web-based application specifically for desktop screen dashboard Environment: [
  - CSS
  - JavaScript
  - ReactJS
-
+ - Antd design
 ## Features
 
 - Support two languages (English and Arabic)
