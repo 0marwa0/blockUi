@@ -36,8 +36,8 @@ Not compeleted
 
 ## Improvements
 
-Functionality that allows users can create their own sections.
-Building A database can be introduced where user’s save/unsaved changes.
+- Adding functionality that allows users can create their own sections.
+- Building A database can be introduced where user’s save/unsaved changes.
 
 
 The page will reload if you make edits.
